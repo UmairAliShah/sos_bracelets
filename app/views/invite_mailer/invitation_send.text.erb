@@ -1,0 +1,6 @@
+Welcome to SOS-Bracelets <%= @invitation.email %>!
+
+Your friend <%= @invitation.team_profile.team.email %> invites YOU to join his team <%= @invitation.team_profile.name %> on SOS-Bracelets
+Follow the below link, create Your account and be a part of <%= @invitation.team_profile.name %>
+
+<%= link_to 'Create Account', new_user_registration_url() %>

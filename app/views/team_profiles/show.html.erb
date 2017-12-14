@@ -1,0 +1,174 @@
+<% content_for :title, "Team Profile | SOS Bracelets" %>
+<div class="container-fluid" style="padding-top: 37px;">
+  <div class="row">
+    <div class="col-md-12 no-pad-xs">
+      <div class="row login_signup_heading" style="padding:0px;margin:0px;">
+        <div class="col-md-12">
+          <center><h3 class="heading_text">Your Team Profile</h3></center>
+        </div>
+      </div>
+      <div class="jumbotron" style="padding-bottom:1em; background-color: rgba(255,255,255,0.9); border-radius:0 0 1em 1em;">
+        <div class="row">
+          <div class="col-md-12">
+            <center>
+                <div class="row">
+                  <div class="col-xs-12 col-md-4">
+                    <div class="form-group">
+                      <center>
+                        <%= image_tag(@team_profile.avatar.url(:medium), {id: "team_image",  style: "width:220px;height:220px;",class: "img-responsive img-thumbnail img-circle",alt: "Team Profile Image"}) %>
+                      </center>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-md-4">
+                    <center>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <%= label_tag :name, "Name",class: "login_signup_label", style:"margin-right: 0.4em;" %>
+                        </div>
+                        <div class="col-md-8">
+                          <%= label_tag :name, @team_profile.name,class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <%= label_tag :members, "Members",class: "login_signup_label", style:"margin-right: 0.4em;" %>
+                        </div>
+                        <div class="col-md-8">
+                          <%= label_tag :members, @team_profile.members,class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-4">
+                          <%= label_tag :leader, "Leader",class: "login_signup_label", style:"margin-right: 0.4em;" %>
+                        </div>
+                        <div class="col-md-8">
+                          <% if @team_profile.leader != nil %>
+                            <%= label_tag :leader, @team_profile.leader.firstname,class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %><%= label_tag :leader, @team_profile.leader.lastname,class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
+                          <% else %>
+                            <%= label_tag :leader, "No Leader is assigned to this Team Profile",class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
+                          <% end %>
+                        </div>
+                      </div>
+                    </center>
+
+                  </div>
+                  <div class="col-xs-12 col-md-4">
+                    <center>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <%= label_tag :city, "City",class: "login_signup_label", style:"margin-right: 0.4em;" %>
+                        </div>
+                        <div class="col-md-8">
+                          <%= label_tag :city, @team_profile.city,class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-4">
+                          <%= label_tag :state, "State",class: "login_signup_label", style:"margin-right: 0.4em;" %>
+                        </div>
+                        <div class="col-md-8">
+                          <%= label_tag :state, @team_profile.state,class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-4">
+                          <%= label_tag :zip, "Zip Code",class: "login_signup_label", style:"margin-right: 0.4em;" %>
+                        </div>
+                        <div class="col-md-8">
+                          <%= label_tag :zip, @team_profile.zip,class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-4">
+                          <%= label_tag :country, "Country",class: "login_signup_label", style:"margin-right: 0.4em;" %>
+                        </div>
+                        <div class="col-md-8">
+                          <%= label_tag :country, @team_profile.country,class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
+                        </div>
+                      </div>
+                    </center>
+
+                  </div>
+                </div>
+
+                <% if @team_profile.leader != nil %>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group leader_member_panel">
+                        <div class="row login_signup_heading" style="width:100%;padding:0px;margin:0px;">
+                          <div class="col-md-12">
+                            <center><h5 class="heading_text">Leader Profile</h5></center>
+                          </div>
+                        </div>
+                        <div class="row" style="width:100%;padding:0px;margin:0px;">
+                          <div class="col-md-1"></div>
+                          <div class="col-md-10">
+                            <%= link_to show_leader_leader_path(id: @team_profile.leader.id) do %>
+                               <%= image_tag(@team_profile.leader.avatar.url(:medium), {id: "team_image",  style: "width:160px;height:160px;",class: "img-responsive img-thumbnail img-circle",alt: "User Profile Image"}) %>
+                               <br>
+                               <center><h5 class="leader_member_label"><%= @team_profile.leader.firstname%> <%= @team_profile.leader.lastname%></h5></center>
+                               <h6 class="heading_text inner_div" style="color: #1E8449;">Show Profile</h6>
+                           <% end %>
+                          </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                      </div>
+                    </div>
+                <% else %>
+                  <div class="row">
+                <% end %>
+                <% @user = @team_profile.profiles %>
+                <% @user.each do |up|%>
+                  <div class="col-md-4">
+                    <div class="form-group leader_member_panel">
+                      <div class="row login_signup_heading" style="width:100%;padding:0px;margin:0px;">
+                        <div class="col-md-12">
+                          <center><h5 class="heading_text">Member Profile</h5></center>
+                        </div>
+                      </div>
+                      <div class="row" style="width:100%;padding:0px;margin:0px;">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                          <%= link_to show_user_profile_user_profile_path(id: up.id) do %>
+                             <%= image_tag(up.avatar.url(:medium), {id: "team_image",  style: "width:160px;height:160px;",class: "img-responsive img-thumbnail img-circle",alt: "User Profile Image"}) %>
+                             <br>
+                             <center><h5 class="leader_member_label"><%= up.firstname%> <%= up.lastname%></h5></center>
+                             <h6 class="heading_text inner_div" style="color: #1E8449;">Show Profile</h6>
+                          <% end %>
+                        </div>
+                      </div>
+                      <div class="col-md-1"></div>
+                    </div>
+                  </div>
+                <% end %>
+                  </div>
+
+
+
+                <div class="row">
+                  <div class="form-group">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-2">
+                      <center>
+                        <% if team_signed_in? %>
+                          <%= link_to 'Edit Team Profile', edit_team_profile_path(:id => @team_profile.id), class: 'btn btn-block btn-info', style: "font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;margin-top:1em;" %>
+                          <br>
+                          <br>
+                        <%end%>
+                        <%= link_to "Back", root_path,class: 'btn btn-block btn-info', style: "font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;" %>
+                      </center>
+                    </div>
+                    <div class="col-md-5"></div>
+                  </div>
+                </div>
+            </center>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

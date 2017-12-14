@@ -1,0 +1,58 @@
+<% content_for :title, "Send Invitation | SOS Bracelets" %>
+
+<div class="container" style="padding-top: 37px;">
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 no-pad-xs">
+      <div class="row login_signup_heading" style="padding:0px;margin:0px;">
+        <div class="col-md-12">
+          <center><h3 class="heading_text">Invite Your Friends to Join <i><%= @team_profile.name%></i></h3></center>
+        </div>
+      </div>
+
+      <div class="jumbotron" style="padding-bottom:1em; background-color: rgba(255,255,255,0.9); border-radius:0 0 1em 1em;">
+        <div class="row">
+          <div class="col-md-12">
+            <center>
+              <%= form_tag invitations_path(id: @team_profile.id), :html => {class: "form-horizontal center"}  do  %>
+                <% @invitations.each do |invitation| %>
+                  <%= fields_for 'invitations[]', invitation do |i| %>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <div class="col-md-4">
+                            <%= i.label :email, "Friend's E-mail",class: "login_signup_label" %>
+                          </div>
+                          <div class="col-sm-8">
+                            <%= i.email_field :email, autofocus: true, placeholder: "Enter Friend's E-mail", class: 'form-control my_text_field', style:"color: #1E8449;",required: true%>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  <% end %>
+                <% end %>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <div class="col-md-4"></div>
+                      <div class="col-md-4">
+                        <center>
+                          <%= submit_tag "Send Invitation E-mail",class: 'btn btn-block btn-success', style: "padding-right:0.5em;padding-left:0.5em; font-weight:bold;font-family: 'Merriweather', serif;" %>
+                        </center>
+                      </div>
+                      <div class="col-md-4"></div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </center>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>

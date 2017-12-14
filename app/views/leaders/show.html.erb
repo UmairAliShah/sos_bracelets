@@ -1,0 +1,138 @@
+<% content_for :title, "Your Leader Profile | SOS Bracelets" %>
+<div class="container" style="padding-top: 37px;">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 no-pad-xs">
+      <div class="row login_signup_heading" style="padding:0px;margin:0px;">
+        <div class="col-md-12">
+          <center><h3 class="heading_text">Your Leader Profile</h3></center>
+        </div>
+      </div>
+      <div class="jumbotron" style="padding-bottom:1em; background-color: rgba(255,255,255,0.9); border-radius:0 0 1em 1em;">
+        <div class="row">
+          <div class="col-md-12">
+            <center>
+                <div class="row">
+                  <div class="col-xs-12 col-md-4">
+                    <div class="form-group">
+                      <center>
+                        <%= image_tag(@leader.avatar.url(:medium), {id: "team_image",  style: "width:220px;height:220px;",class: "img-responsive img-thumbnail img-circle",alt: "Leader Profile Image"}) %>
+                      </center>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-md-8">
+                    <% if @leader.team_profile == nil  %>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <%= label_tag :leader_of, "Leader of Team",class: "login_signup_label", style:"margin-right: 0.4em;" %>
+                        </div>
+                        <div class="col-md-8">
+                          <%= label_tag :firstname, "No Team assigned to this Leader" ,class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
+                        </div>
+                      </div>
+                    <% else %>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <%= label_tag :leader_of, "Leader of Team",class: "login_signup_label", style:"margin-right: 0.4em;" %>
+                        </div>
+                        <div class="col-md-8">
+                          <%= label_tag :firstname, @leader.team_profile.name,class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
+                        </div>
+                      </div>
+                    <% end %>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <%= label_tag :firstname, "Name",class: "login_signup_label", style:"margin-right: 0.4em;" %>
+                      </div>
+                      <div class="col-md-8">
+                        <%= label_tag :firstname, @leader.firstname,class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %><%= label_tag :lastname, @leader.lastname,class: "login_signup_label", style:"color:#82E0AA;" %>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <%= label_tag :dob, "Date of Birth",class: "login_signup_label", style:"margin-right: 0.4em;" %>
+                      </div>
+                      <div class="col-md-8">
+                        <%= label_tag :dob, @leader.dob,class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em; margin-left: 0.3em;" %>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <%= label_tag :phone, "Phone Number",class: "login_signup_label", style:"margin-right: 0.4em;" %>
+                      </div>
+                      <div class="col-md-8">
+                        <%= label_tag :phone, @leader.code, class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>-<%= label_tag :phone, @leader.phone, class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <%= label_tag :gender, "Gender",class: "login_signup_label", style:"margin-right: 0.4em;" %>
+                      </div>
+                      <div class="col-md-8">
+                        <%= label_tag :gender, @leader.gender, class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <%= label_tag :blood, "Blood Group",class: "login_signup_label", style:"margin-right: 0.4em;" %>
+                      </div>
+                      <div class="col-md-8">
+                        <%= label_tag :blood, @leader.blood, class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <%= label_tag :hair, "Hair Color",class: "login_signup_label", style:"margin-right: 0.4em;" %>
+                      </div>
+                      <div class="col-md-8">
+                        <%= label_tag :hair, @leader.hair, class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <%= label_tag :eye, "Eye Color",class: "login_signup_label", style:"margin-right: 0.4em;" %>
+                      </div>
+                      <div class="col-md-8">
+                        <%= label_tag :eye, @leader.eye, class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <%= label_tag :height, "Height",class: "login_signup_label", style:"margin-right: 0.4em;" %>
+                      </div>
+                      <div class="col-md-8">
+                        <%= label_tag :height, @leader.height, class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <%= label_tag :weight, "Weight",class: "login_signup_label", style:"margin-right: 0.4em;" %>
+                      </div>
+                      <div class="col-md-8">
+                        <%= label_tag :weight, @leader.weight, class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                      <center>
+                        <%= link_to 'Edit Leader Profile', edit_leader_path(:id => @leader.id), class: 'btn btn-block btn-info', style: "font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;margin-top:1em;" %>
+                        <br>
+                        <br>
+                        <%= link_to "Back", leaders_path,class: 'btn btn-block btn-info', style: "font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;" %>
+                      </center>
+                    </div>
+                    <div class="col-md-4"></div>
+                  </div>
+                </div>
+            </center>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>

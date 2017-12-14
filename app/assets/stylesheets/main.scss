@@ -1,0 +1,100 @@
+body{
+  padding-top: 80px;
+  margin: 0px;
+  padding: 0px;
+}
+#notice_wrapper{
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  .app_alert, .app_notice{
+    padding: 1.9rem 0;text-align: center;margin: 0;font-size: 1.2em;font-weight: 700;color: #FFFFFF;letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+}
+.my_alert{
+  background: rgba(241, 148, 138, 0.8);border-style: solid;border-color: #A93226;border-radius: 5px;
+}
+.my_notice{
+  background: rgba(130,224,170, 0.8);border-style: solid;border-color: #45B39D;border-radius: 5px;
+}
+.btn_font{
+  font-size: 20px;font-weight: bold;
+}
+.login_signup_heading{
+  background: #2DBF7F;border-top-right-radius: 1em;border-top-left-radius: 1em;
+}
+.heading_text{
+  color: #F0F0F0; font-weight:bold;font-family: 'Merriweather', serif;
+}
+.login_signup_panel{
+  border: 2px solid;border-radius: 1em;border-color: #229954;padding-left: 3em;padding-right: 3em;padding-top: 1em;padding-bottom: 1em;
+}
+.login_signup_label{
+  color: #229954;font-weight:bold;font-family: 'Merriweather', serif;cursor: default;float: left;text-align: left;
+  margin-top: 0.7em;font-size: 1.2em;
+}
+.remember_label{
+  color: #229954;font-weight:bold;font-family: 'Merriweather', serif;cursor: default;
+}
+.login_signup_label:hover{
+  cursor: pointer;
+}
+.devise_label{
+  color: #229954;font-weight:bold;font-family: 'Merriweather', serif;cursor: default;
+}
+.devise_label:hover{
+  cursor: pointer;text-decoration:none;
+}
+
+.shared-links a{
+  background-color:#229954;box-shadow:0 0 5px rgba(0,0,0,0.12);border:1px solid #229954;margin:0;padding:8px 0;position:relative;width:100%;display:block;color:#F0F0F0;margin-bottom: -1.49em;
+}
+.shared-links a:hover{
+  background-color:#fdfdfd;text-decoration:none;color:#229954;
+}
+.shared-links a:focus{
+  box-shadow:0 0 5px rgba(0,0,0,0.12) inset
+}
+.my_text_field{
+  font-weight:bold;font-family: 'Merriweather', serif;
+}
+
+.navbar-nav > li > .dropdown-menu { background-color: #2DBF7F; text-align: center; color: #F0F0F0;}
+.navbar-nav > li > .dropdown-menu a { background-color: #2DBF7F; color: #FDFEFE;font-weight:bold;font-family: 'Merriweather', serif;}
+.navbar-nav > li > .dropdown-menu a:hover { background-color: #FDFEFE; color: #229954;}
+.heading_error{
+  font-weight:bold;font-family: 'Merriweather', serif;
+}
+
+#logout{
+    background-image:url('logout.png') left top;
+    width:16px;
+    height:16px;
+    display: block;
+    float: left;
+}
+.th_bg{
+  background-color:#333;color:#F0F0F0;
+}
+
+.leader_div{}
+
+.leader_member_panel{
+  border: 2px solid;border-radius: 1em;border-color: #229954;padding:0px;margin: 0px;
+}
+.leader_member_label{
+  color: #229954;font-weight:bold;font-family: 'Merriweather', serif;cursor: default;text-align: center;
+  margin-top: 0.7em;font-size: 1.2em;
+}
+.leader_member_label:hover{
+  cursor: pointer;text-decoration:none;
+}
+
+.team_profile_label{
+  color: #229954;font-weight:bold;font-family: 'Merriweather', serif;cursor: default;text-align: center;
+  margin-left: 0.1em;margin-right: 0.1em;font-size: 1.2em;
+}
+.team_profile_panel{
+  border: 2px solid;border-radius: 1em;border-color: #229954;padding:0.3em;
+}

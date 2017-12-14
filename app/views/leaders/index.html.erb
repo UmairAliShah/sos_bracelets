@@ -1,0 +1,78 @@
+<% content_for :title, "Leader Profiles | SOS Bracelets" %>
+<div class="container" style="padding-top: 37px;">
+  <div class="row">
+    <div class="col-md-12 no-pad-xs">
+      <div class="row login_signup_heading" style="padding:0px;margin:0px;">
+        <div class="col-md-12">
+          <center><h4 class="heading_text">Manage All Your Leader Profiles</h4></center>
+        </div>
+      </div>
+      <div class="jumbotron" style="padding-bottom:1em; background-color: rgba(255,255,255,0.9); border-radius:0em 0em 1em 1em;">
+        <div class="row">
+          <div class="col-md-12">
+            <center>
+              <% @leaders.each do |l| %>
+              <div class="container-fluid">
+                <div class="modal fade" id="deleteLeader">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <!-- Header -->
+                      <div class="modal-header" style="background: #2DBF7F;">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <center><h4 class="heading_text">Are You Sure to Delete this Leader Profile?</h4></center>
+                      </div>
+                      <!-- Body (form) -->
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <center>
+                                <div class="row">
+                                  <center>
+                                    <%= link_to 'Yes', leader_path(:id => l.id), method: :delete, class: 'btn btn-large btn-info', style: "font-weight:bold;font-family: 'Merriweather', serif; background-color:#CB4335;border-color:#CB4335;margin-top:1em;" %>
+                                    <button type="button" class="btn btn-success" data-dismiss="modal" style="margin-top:1em;">Close</button>
+                                  </center>
+                                </div>
+                              </center>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <div class="row login_signup_panel">
+                  <div class="col-md-4">
+                    <%= image_tag l.avatar.url(:medium), {style: "width:220px;height:220px;", class: "img-thumbnail img-circle",alt: "Leader Profile Image"}%>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="row">
+                      <center><h2 class="heading_text" style="color: #5F6A6A;"><%= l.firstname%> <%= l.lastname%></h2></center>
+                    </div>
+                    <div class="row">
+                      <center><h4 class="heading_text" style="color: #5D6D7E;"></h4></center>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-md-12" >
+                        <center>
+                          <%= link_to 'Show Leader Profile', leader_path(:id => l.id), class: 'btn btn-large btn-info', style: "font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;margin-top:1em;" %>
+                          <%= link_to 'Edit Leader Profile', edit_leader_path(:id => l.id), class: 'btn btn-large btn-info', style: "font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;margin-top:1em;" %>
+                          <input data-toggle="modal" data-target="#deleteLeader" class="btn btn-large btn-danger" type="button" value="Delete Leader Profile" style="font-weight:bold;font-family: 'Merriweather', serif; background-color:#CB4335;border-color:#CB4335;margin-top:1em;color:#FFFFFF;">
+                        </center>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br>
+              <%end%>
+
+              <%= link_to "Create New Leader Profile", new_leader_path,class: 'btn btn-large btn-success', style: "font-weight:bold;font-family: 'Merriweather', serif;" %>
+            </center>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

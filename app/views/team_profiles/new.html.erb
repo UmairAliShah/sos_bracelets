@@ -1,0 +1,227 @@
+<% content_for :title, "Make Team Profile | SOS Bracelets" %>
+
+<div class="container" style="padding-top: 37px;">
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 no-pad-xs">
+      <div class="row login_signup_heading" style="padding:0px;margin:0px;">
+        <div class="col-md-12">
+          <center><h3 class="heading_text">Create Team Profile</h3></center>
+        </div>
+      </div>
+
+      <div class="jumbotron" style="padding-bottom:1em; background-color: rgba(255,255,255,0.9); border-radius:0 0 1em 1em;">
+        <div class="row">
+          <div class="col-md-12">
+            <center>
+              <%= form_for :team_profile, url: team_profiles_path, :html => {multipart: true, class: "form-horizontal center"} do |f| %>
+                <% if @team_profile.errors.any? %>
+                  <div class="form-group alert alert-error alert-block" id="error_explanation">
+                    <button type="button" class="close" data-dismiss="alert">x</button>
+                    <h5 class="heading_error"><%= pluralize(@team_profile.errors.count, "error") %> prohibited this TEAM PROFILE from being saved:</h5>
+                    <% @team_profile.errors.full_messages.each do |msg| %>
+                        <h6 class="heading_error"><%= msg%></h6>
+                    <% end %>
+                  </div>
+                <%end%>
+                <div class="form-group">
+                  <div class="row">
+                    <center>
+                      <div class="container-fluid">
+                        <div class="modal fade" id="addPhoto">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <!-- Header -->
+                              <div class="modal-header" style="background: #2DBF7F;">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <center><h4 class="heading_text">Choose Avatar</h4></center>
+                              </div>
+                              <!-- Body (form) -->
+                              <div class="modal-body">
+                                <div class="form-group">
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <center>
+                                        <%= image_tag("user.png", {id: "postimg", style: "width:200px;height:200px;",class: "img-thumbnail img-circle",alt: "User Profile Image"}) %>
+                                        <h4 class="heading_text" style="font-style: italic;color:#2DBF7F;font-weight:normal;">Preview</h4>
+                                        <div class="row">
+                                          <center>
+                                            <%= f.file_field :avatar, id:"post-upload",class: "btn btn-info" %>
+                                            <button type="button" class="btn btn-success" data-dismiss="modal" style="margin-top:1em;">Save</button>
+                                          </center>
+                                        </div>
+                                      </center>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <center><button type="button" class="btn btn-danger" data-dismiss="modal" style="color:#C0392B;">Close</button></center>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-2"></div>
+                      <div class="col-md-8">
+                        <center>
+                          <%= image_tag("user.png", {id: "team_image",  style: "width:200px;height:200px;",class: "img-thumbnail img-circle",alt: "User Profile Image"}) %>
+                        </center>
+                      </div>
+                      <div class="col-md-2"></div>
+                    </center>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <center>
+                      <div class="col-md-4"></div>
+                      <div class="col-md-4">
+                        <center>
+                          <input data-toggle="modal" data-target="#addPhoto" class="btn btn-block btn-info" type="button" value="Add Avatar">
+                        </center>
+                      </div>
+                      <div class="col-md-4"></div>
+                    </center>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <%= f.label :name, "Team Name",class: "login_signup_label" %>
+                  </div>
+                  <div class="col-sm-8">
+                    <%= f.text_field :name, autofocus: true, placeholder: 'Enter Team Name', class: 'form-control my_text_field', style:"color: #1E8449;",required: true%>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <%= f.label :members, "Number of Members",class: "login_signup_label" %>
+                  </div>
+                  <div class="col-sm-8">
+                    <%= f.number_field :members, autofocus: true, placeholder: 'Enter Number of Members', class: 'form-control my_text_field', style:"color: #1E8449;",required: true%>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <%= f.label :city, "City",class: "login_signup_label" %>
+                  </div>
+                  <div class="col-sm-8">
+                    <%= f.text_field :city, autofocus: true, placeholder: 'Enter City', class: 'form-control my_text_field', style:"color: #1E8449;"%>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <%= f.label :state, "State",class: "login_signup_label" %>
+                  </div>
+                  <div class="col-sm-8">
+                    <%= f.text_field :state, autofocus: true, placeholder: 'Enter State', class: 'form-control my_text_field', style:"color: #1E8449;"%>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <%= f.label :zip, "Zip Code",class: "login_signup_label" %>
+                  </div>
+                  <div class="col-sm-8">
+                    <%= f.number_field :zip, autofocus: true, placeholder: 'Enter Zip Code', class: 'form-control my_text_field', style:"color: #1E8449;"%>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <%= f.label :country, "Country",class: "login_signup_label" %>
+                  </div>
+                  <div class="col-sm-8">
+                    <%= f.country_select :country,{prompt: "Select Country"}, {class:"form-control my_text_field",required: true, style:"color: #1E8449;"}%>
+                  </div>
+                </div>
+
+
+
+                <div class="form-group login_signup_heading" style="padding:0px;margin:0px;">
+                  <div class="col-md-12">
+                    <center><h5 class="heading_text">Select a Leader Profile for this Team</h5></center>
+                  </div>
+                </div>
+                <% count = 0 %>
+
+                <% @leaders.each do |l| %>
+                  <% if l.team_profile == nil %>
+                    <% count = count + 1 %>
+                    <div class="form-group login_signup_panel" style="padding:0px;margin:0px;border-radius:0px;">
+                      <center>
+                        <label class="col-md-12 btn leader_div" onclick="callme(this)" style="padding:0px;margin:0px;border-radius:0px;">
+                          <div class="col-md-12">
+                            <center>
+                              <%= f.radio_button :leader_id, l.id, style:"display:none;"%>
+                              <%= image_tag(l.avatar.url(:thumb), {id: "team_image",  style: "width:120px;height:120px;",class: "img-thumbnail img-circle",alt: "User Profile Image"}) %>
+                              <h6 class="heading_text inner_div" style="color: #1E8449;"><%= l.firstname%> <%= l.lastname%></h6>
+                            </center>
+                          </div>
+                        </label>
+                      </center>
+                    </div>
+                  <% end %>
+                <% end %>
+                <% if count == 0%>
+                  <div class="form-group login_signup_panel" style="padding:0px;margin:0px;border-radius:0px;">
+                    <center>
+                      <h4 class="heading_text inner_div" style="color: #1E8449;">No Leader Profile is available</h4>
+                    </center>
+                  </div>
+                <% end %>
+                <br>
+
+                <div class="form-group">
+                  <div class="col-md-4"></div>
+                  <div class="col-md-4">
+                    <center>
+                      <%= f.submit "Create Team",class: 'btn btn-block btn-success', style: "font-weight:bold;font-family: 'Merriweather', serif;" %>
+                      <br><br>
+                      <%= link_to "Back", root_path,class: 'btn btn-block btn-info', style: "font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;" %>
+                    </center>
+                  </div>
+                  <div class="col-md-4"></div>
+                </div>
+              <%end%>
+            </center>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
+
+<!-- *************************** Start Script for Uploading Image in Post ************************* -->
+<script>
+	$(document).ready(function() {
+		$("#post-upload").on('change', function() {
+			//Get count of selected files
+			var countFiles = $(this)[0].files.length;
+			var imgPath = $(this)[0].value;
+			var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+			var image_holder = $("#postImage-holder");
+			image_holder.empty();
+			if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+				if (typeof(FileReader) != "undefined") {
+					//loop for each file selected for uploaded.
+					for (var i = 0; i < countFiles; i++)
+					{
+						var reader = new FileReader();
+						reader.onload = function(e) {
+							$('#postimg').attr('src', e.target.result);
+              $('#team_image').attr('src', e.target.result);
+						}
+						image_holder.show();
+						reader.readAsDataURL($(this)[0].files[i]);
+					}
+				} else {
+					alert("This browser does not support FileReader.");
+				}
+			}else {
+				alert("Please select only images");
+			}
+		});
+	});
+</script>
+<!-- *************************** End Script for Uploading Image in Post ************************* -->

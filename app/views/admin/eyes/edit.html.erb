@@ -1,0 +1,56 @@
+<% content_for :title, "Edit Eye Color | SOS Bracelets" %>
+
+<div class="container" style="padding-top: 37px;">
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 no-pad-xs">
+      <div class="row login_signup_heading" style="padding:0px;margin:0px;">
+        <div class="col-md-12">
+          <center><h3 class="heading_text">Edit Eye Color</h3></center>
+        </div>
+      </div>
+
+      <div class="jumbotron" style="padding-bottom:1em; background-color: rgba(255,255,255,0.9); border-radius:0 0 1em 1em;">
+        <div class="row">
+          <div class="col-md-12">
+            <center>
+              <%= form_for :eye, url: admin_eye_path(:id => @eye.id), method: :PATCH do |f| %>
+                <% if @eye.errors.any? %>
+                  <div class="form-group alert alert-error alert-block" id="error_explanation">
+                    <button type="button" class="close" data-dismiss="alert">x</button>
+                    <h5 class="heading_error"><%= pluralize(@eye.errors.count, "error") %> prohibited this EYE COLOR from being saved:</h5>
+                    <% @eye.errors.full_messages.each do |msg| %>
+                        <h6 class="heading_error"><%= msg%></h6>
+                    <% end %>
+                  </div>
+                <%end%>
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <%= f.label :name, "Eye Color",class: "login_signup_label" %>
+                  </div>
+                  <div class="col-sm-6">
+                    <%= f.text_field :name, autofocus: true, placeholder: 'Enter Eye Color', class: 'form-control my_text_field', style:"color: #1E8449;",required: true%>
+                  </div>
+                </div>
+                <br><br><br>
+                <div class="form-group">
+                  <div class="col-md-4"></div>
+                  <div class="col-md-4">
+                    <center>
+                      <%= f.submit "Update Eye Color",class: 'btn btn-block btn-success', style: "font-weight:bold;font-family: 'Merriweather', serif;" %>
+                      <br><br>
+                      <%= link_to "Back", admin_eyes_path,class: 'btn btn-block btn-info', style: "font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;" %>
+                    </center>
+                  </div>
+                  <div class="col-md-4"></div>
+                </div>
+              <%end%>
+            </center>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>

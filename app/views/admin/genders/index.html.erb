@@ -1,0 +1,73 @@
+<% content_for :title, "All Genders | SOS Bracelets" %>
+
+<div class="container" style="padding-top: 37px;">
+
+  <div class="row">
+    <div class="col-md-12 no-pad-xs">
+      <div class="row login_signup_heading" style="padding:0px;margin:0px;">
+        <div class="col-md-12">
+          <center><h3 class="heading_text">All Genders</h3></center>
+        </div>
+      </div>
+
+      <div class="jumbotron" style="padding-bottom:1em; background-color: rgba(255,255,255,0.9); border-radius:0 0 1em 1em;">
+        <div class="row" style="margin-top: -2em;">
+          <div class="col-xs-12 col-md-12 login_signup_panel">
+            <center>
+              <h4 class="heading_text" style="color:#333;">Add New Gender</h4>
+              <%= form_for :gender, url: admin_genders_path do |f| %>
+                <% if @gender.errors.any? %>
+                  <div class="form-group alert alert-error alert-block" id="error_explanation">
+                    <button type="button" class="close" data-dismiss="alert">x</button>
+                    <h5 class="heading_error"><%= pluralize(@gender.errors.count, "error") %> prohibited this Gender from being saved:</h5>
+                    <% @gender.errors.full_messages.each do |msg| %>
+                        <h6 class="heading_error"><%= msg%></h6>
+                    <% end %>
+                  </div>
+                <%end%>
+                <div class="col-xs-12 col-md-3" style="margin-bottom: 1em;">
+                  <%= f.label :name, "Gender",class: "login_signup_label" %>
+                </div>
+                <div class="col-xs-12 col-md-1" style="margin-bottom: 1em;"></div>
+                <div class="col-xs-12 col-md-4" style="margin-bottom: 1em;">
+                  <%= f.text_field :name, autofocus: true, placeholder: 'Enter Gender', class: 'form-control my_text_field', style:"color: #1E8449;", required: true%>
+                </div>
+                <div class="col-xs-12 col-md-1" style="margin-bottom: 1em;"></div>
+                <div class="col-xs-12 col-md-3" style="margin-bottom: 1em;">
+                  <%= f.submit "Add Gender",class: 'btn btn-block btn-success', style: "font-weight:bold;font-family: 'Merriweather', serif; border-radius:0 0 0 0;" %>
+                </div>
+              <%end%>
+            </center>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <center>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead class="th_bg supervisor_thead">
+                    <tr>
+                      <th scope="col"><center> Name </center></th>
+                      <th scope="col"><center> Edit </center></th>
+                      <th scope="col"><center> Delete </center></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @genders.each do |g|%>
+                      <tr>
+                        <td><%= g.name %></td>
+                        <td><%= link_to "Edit", edit_admin_gender_path(:id => g.id),class: 'btn btn-block btn-info', style: "border-radius: 0 0 0 0;font-weight:bold;font-family: 'Merriweather', serif;background-color:#229954;border-color:#229954;" %></td>
+                        <td><%= link_to "Delete", admin_gender_path(:id => g.id), method: :delete, data: {confirm: "Are You sure to delete this Gender?"} ,class: 'btn btn-block btn-danger', style: "border-radius: 0 0 0 0;font-weight:bold;font-family: 'Merriweather', serif;background-color:#E74C3C;border-color#E74C3C;color:#F0F0F0;" %></td>
+                      </tr>
+                    <%end%>
+                  </tbody>
+                </table>
+              </div>
+            </center>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
