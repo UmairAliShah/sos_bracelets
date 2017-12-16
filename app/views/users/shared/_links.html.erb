@@ -32,7 +32,7 @@
       <br>
       <div class="form-group">
         <%- resource_class.omniauth_providers.each do |provider| %>
-          <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: "btn btn-block btn-facebook", style:"font-weight:bold;font-family: 'Merriweather', serif; backgroung:#146499;border-color:#146499; border-radius:0px;" %><br />
+          <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: "btn btn-block btn-facebook", style:"font-weight:bold;font-family: 'Merriweather', serif; background:#146499;border-color:#146499; border-radius:0px;" %><br />
         <% end -%>
       </div>
     <% end -%>
