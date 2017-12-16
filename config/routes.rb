@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  devise_for :users, path: 'auth_users'
+
+
+  devise_for :users, path: 'auth_users', :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks' }
   # eg. http://localhost:3000/auth_users/sign_in
   devise_for :admins, path: 'authenticate_sos_admins'
   # eg. http://localhost:3000/auth_admins/sign_in
@@ -24,7 +26,7 @@ Rails.application.routes.draw do
       get :send_invite
     end
   end
-
+  resources :user_credentials, only: [:new, :create]
   authenticated :team do
     root :to => 'team_profiles#index'
   end

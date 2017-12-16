@@ -12,6 +12,9 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
+  config.omniauth :facebook, ENV['FB_ID'], ENV['FB_SECRET'] #, callback_url: "http://localhost:3000/auth_users/auth/facebook/callback"
+
+
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
   config.secret_key = '191c2a7b69bcc545d1ce51cc74920398cbf8d99735d050cf50c947f516aeb36f39c4ebfcf5cca9839d91e73f6a227d3a500de5bd55d62953dc43ef2ac4a0fd47'
 

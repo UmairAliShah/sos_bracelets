@@ -5,7 +5,14 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
+# For Enviormental Variables
+gem "figaro"
+# For Social Button Bootstarp Social
+gem 'font-awesome-rails'
+gem 'bootstrap-social-rails'
+# Facebook Login
+gem 'omniauth-facebook', '~> 4.0'
+# Rake Gem
 gem 'rake'
 # For Checking Phone Number is in Valid form or notice
 gem 'phonelib'

@@ -19,8 +19,8 @@ module SOSBracelets
       :address => 'smtp.gmail.com',
       :domain => 'mail.google.com',
       :port => 587,
-      :user_name => 'sultani4work@gmail.com',
-      :password => 'ILoveYourMelons44**',
+      :user_name => ENV['ID'],
+      :password => ENV['PASS'],
       :authentication => 'login',
       :enable_starttls_auto => true
     }
