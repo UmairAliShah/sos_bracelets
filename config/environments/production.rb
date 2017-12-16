@@ -77,7 +77,7 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
 
-  config.action_mailer.default_url_options = {:host => 'sos-bracelets.herokuapp.com', :protocol => 'http'} #I've also tried it without ":protocol => 'http'"
+  config.action_mailer.default_url_options = {:host => 'sos-bracelets-dev-man.herokuapp.com', :protocol => 'http'} #I've also tried it without ":protocol => 'http'"
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
