@@ -8,7 +8,7 @@
           <center><h3 class="heading_text">Add Your New Password</h3></center>
         </div>
       </div>
-      <div class="jumbotron" style="padding-bottom:1em; background-color: rgba(255,255,255,0.9); border-radius:0 0 1em 1em;">
+      <div class="jumbotron" style="padding-top:1em;padding-bottom:1em; background-color: rgba(255,255,255,0.9); border-radius:0 0 1em 1em;">
         <div class="row">
           <div class="col-md-1"></div>
           <div class="col-md-10 login_signup_panel">
@@ -16,12 +16,12 @@
               <%= devise_error_messages! %>
               <%= f.hidden_field :reset_password_token %>
 
-              <div class="form-group">
+              <div class="form-group" style="padding:0px;margin:0px;">
                 <%= f.label :password, "New Password" , class: "login_signup_label" %><br />
                 <%= f.password_field :password, autofocus: true, autocomplete: "off", placeholder: 'New Password', class: 'form-control my_text_field', style:"color: #1E8449;", required: true%>
               </div>
 
-              <div class="form-group">
+              <div class="form-group" style="padding:0px;margin:0px 0px 15px 0px;">
                 <%= f.label :password_confirmation, "Confirm New Password", class: "login_signup_label" %><br />
                 <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Confirm New Password', class: 'form-control my_text_field', style:"color: #1E8449;", required: true%>
               </div>
