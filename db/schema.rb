@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171215185449) do
+ActiveRecord::Schema.define(version: 20171223052721) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -91,7 +91,9 @@ ActiveRecord::Schema.define(version: 20171215185449) do
     t.string "avatar_content_type"
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer "team_profile_id"
     t.index ["team_id"], name: "index_leaders_on_team_id"
+    t.index ["team_profile_id"], name: "index_leaders_on_team_profile_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -132,9 +134,7 @@ ActiveRecord::Schema.define(version: 20171215185449) do
     t.string "avatar_content_type"
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer "leader_id"
     t.integer "members"
-    t.index ["leader_id"], name: "index_team_profiles_on_leader_id"
     t.index ["team_id"], name: "index_team_profiles_on_team_id"
   end
 

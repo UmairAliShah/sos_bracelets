@@ -1,5 +1,5 @@
 class Invitation < ApplicationRecord
-  validates :email, presence: true
+  #validates :email, presence: true
 
   belongs_to :team_profile
 

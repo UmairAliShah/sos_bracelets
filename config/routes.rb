@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :user_profiles do
     member do
       get :show_user_profile
+      get :member_profile
     end
   end
   resources :leaders do
@@ -22,8 +23,8 @@ Rails.application.routes.draw do
   end
   resources :homes, only: [:index]
   resources :invitations do
-    member do
-      get :send_invite
+    collection do
+      post :send_invite
     end
   end
   resources :user_credentials, only: [:new, :create]

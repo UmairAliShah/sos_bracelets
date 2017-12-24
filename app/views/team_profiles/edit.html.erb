@@ -1,4 +1,4 @@
-<% content_for :title, "Make Team Profile | SOS Bracelets" %>
+<% content_for :title, "Edit Team Profile | SOS Bracelets" %>
 
 <div class="container" style="padding-top: 37px;">
 
@@ -136,30 +136,6 @@
                 </div>
 
 
-                <div class="form-group login_signup_heading" style="padding:0px;margin:0px;">
-                  <div class="col-md-12">
-                    <center><h5 class="heading_text">Select a Leader Profile for this Team</h5></center>
-                  </div>
-                </div>
-                <% @leaders.each do |l| %>
-                  <div class="form-group login_signup_panel" style="padding:0px;margin:0px;border-radius:0px;">
-                    <center>
-                      <% if @team_profile.leader != nil && l.id == @team_profile.leader.id %>
-                        <label class="col-md-12 btn leader_div" onclick="callme(this)" style="padding:0px;margin:0px;border-radius:0px;background-color:#7DCEA0;">
-                      <% elsif l.team_profile == nil %>
-                        <label class="col-md-12 btn leader_div" onclick="callme(this)" style="padding:0px;margin:0px;border-radius:0px;">
-                      <% end %>
-                        <div class="col-md-12">
-                          <center>
-                            <%= f.radio_button :leader_id, l.id, style:"display:none;"%>
-                            <%= image_tag(l.avatar.url(:thumb), {id: "team_image",  style: "width:120px;height:120px;",class: "img-thumbnail img-circle",alt: "User Profile Image"}) %>
-                            <h6 class="heading_text inner_div" style="color: #1E8449;"><%= l.firstname%> <%= l.lastname%></h6>
-                          </center>
-                        </div>
-                      </label>
-                    </center>
-                  </div>
-                <% end %>
 
                 <br>
 

@@ -15,7 +15,7 @@
                 <% if team_signed_in? %>
                   <% if p.invitations.count > 0 %>
                     <div class="container-fluid">
-                      <div class="modal fade" id="sendAgain">
+                      <div class="modal fade" id="<%= p.id%>">
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <!-- Header -->
@@ -30,16 +30,24 @@
                                   <div class="col-md-12">
                                     <center>
                                       <div class="row">
-                                        <center>
-                                          <% @invitations = p.invitations %>
-                                          <% @invitations.each do |i|%>
-                                            <label class="team_profile_label"><%= i.email%></label><br>
-                                          <% end %>
-                                        </center>
+                                        <div class="col-xs-12 col-md-2"></div>
+                                        <div class="col-xs-12 col-md-8">
+                                          <% count = 0 %>
+                                          <center>
+                                            <% @invitations = p.invitations %>
+                                            <% @invitations.each do |i|%>
+                                                <input type="email" class="form-control my_text_field" placeholder="Friend's E-mail" id="email<%= p.id%><%= count %>" value="<%= i.email%>" />
+                                                <br>
+                                                <label style="display: none;" id="id<%= p.id%><%= count %>"><%= i.id%></label>
+                                              <% count = count + 1%>
+                                            <% end %>
+                                          </center>
+                                        </div>
+                                        <div class="col-xs-12 col-md-2"></div>
                                       </div>
                                       <div class="row">
                                         <center>
-                                          <%= link_to 'Send Invitation E-mail', send_invite_invitation_path(:id => p.id), class: 'btn btn-large btn-info', style: "font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;margin-top:1em;" %>
+                                          <button id="send_invites" onclick="send_invites_friend(<%= count%>, <%= p.id %>);" type="button" class='btn btn-large btn-info' style="font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;margin-top:1em;">Send Invitation E-mail</button>
                                           <button type="button" class="btn btn-success" data-dismiss="modal" style="margin-top:1em;">Close</button>
                                         </center>
                                       </div>
@@ -90,7 +98,7 @@
 
                 <div class="row login_signup_panel">
                   <div class="col-md-4">
-                    <%= image_tag p.avatar.url(:medium), {style: "width:220px;height:220px;", class: "img-responsive img-thumbnail img-circle",alt: "Team Profile Image"}%>
+                    <%= image_tag p.avatar.url(:medium), {style: "width:220px;height:220px;margin-top:5px;", class: "img-responsive img-thumbnail img-circle",alt: "Team Profile Image"}%>
                   </div>
                   <div class="col-md-8">
                     <div class="row">
@@ -118,7 +126,7 @@
                       <div class="col-md-12" >
                         <center>
                           <% if team_signed_in? && p.invitations.count > 0 %>
-                            <input data-toggle="modal" data-target="#sendAgain" class="btn btn-large btn-info" type="button" value="Invite Again" style="font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;margin-top:1em;">
+                            <input data-toggle="modal" data-target="#<%= p.id%>" class="btn btn-large btn-info" type="button" value="Invite Again" style="font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;margin-top:1em;">
                           <% end %>
                           <%= link_to 'Show Team', team_profile_path(:id => p.id), class: 'btn btn-large btn-info', style: "font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;margin-top:1em;" %>
                           <% if team_signed_in? %>

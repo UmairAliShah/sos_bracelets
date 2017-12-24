@@ -12,6 +12,8 @@ class LeadersController < ApplicationController
   end
 
   def new
+    id = params[:id]
+    @team_profile = TeamProfile.find(id)
     @team = Team.find(current_team.id)
     @leader = @team.leaders.build
   end
@@ -34,6 +36,10 @@ class LeadersController < ApplicationController
   end
 
   def create
+    #debugger
+    id = params[:id]
+    @team_profile = TeamProfile.find(id.to_i)
+
     @team = Team.find(current_team.id)
     @leader = @team.leaders.build(permit_leader)
 
@@ -44,12 +50,13 @@ class LeadersController < ApplicationController
     @phone = @country_code.to_s + @phone.to_s
     phone = Phonelib.parse(@phone)
     @leader.code = @country_code.to_s
+    @leader.team_profile_id = @team_profile.id
 
     if !phone.valid?
       flash[:alert] = "Please Correct Your Phone Number"
       render 'new'
     elsif phone.valid? && @leader.save
-      redirect_to root_path
+      redirect_to new_invitation_path(id: @team_profile.id)
       flash[:notice] = "Your profile as a Leader is successfully Created"
     else
       render 'new'
@@ -91,6 +98,6 @@ class LeadersController < ApplicationController
 
   private
     def permit_leader
-      params.require(:leader).permit(:firstname, :lastname, :dob, :gender, :code, :country, :phone, :blood, :hair, :eye, :height, :weight, :team_id, :avatar)
+      params.require(:leader).permit(:firstname, :lastname, :dob, :gender, :code, :country, :phone, :blood, :hair, :eye, :height, :weight, :team_id, :avatar, :team_profile_id)
     end
 end

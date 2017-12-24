@@ -3,13 +3,12 @@ class TeamProfile < ApplicationRecord
   validates :country, presence: true
   validates :avatar, presence: true
   validates :members, presence: true
-  validates :leader_id, :presence => { :message => "Profile must be selected" }
 
 
   attr_accessor :avatar, :avatar_cache, :remove_avatar
 
   belongs_to :team
-  belongs_to :leader
+  has_one :leader
   has_many :invitations
   has_many :profiles
 

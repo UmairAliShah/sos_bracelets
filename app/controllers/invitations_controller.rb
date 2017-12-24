@@ -25,13 +25,33 @@ class InvitationsController < ApplicationController
 
 
   def send_invite
-    #debugger
-    id = params[:id]
-    @team_profile = current_team.team_profiles.find(id)
-    @team_profile.invitations.each do |i|
-      InviteMailer.invitation_send(i).deliver_later!(wait: 1.minute)
+    begin
+      id = params['pidI']
+      @list = params['listI']
+
+      @team_profile = current_team.team_profiles.find(id)
+      @invitations = @team_profile.invitations
+
+      @list.each do |l|
+        @id = l.to_s.split('=')[0]
+        @email = l.to_s.split('=')[1]
+        @invite = @team_profile.invitations.find(@id)
+        if @invite.email == @email
+          InviteMailer.invitation_send(@invite).deliver_later!(wait: 1.minute)
+        else
+          @invite.email = @email
+          if @invite.save
+            InviteMailer.invitation_send(@invite).deliver_later!(wait: 1.minute)
+          end
+        end
+      end
+      respond_to do |format|
+        format.json {render json: "1"}
+      end
+    rescue
+      respond_to do |format|
+        format.json {render json: "-2"}
+      end
     end
-    redirect_to root_path
-    flash[:notice] = "Inviation send to Your friends Successfully"
   end
 end

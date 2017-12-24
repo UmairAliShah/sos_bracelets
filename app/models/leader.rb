@@ -14,5 +14,5 @@ class Leader < ApplicationRecord
 
 
   belongs_to :team
-  has_one :team_profile
+  belongs_to :team_profile
 end

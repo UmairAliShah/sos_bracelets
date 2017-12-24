@@ -1,14 +1,13 @@
 body{
-  padding-top: 80px;
-  margin: 0px;
   padding: 0px;
+  margin: 0px;
 }
 #notice_wrapper{
   top: 0;
   width: 100%;
   z-index: 999;
   .app_alert, .app_notice{
-    padding: 1.9rem 0;text-align: center;margin: 0;font-size: 1.2em;font-weight: 700;color: #FFFFFF;letter-spacing: 1px;
+    padding: 0.6em 0;text-align: center;margin: 0;font-size: 1.2em;font-weight: 700;color: #FFFFFF;letter-spacing: 1px;
     text-transform: uppercase;
   }
 }

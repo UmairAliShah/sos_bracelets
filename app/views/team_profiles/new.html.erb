@@ -136,41 +136,6 @@
                 </div>
 
 
-
-                <div class="form-group login_signup_heading" style="padding:0px;margin:0px;">
-                  <div class="col-md-12">
-                    <center><h5 class="heading_text">Select a Leader Profile for this Team</h5></center>
-                  </div>
-                </div>
-                <% count = 0 %>
-
-                <% @leaders.each do |l| %>
-                  <% if l.team_profile == nil %>
-                    <% count = count + 1 %>
-                    <div class="form-group login_signup_panel" style="padding:0px;margin:0px;border-radius:0px;">
-                      <center>
-                        <label class="col-md-12 btn leader_div" onclick="callme(this)" style="padding:0px;margin:0px;border-radius:0px;">
-                          <div class="col-md-12">
-                            <center>
-                              <%= f.radio_button :leader_id, l.id, style:"display:none;"%>
-                              <%= image_tag(l.avatar.url(:thumb), {id: "team_image",  style: "width:120px;height:120px;",class: "img-thumbnail img-circle",alt: "User Profile Image"}) %>
-                              <h6 class="heading_text inner_div" style="color: #1E8449;"><%= l.firstname%> <%= l.lastname%></h6>
-                            </center>
-                          </div>
-                        </label>
-                      </center>
-                    </div>
-                  <% end %>
-                <% end %>
-                <% if count == 0%>
-                  <div class="form-group login_signup_panel" style="padding:0px;margin:0px;border-radius:0px;">
-                    <center>
-                      <h4 class="heading_text inner_div" style="color: #1E8449;">No Leader Profile is available</h4>
-                    </center>
-                  </div>
-                <% end %>
-                <br>
-
                 <div class="form-group">
                   <div class="col-md-4"></div>
                   <div class="col-md-4">

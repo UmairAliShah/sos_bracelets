@@ -85,13 +85,16 @@ class UserProfilesController < ApplicationController
     else
       render 'edit'
     end
-    #debugger
   end
 
   def destroy
 
   end
 
+  def member_profile
+    id = params[:id]
+    @team_profile = TeamProfile.find(id)
+  end
 
   private
     def permit_profile

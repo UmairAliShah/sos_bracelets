@@ -5,14 +5,14 @@
     <div class="col-md-10 no-pad-xs">
       <div class="row login_signup_heading" style="padding:0px;margin:0px;">
         <div class="col-md-12">
-          <center><h3 class="heading_text">Create Your Profile as a Leader</h3></center>
+          <center><h3 class="heading_text">Create Your Leader Profile for <i><%= @team_profile.name %></i></h3></center>
         </div>
       </div>
       <div class="jumbotron" style="padding-bottom:1em; background-color: rgba(255,255,255,0.9); border-radius:0 0 1em 1em;">
         <div class="row">
           <div class="col-md-12">
             <center>
-              <%= form_for :leader, url: leaders_path, :html => {multipart: true, class: "form-horizontal center"} do |f| %>
+              <%= form_for :leader, url: leaders_path(id: @team_profile.id), :html => {multipart: true, class: "form-horizontal center"} do |f| %>
                 <% if @leader.errors.any? %>
                   <div class="form-group alert alert-error alert-block" id="error_explanation">
                     <button type="button" class="close" data-dismiss="alert">x</button>

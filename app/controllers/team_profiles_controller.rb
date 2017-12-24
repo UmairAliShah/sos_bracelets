@@ -10,9 +10,9 @@ class TeamProfilesController < ApplicationController
   def index
     @profiles = []
     if team_signed_in?
-      if current_team.leaders.count == 0
-        redirect_to new_leader_path
-        flash[:notice] = "You need to create Your leader profile first"
+      if current_team.team_profiles.count == 0
+        redirect_to new_team_profile_path
+        flash[:notice] = "You need to create Your team profile first"
       else
         @profiles = current_team.team_profiles.all
       end
@@ -29,14 +29,8 @@ class TeamProfilesController < ApplicationController
   end
 
   def new
-    if current_team.leaders.count == 0
-      redirect_to new_leader_path
-      flash[:notice] = "You need to create Your leader profile first"
-    else
-      @leaders = current_team.leaders
       @team = Team.find(current_team.id)
       @team_profile = @team.team_profiles.build
-    end
   end
 
   def edit
@@ -45,11 +39,10 @@ class TeamProfilesController < ApplicationController
   end
 
   def create
-    @leaders = current_team.leaders
     @team = Team.find(current_team.id)
     @team_profile = @team.team_profiles.build(permit_params)
     if @team_profile.save
-      redirect_to new_invitation_path(id: @team_profile.id)
+      redirect_to new_leader_path(id: @team_profile.id)
       flash[:notice] = "Team Profile is Created Successfully"
     else
       render 'new'
@@ -59,6 +52,13 @@ class TeamProfilesController < ApplicationController
   def update
     @leaders = current_team.leaders
     @team_profile = TeamProfile.find(params[:id])
+    @members = params['team_profile']['members'].to_i
+    if @members > @team_profile.members
+      @members = @members - @team_profile.members
+      @members.times do |t|
+        @team_profile.invitations.create(email: "")
+      end
+    end
     if @team_profile.update(permit_params)
       redirect_to root_path
       flash[:notice] = "Team Profile Updated Successfully"
@@ -80,6 +80,6 @@ class TeamProfilesController < ApplicationController
 
   private
     def permit_params
-      params.require(:team_profile).permit(:name, :avatar, :city, :zip, :state, :country, :team_id, :leader_id, :members)
+      params.require(:team_profile).permit(:name, :avatar, :city, :zip, :state, :country, :team_id, :members)
     end
 end
