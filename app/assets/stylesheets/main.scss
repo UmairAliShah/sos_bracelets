@@ -31,7 +31,7 @@ body{
 }
 .login_signup_label{
   color: #229954;font-weight:bold;font-family: 'Merriweather', serif;cursor: default;float: left;text-align: left;
-  margin-top: 0.7em;font-size: 1.2em;
+  margin-top: 0.7em;font-size: 1em;
 }
 .remember_label{
   color: #229954;font-weight:bold;font-family: 'Merriweather', serif;cursor: default;
@@ -96,4 +96,28 @@ body{
 }
 .team_profile_panel{
   border: 2px solid;border-radius: 1em;border-color: #229954;padding:0.3em;
+}
+
+
+.profile_name{
+  color: #229954;font-weight:bold;font-family: 'Merriweather', serif;cursor: default;text-align: left; float: left;
+  font-size: 3.5em;margin-top: -0.3em;margin-left: 0.5em;
+}
+.profile_data{
+  color: #229954;font-family: 'Merriweather', serif;cursor: default;text-align: left; float: left;
+  margin-top: -1em;font-size: 1.1em;margin-left: 1.5em;
+}
+
+.add_detail{
+ text-decoration: none;
+ color: #F0F0F0;
+ background: #229954;
+ font-family: 'Merriweather', serif;
+ cursor: default;
+}
+
+.add_detail:hover{
+  background: #F0F0F0;
+  text-decoration: none;
+  color: #229954;
 }

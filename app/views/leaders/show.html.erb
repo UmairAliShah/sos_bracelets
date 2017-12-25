@@ -1,8 +1,7 @@
 <% content_for :title, "Your Leader Profile | SOS Bracelets" %>
-<div class="container" style="padding-top: 37px;">
+<div class="container-fluid" style="padding-top: 37px;">
   <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10 no-pad-xs">
+    <div class="col-md-12 no-pad-xs">
       <div class="row login_signup_heading" style="padding:0px;margin:0px;">
         <div class="col-md-12">
           <center><h3 class="heading_text">Your Leader Profile</h3></center>
@@ -13,14 +12,14 @@
           <div class="col-md-12">
             <center>
                 <div class="row">
-                  <div class="col-xs-12 col-md-4">
+                  <div class="col-xs-12 col-md-3">
                     <div class="form-group">
                       <center>
-                        <%= image_tag(@leader.avatar.url(:medium), {id: "team_image",  style: "width:220px;height:220px;",class: "img-responsive img-thumbnail img-circle",alt: "Leader Profile Image"}) %>
+                        <%= image_tag(@leader.avatar.url(:medium), {id: "team_image",  style: "width:220px;height:220px;float:left;",class: "img-responsive img-thumbnail img-circle",alt: "Leader Profile Image"}) %>
                       </center>
                     </div>
                   </div>
-                  <div class="col-xs-12 col-md-8">
+                  <div class="col-xs-12 col-md-9">
                     <% if @leader.team_profile == nil  %>
                       <div class="row">
                         <div class="col-md-4">
@@ -133,6 +132,5 @@
         </div>
       </div>
     </div>
-    <div class="col-md-1"></div>
   </div>
 </div>

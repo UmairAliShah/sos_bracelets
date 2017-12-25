@@ -12,10 +12,8 @@ class LeadersController < ApplicationController
   end
 
   def new
-    id = params[:id]
-    @team_profile = TeamProfile.find(id)
-    @team = Team.find(current_team.id)
-    @leader = @team.leaders.build
+    @team_profiles = current_team.team_profiles
+    @leader = current_team.leaders.build
   end
 
   def show
@@ -36,9 +34,7 @@ class LeadersController < ApplicationController
   end
 
   def create
-    #debugger
-    id = params[:id]
-    @team_profile = TeamProfile.find(id.to_i)
+    @team_profiles = current_team.team_profiles
 
     @team = Team.find(current_team.id)
     @leader = @team.leaders.build(permit_leader)
@@ -50,14 +46,21 @@ class LeadersController < ApplicationController
     @phone = @country_code.to_s + @phone.to_s
     phone = Phonelib.parse(@phone)
     @leader.code = @country_code.to_s
-    @leader.team_profile_id = @team_profile.id
+
+    @t_id = params['leader']['team_profile_id'].to_i
+    @team_profile = TeamProfile.find(@t_id)
 
     if !phone.valid?
       flash[:alert] = "Please Correct Your Phone Number"
       render 'new'
     elsif phone.valid? && @leader.save
-      redirect_to new_invitation_path(id: @team_profile.id)
-      flash[:notice] = "Your profile as a Leader is successfully Created"
+      if @team_profile.invitations.count > 0
+        redirect_to leaders_path
+        flash[:notice] = "Your profile as a Leader is successfully Created"
+      else
+        redirect_to new_invitation_path(id: @team_profile.id)
+        flash[:notice] = "Your profile as a Leader is successfully Created"
+      end
     else
       render 'new'
     end
@@ -73,6 +76,7 @@ class LeadersController < ApplicationController
     @phone = @country_code.to_s + @phone.to_s
     phone = Phonelib.parse(@phone)
     @leader.code = @country_code.to_s
+
 
     if !phone.valid?
       flash[:alert] = "Please Correct Your Phone Number"

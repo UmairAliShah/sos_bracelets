@@ -1,27 +1,22 @@
 <% content_for :title, "Update Leader Profile | SOS Bracelets" %>
-<div class="container" style="padding-top: 37px;">
+<div class="container-fluid" style="padding-top: 37px;">
   <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10 no-pad-xs">
+    <div class="col-md-12 no-pad-xs">
       <div class="row login_signup_heading" style="padding:0px;margin:0px;">
         <div class="col-md-12">
           <center><h3 class="heading_text">Update Your Leader Profile</h3></center>
         </div>
       </div>
+
+      <!-- Bootsrap Modal for -->
+
+
       <div class="jumbotron" style="padding-bottom:1em; background-color: rgba(255,255,255,0.9); border-radius:0 0 1em 1em;">
         <div class="row">
           <div class="col-md-12">
             <center>
               <%= form_for :leader, url: leader_path(:id => @leader.id), method: :PATCH, :html => {multipart: true, class: "form-horizontal center"} do |f| %>
-                <% if @leader.errors.any? %>
-                  <div class="form-group alert alert-error alert-block" id="error_explanation">
-                    <button type="button" class="close" data-dismiss="alert">x</button>
-                    <h5 class="heading_error"><%= pluralize(@leader.errors.count, "error") %> prohibited this LEADER PROFILE from being update:</h5>
-                    <% @leader.errors.full_messages.each do |msg| %>
-                        <h6 class="heading_error"><%= msg%></h6>
-                    <% end %>
-                  </div>
-                <%end%>
+
                 <div class="row">
                   <center>
                     <div class="container">
@@ -62,125 +57,291 @@
                   </center>
                 </div>
                 <div class="row">
-                  <div class="col-xs-12 col-md-4">
+                  <div class="col-xs-12 col-md-3">
                     <div class="form-group">
                       <center>
-                        <%= image_tag(@leader.avatar.url(:medium), {id: "team_image",  style: "width:220px;height:220px;",class: "img-responsive img-thumbnail img-circle",alt: "User Profile Image"}) %>
+                        <%= image_tag(@leader.avatar.url(:medium), {id: "team_image",  style: "margin-top: -0.3em;width:220px;height:220px;",class: "img-responsive img-thumbnail img-circle",alt: "User Profile Image"}) %>
                         <br>
-                        <input data-toggle="modal" data-target="#addPhoto" class="btn btn-block btn-info" type="button" value="Change Avatar">
+                        <input style="width:50%;" data-toggle="modal" data-target="#addPhoto" class="btn btn-block btn-info" type="button" value="Change Avatar">
                       </center>
                     </div>
                   </div>
-                  <div class="col-xs-12 col-md-8">
-                    <div class="form-group">
-                      <div class="col-md-3">
-                        <%= f.label :firstname, "First Name",class: "login_signup_label" %>
+                  <div class="col-xs-12 col-md-9">
+                    <div class="row">
+                      <div class="form-group">
+                        <label class="profile_name"><%= @leader.firstname%> <%= @leader.lastname%></label>
                       </div>
-                      <div class="col-md-9">
-                        <%= f.text_field :firstname, autofocus: true, placeholder: 'Enter First Name', class: 'form-control my_text_field', style:"color: #1E8449;",required: true%>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-md-3">
-                        <%= f.label :lastname, "Last Name",class: "login_signup_label" %>
-                      </div>
-                      <div class="col-md-9">
-                        <%= f.text_field :lastname, autofocus: true, placeholder: 'Enter Last Name', class: 'form-control my_text_field', style:"color: #1E8449;",required: true%>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-md-3">
-                        <%= f.label :weight, "Weight (lb)",class: "login_signup_label" %>
-                      </div>
-                      <div class="col-md-9">
-                        <%= f.number_field :weight, autofocus: true, placeholder: 'Enter Weight in lb', class: 'form-control my_text_field', style:"color: #1E8449;" %>
+                      <div class="form-group">
+
+                        <% if @leader.gender != nil %>
+                            <label class="profile_data"><%= @leader.firstname%></label>
+                        <%end%>
+                        <% if @leader.gender != nil %>
+                            <label class="profile_data">from <%= @leader.firstname%></label>
+                        <%end%>
+
                       </div>
                     </div>
-                    <div class="form-group">
-                      <div class="col-md-3">
-                        <%= f.label :dob, "Date of Birth",class: "login_signup_label" %>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
+                        <div class="btn-group">
+                            <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Profile Information</h5>
+                        </div>
                       </div>
                       <div class="col-md-9">
-                        <%= f.date_select :dob,  {start_year:1950, prompt: true}, {class: "form-control my_text_field", style:"color: #1E8449;display:inline-block;width:32%;"} %>
                       </div>
                     </div>
-                    <div class="form-group">
-                      <div class="col-md-3">
-                        <%= f.label :phone, "Phone",class: "login_signup_label" %>
-                      </div>
-                      <div class="col-md-9">
-                        <div class="row">
-                          <div class="col-xs-12 col-md-6">
-                            <%= f.country_select :country, {prompt: "Select Country"}, {class: "form-control my_text_field", style:"color: #1E8449;", required: true} %>
+                    <div class="row jumbotron" style="padding:20px 0px 20px 0px;">
+                      <div class="col-md-12">
+                        <% if @leader.errors.any? %>
+                          <div class="form-group alert alert-error alert-block" id="error_explanation">
+                            <button type="button" class="close" data-dismiss="alert">x</button>
+                            <h5 class="heading_error"><%= pluralize(@leader.errors.count, "error") %> prohibited this LEADER PROFILE from being update:</h5>
+                            <% @leader.errors.full_messages.each do |msg| %>
+                                <h6 class="heading_error"><%= msg%></h6>
+                            <% end %>
                           </div>
-                          <div class="col-xs-12 col-md-6">
-                            <%= f.number_field :phone, autofocus: true, placeholder: 'Enter Phone Number', class: 'form-control my_text_field', style:"color: #1E8449;", required: true%>
+                        <%end%>
+                      </div>
+                      <div class="col-xs-12 col-md-4">
+
+                        <div class="form-group">
+                          <div class="col-md-4">
+                            <%= f.label :firstname, "First Name",class: "login_signup_label" %>
+                          </div>
+                          <div class="col-md-8">
+                            <%= f.text_field :firstname, autofocus: true, placeholder: 'Enter First Name', class: 'form-control my_text_field', style:"color: #1E8449;",required: true%>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-md-4">
+                            <%= f.label :gender, "Gender",class: "login_signup_label" %>
+                          </div>
+                          <div class="col-md-8">
+                            <%= f.collection_select :gender, Gender.all, :name, :name, {prompt: "Select Gender"}, {class: 'form-control my_text_field', style:"color: #1E8449;"} %>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-md-4">
+                            <%= f.label :eye, "Eye Color",class: "login_signup_label" %>
+                          </div>
+                          <div class="col-md-8">
+                            <%= f.collection_select :eye, Eye.all, :name, :name, {prompt: "Select Eye Color"}, {class: 'form-control my_text_field', style:"color: #1E8449;"} %>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="col-md-4">
+                            <%= f.label :phone, "Phone",class: "login_signup_label" %>
+                          </div>
+                          <div class="col-md-8">
+                            <div class="row">
+                              <div class="col-xs-12 col-md-6" style="padding-right:0px;padding-left:0px;">
+                                <%= f.country_select :country, {prompt: "Select Country"}, {class: "form-control my_text_field", style:"color: #1E8449;", required: true} %>
+                              </div>
+                              <div class="col-xs-12 col-md-6"  style="padding-right:0px;padding-left:0px; ">
+                                <%= f.number_field :phone, autofocus: true, placeholder: 'Enter Phone Number', class: 'form-control my_text_field', style:"color: #1E8449;", required: true%>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="col-xs-12 col-md-4">
+
+                        <div class="form-group">
+                          <div class="col-md-4">
+                            <%= f.label :lastname, "Last Name",class: "login_signup_label" %>
+                          </div>
+                          <div class="col-md-8">
+                            <%= f.text_field :lastname, autofocus: true, placeholder: 'Enter Last Name', class: 'form-control my_text_field', style:"color: #1E8449;",required: true%>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-md-4">
+                            <%= f.label :blood, "Blood Group",class: "login_signup_label" %>
+                          </div>
+                          <div class="col-md-8">
+                            <%= f.collection_select :blood, Blood.all, :name, :name, {prompt: "Select Blood Group"}, {class: 'form-control my_text_field', style:"color: #1E8449;"} %>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-md-4">
+                            <%= f.label :height, "Height (feet)",class: "login_signup_label" %>
+                          </div>
+                          <div class="col-md-8">
+                            <%= f.collection_select :height, Height.all, :name, :name, {prompt: "Select Height"}, {class: 'form-control my_text_field', style:"color: #1E8449;"} %>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-md-3">
-                        <%= f.label :gender, "Gender",class: "login_signup_label" %>
+
+                      <div class="col-xs-12 col-md-4">
+
+                        <div class="form-group">
+                          <div class="col-md-4">
+                            <%= f.label :weight, "Weight (lb)",class: "login_signup_label" %>
+                          </div>
+                          <div class="col-md-8">
+                            <%= f.number_field :weight, autofocus: true, placeholder: 'Enter Weight in lb', class: 'form-control my_text_field', style:"color: #1E8449;" %>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-md-4">
+                            <%= f.label :hair, "Hair Color",class: "login_signup_label" %>
+                          </div>
+                          <div class="col-md-8">
+                            <%= f.collection_select :hair, Hair.all, :name, :name, {prompt: "Select Hair Color"}, {class: 'form-control my_text_field', style:"color: #1E8449;"} %>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="col-md-4">
+                            <%= f.label :dob, "Date of Birth",class: "login_signup_label" %>
+                          </div>
+                          <div class="col-md-8">
+                            <%= f.date_select :dob,  {start_year:1950, prompt: true}, {class: "form-control my_text_field", style:"color: #1E8449;display:inline-block;width:32%;"} %>
+                          </div>
+                        </div>
+
                       </div>
-                      <div class="col-md-9">
-                        <%= f.collection_select :gender, Gender.all, :name, :name, {prompt: "Select Gender"}, {class: 'form-control my_text_field', style:"color: #1E8449;"} %>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-md-3">
-                        <%= f.label :blood, "Blood Group",class: "login_signup_label" %>
-                      </div>
-                      <div class="col-md-9">
-                        <%= f.collection_select :blood, Blood.all, :name, :name, {prompt: "Select Blood Group"}, {class: 'form-control my_text_field', style:"color: #1E8449;"} %>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-md-3">
-                        <%= f.label :hair, "Hair Color",class: "login_signup_label" %>
-                      </div>
-                      <div class="col-md-9">
-                        <%= f.collection_select :hair, Hair.all, :name, :name, {prompt: "Select Hair Color"}, {class: 'form-control my_text_field', style:"color: #1E8449;"} %>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-md-3">
-                        <%= f.label :eye, "Eye Color",class: "login_signup_label" %>
-                      </div>
-                      <div class="col-md-9">
-                        <%= f.collection_select :eye, Eye.all, :name, :name, {prompt: "Select Eye Color"}, {class: 'form-control my_text_field', style:"color: #1E8449;"} %>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-md-3">
-                        <%= f.label :height, "Height (feet)",class: "login_signup_label" %>
-                      </div>
-                      <div class="col-md-9">
-                        <%= f.collection_select :height, Height.all, :name, :name, {prompt: "Select Height"}, {class: 'form-control my_text_field', style:"color: #1E8449;"} %>
+
+                      <div class="col-md-12">
+                        <div class="col-md-5"></div>
+                        <div class="col-md-2">
+                          <center><%= f.submit "Update Leader",class: 'btn btn-block btn-success', style: "font-weight:bold;font-family: 'Merriweather', serif;" %></center>
+                        </div>
+                        <div class="col-md-5"></div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <%end%>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
+                        <div class="btn-group">
+                            <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Emergency Contacts</h5>
+                            <a href="#" class="add_detail btn" style="margin:0px -90px 0px 0px;border-radius:0px;font-size:2em;text-align:right;float:right;font-weight:bold;">+</a>
+                        </div>
+                      </div>
+                      <div class="col-md-9">
+                      </div>
+                    </div>
+                    <div class="row jumbotron" style="padding:20px 0px 20px 0px;">
+                      <div class="col-xs-12 col-md-4"></div>
+                      <div class="col-xs-12 col-md-4"></div>
+                      <div class="col-xs-12 col-md-4"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
+                        <div class="btn-group">
+                            <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Medical Condition</h5>
+                            <a href="#" class="add_detail btn" style="margin:0px -90px 0px 0px;border-radius:0px;font-size:2em;text-align:right;float:right;font-weight:bold;">+</a>
+                        </div>
+                      </div>
+                      <div class="col-md-9">
+                      </div>
+                    </div>
+                    <div class="row jumbotron" style="padding:20px 0px 20px 0px;">
+                      <div class="col-xs-12 col-md-4"></div>
+                      <div class="col-xs-12 col-md-4"></div>
+                      <div class="col-xs-12 col-md-4"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
+                        <div class="btn-group">
+                            <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Allergies</h5>
+                            <a href="#" class="add_detail btn" style="margin:0px -90px 0px 0px;border-radius:0px;font-size:2em;text-align:right;float:right;font-weight:bold;">+</a>
+                        </div>
+                      </div>
+                      <div class="col-md-9">
+                      </div>
+                    </div>
+                    <div class="row jumbotron" style="padding:20px 0px 20px 0px;">
+                      <div class="col-xs-12 col-md-4"></div>
+                      <div class="col-xs-12 col-md-4"></div>
+                      <div class="col-xs-12 col-md-4"></div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
+                        <div class="btn-group">
+                            <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Medication</h5>
+                            <a href="#" class="add_detail btn" style="margin:0px -90px 0px 0px;border-radius:0px;font-size:2em;text-align:right;float:right;font-weight:bold;">+</a>
+                        </div>
+                      </div>
+                      <div class="col-md-9">
+                      </div>
+                    </div>
+                    <div class="row jumbotron" style="padding:20px 0px 20px 0px;">
+                      <div class="col-xs-12 col-md-4"></div>
+                      <div class="col-xs-12 col-md-4"></div>
+                      <div class="col-xs-12 col-md-4"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
+                        <div class="btn-group">
+                            <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Special Instructions</h5>
+                            <a href="#" class="add_detail btn" style="margin:0px -90px 0px 0px;border-radius:0px;font-size:2em;text-align:right;float:right;font-weight:bold;">+</a>
+                        </div>
+                      </div>
+                      <div class="col-md-9">
+                      </div>
+                    </div>
+                    <div class="row jumbotron" style="padding:20px 0px 20px 0px;">
+                      <div class="col-xs-12 col-md-4"></div>
+                      <div class="col-xs-12 col-md-4"></div>
+                      <div class="col-xs-12 col-md-4"></div>
+                    </div>
+                  </div>
+                </div>
+
+
+
                 <div class="row">
                   <div class="form-group">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-2">
                       <center>
-                        <%= f.submit "Update Leader",class: 'btn btn-block btn-success', style: "font-weight:bold;font-family: 'Merriweather', serif;" %>
-                        <br><br>
                         <%= link_to "Back", leaders_path,class: 'btn btn-block btn-info', style: "font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;" %>
                       </center>
                     </div>
-                    <div class="col-md-4"></div>
+                    <div class="col-md-5"></div>
                   </div>
                 </div>
-              <%end%>
             </center>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-1"></div>
   </div>
 </div>
 <!-- *************************** Start Script for Uploading Image in Post ************************* -->
