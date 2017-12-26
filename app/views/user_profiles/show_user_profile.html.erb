@@ -1,132 +1,246 @@
 <% content_for :title, "Member Profile | SOS Bracelets" %>
-<div class="container" style="padding-top: 37px;">
+<div class="container-fluid" style="padding-top: 37px;">
   <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10 no-pad-xs">
+    <div class="col-md-12 no-pad-xs">
       <div class="row login_signup_heading" style="padding:0px;margin:0px;">
         <div class="col-md-12">
-          <% if @profile.team_profile == nil  %>
-            <center><h3 class="heading_text">Member of <%= @profile.team_profile.name%></h3></center>
-          <%else%>
-            <center><h3 class="heading_text">Member Profile</h3></center>
-          <% end %>
+          <center><h3 class="heading_text">Your Member Profile</h3></center>
         </div>
       </div>
       <div class="jumbotron" style="padding-bottom:1em; background-color: rgba(255,255,255,0.9); border-radius:0 0 1em 1em;">
         <div class="row">
           <div class="col-md-12">
             <center>
-                <div class="row">
-                  <div class="col-xs-12 col-md-4">
-                    <div class="form-group">
-                      <center>
-                        <%= image_tag(@profile.avatar.url(:medium), {id: "team_image",  style: "width:220px;height:220px;",class: "img-responsive img-thumbnail img-circle",alt: "User Profile Image"}) %>
-                      </center>
-                    </div>
-                  </div>
-                  <div class="col-xs-12 col-md-8">
-                    <% if @profile.team_profile == nil  %>
-                      <div class="row">
-                        <div class="col-md-4">
-                          <%= label_tag :profile_of, "Member of Team",class: "login_signup_label", style:"margin-right: 0.4em;" %>
-                        </div>
-                        <div class="col-md-8">
-                          <%= label_tag :firstname, "Profile is not assigned to any Team" ,class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
-                        </div>
-                      </div>
-                    <% else %>
-                      <div class="row">
-                        <div class="col-md-4">
-                          <%= label_tag :profile_of, "Member of Team",class: "login_signup_label", style:"margin-right: 0.4em;" %>
-                        </div>
-                        <div class="col-md-8">
-                          <%= label_tag :firstname, @profile.team_profile.name,class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
-                        </div>
-                      </div>
-                    <% end %>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <%= label_tag :firstname, "Name",class: "login_signup_label", style:"margin-right: 0.4em;" %>
-                      </div>
-                      <div class="col-md-8">
-                        <%= label_tag :firstname, @profile.firstname,class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %><%= label_tag :lastname, @profile.lastname,class: "login_signup_label", style:"color:#82E0AA;" %>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <%= label_tag :dob, "Date of Birth",class: "login_signup_label", style:"margin-right: 0.4em;" %>
-                      </div>
-                      <div class="col-md-8">
-                        <%= label_tag :dob, @profile.dob,class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em; margin-left: 0.3em;" %>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <%= label_tag :phone, "Phone Number",class: "login_signup_label", style:"margin-right: 0.4em;" %>
-                      </div>
-                      <div class="col-md-8">
-                        <%= label_tag :phone, @profile.code, class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>-<%= label_tag :phone, @profile.phone, class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <%= label_tag :gender, "Gender",class: "login_signup_label", style:"margin-right: 0.4em;" %>
-                      </div>
-                      <div class="col-md-8">
-                        <%= label_tag :gender, @profile.gender, class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <%= label_tag :blood, "Blood Group",class: "login_signup_label", style:"margin-right: 0.4em;" %>
-                      </div>
-                      <div class="col-md-8">
-                        <%= label_tag :blood, @profile.blood, class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <%= label_tag :hair, "Hair Color",class: "login_signup_label", style:"margin-right: 0.4em;" %>
-                      </div>
-                      <div class="col-md-8">
-                        <%= label_tag :hair, @profile.hair, class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <%= label_tag :eye, "Eye Color",class: "login_signup_label", style:"margin-right: 0.4em;" %>
-                      </div>
-                      <div class="col-md-8">
-                        <%= label_tag :eye, @profile.eye, class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <%= label_tag :height, "Height",class: "login_signup_label", style:"margin-right: 0.4em;" %>
-                      </div>
-                      <div class="col-md-8">
-                        <%= label_tag :height, @profile.height, class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <%= label_tag :weight, "Weight",class: "login_signup_label", style:"margin-right: 0.4em;" %>
-                      </div>
-                      <div class="col-md-8">
-                        <%= label_tag :weight, @profile.weight, class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
-                      </div>
-                    </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <div class="form-group">
+                    <center>
+                      <%= image_tag(@profile.avatar.url(:medium), {id: "team_image",  style: "margin-top: -0.3em;width:220px;height:220px;",class: "img-responsive img-thumbnail img-circle",alt: "User Profile Image"}) %>
+                    </center>
                   </div>
                 </div>
+                <div class="col-xs-12 col-md-9">
+                  <div class="row">
+                    <div class="form-group">
+                      <label class="profile_name"><%= @profile.firstname%> <%= @profile.lastname%></label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group">
+                      <% if @profile.gender != nil %>
+                        <label class="profile_data"><%= @profile.firstname%></label>
+                      <%end%>
+                      <% if @profile.gender != nil %>
+                        <label class="profile_data">from <%= @profile.firstname%></label>
+                      <%end%>
+                    </div>
+                  </div>
+                  <% if @profile.team_profile == nil  %>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <%= label_tag :profile_of, "Member of Team",class: "login_signup_label", style:"margin-right: 0.4em;" %>
+                      </div>
+                      <div class="col-md-8">
+                        <%= label_tag :firstname, "No Team assigned to this profile" ,class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
+                      </div>
+                    </div>
+                  <% else %>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <%= label_tag :profile_of, "Member of Team",class: "login_signup_label", style:"margin-right: 0.4em;" %>
+                      </div>
+                      <div class="col-md-9">
+                        <%= label_tag :firstname, @profile.team_profile.name,class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
+                      </div>
+                    </div>
+                  <% end %>
+
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-12">
+
+                  <div class="row">
+                    <div class="col-md-3" style="background-color:#229954;">
+                      <div class="btn-group">
+                          <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Personal Detail</h5>
+                      </div>
+                    </div>
+                    <div class="col-md-9">
+                    </div>
+                  </div>
+                  <div class="row jumbotron" style="border-top-left-radius: 0px;border-top-right-radius: 0px;padding:20px 0px 20px 0px;">
+                    <div class="col-xs-12 col-md-4">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <%= label_tag :firstname, "First Name",class: "profile_label" %>
+                        </div>
+                        <div class="col-md-8">
+                          <label class="profile_value"><%= @profile.firstname%></label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <%= label_tag :lastname, "Last Name",class: "profile_label" %>
+                        </div>
+                        <div class="col-md-8">
+                          <label class="profile_value"><%= @profile.lastname%></label>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-4">
+                          <%= label_tag :eye, "Eye Color",class: "profile_label" %>
+                        </div>
+                        <div class="col-md-8">
+                          <label class="profile_value"><%= @profile.eye%></label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <%= label_tag :phone, "Phone"  ,class: "profile_label" %>
+                        </div>
+                        <div class="col-md-8">
+                          <label class="profile_value"><%= @profile.code%></label>
+                          <label class="profile_value" style="margin-left:0.3em;"> <%= @profile.phone%></label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-4">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <%= label_tag :gender, "Gender"  ,class: "profile_label" %>
+                        </div>
+                        <div class="col-md-8">
+                          <label class="profile_value"><%= @profile.gender%></label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <%= label_tag :blood, "Blood Group"  ,class: "profile_label" %>
+                        </div>
+                        <div class="col-md-8">
+                          <label class="profile_value"><%= @profile.blood%></label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <%= label_tag :height, "Height (feet)"  ,class: "profile_label" %>
+                        </div>
+                        <div class="col-md-8">
+                          <label class="profile_value"><%= @profile.height%></label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-4">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <%= label_tag :weight, "Weight (lb)"  ,class: "profile_label" %>
+                        </div>
+                        <div class="col-md-8">
+                          <label class="profile_value"><%= @profile.weight%></label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <%= label_tag :hair, "Hair Color"  ,class: "profile_label" %>
+                        </div>
+                        <div class="col-md-8">
+                          <label class="profile_value"><%= @profile.hair%></label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <%= label_tag :dob, "Date of Birth"  ,class: "profile_label" %>
+                        </div>
+                        <div class="col-md-8">
+                          <label class="profile_value"><%= @profile.dob%></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="row">
+                    <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
+                      <div class="btn-group">
+                          <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Emergency Contacts</h5>
+                      </div>
+                    </div>
+                    <div class="col-md-9">
+                    </div>
+                  </div>
+                  <div class="row jumbotron" style="border-top-left-radius: 0px;border-top-right-radius: 0px;padding:20px 0px 20px 0px;">
+                  </div>
+
+
+                  <div class="row">
+                    <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
+                      <div class="btn-group">
+                          <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Medical Condition</h5>
+                      </div>
+                    </div>
+                    <div class="col-md-9">
+                    </div>
+                  </div>
+                  <div class="row jumbotron" style="border-top-left-radius: 0px;border-top-right-radius: 0px;padding:20px 0px 20px 0px;">
+                  </div>
+
+
+                  <div class="row">
+                    <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
+                      <div class="btn-group">
+                          <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Allergies</h5>
+                      </div>
+                    </div>
+                    <div class="col-md-9">
+                    </div>
+                  </div>
+                  <div class="row jumbotron" style="border-top-left-radius: 0px;border-top-right-radius: 0px;padding:20px 0px 20px 0px;">
+                  </div>
+
+
+                  <div class="row">
+                    <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
+                      <div class="btn-group">
+                          <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Medication</h5>
+                      </div>
+                    </div>
+                    <div class="col-md-9">
+                    </div>
+                  </div>
+                  <div class="row jumbotron" style="border-top-left-radius: 0px;border-top-right-radius: 0px;padding:20px 0px 20px 0px;">
+                  </div>
+
+
+                  <div class="row">
+                    <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
+                      <div class="btn-group">
+                          <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Special Instruction</h5>
+                      </div>
+                    </div>
+                    <div class="col-md-9">
+                    </div>
+                  </div>
+                  <div class="row jumbotron" style="border-top-left-radius: 0px;border-top-right-radius: 0px;padding:20px 0px 20px 0px;">
+                  </div>
+                </div>
+              </div>
+
                 <div class="row">
                   <div class="form-group">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-2">
                       <center>
                         <%= link_to "Back", team_profile_path(:id => @profile.team_profile.id),class: 'btn btn-block btn-info', style: "font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;" %>
                       </center>
                     </div>
-                    <div class="col-md-4"></div>
+                    <div class="col-md-5"></div>
                   </div>
                 </div>
             </center>
@@ -134,6 +248,5 @@
         </div>
       </div>
     </div>
-    <div class="col-md-1"></div>
   </div>
 </div>
