@@ -121,3 +121,18 @@ body{
   text-decoration: none;
   color: #229954;
 }
+
+.profile_label{
+  color:#424949;font-weight:bold;font-family: 'Merriweather', serif;cursor: default;float: left;text-align: left;;font-size: 1em;
+}
+.profile_label:hover{
+  cursor: pointer;
+}
+
+.profile_value{
+  color:#229954;font-weight:bold;font-family: 'Merriweather', serif;cursor: default;float: left;text-align: left;;font-size: 1.1em;
+  margin-left: 1em;
+}
+.profile_value:hover{
+  cursor: pointer;
+}

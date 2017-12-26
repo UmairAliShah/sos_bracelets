@@ -43,7 +43,7 @@
                 <div class="col-md-12">
 
                   <div class="row">
-                    <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
+                    <div class="col-md-3" style="background-color:#229954;">
                       <div class="btn-group">
                           <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Personal Detail</h5>
                       </div>
@@ -55,36 +55,36 @@
                     <div class="col-xs-12 col-md-4">
                       <div class="row">
                         <div class="col-md-4">
-                          <%= label_tag :firstname, "First Name",class: "login_signup_label" %>
+                          <%= label_tag :firstname, "First Name",class: "profile_label" %>
                         </div>
                         <div class="col-md-8">
-                          <label class="login_signup_label" style="color:#82E0AA;margin-left:1em;"><%= @leader.firstname%></label>
+                          <label class="profile_value"><%= @leader.firstname%></label>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-4">
-                          <%= label_tag :lastname, "Last Name",class: "login_signup_label" %>
+                          <%= label_tag :lastname, "Last Name",class: "profile_label" %>
                         </div>
                         <div class="col-md-8">
-                          <label class="login_signup_label" style="color:#82E0AA;margin-left:1em;"><%= @leader.lastname%></label>
+                          <label class="profile_value"><%= @leader.lastname%></label>
                         </div>
                       </div>
 
                       <div class="row">
                         <div class="col-md-4">
-                          <%= label_tag :eye, "Eye Color",class: "login_signup_label" %>
+                          <%= label_tag :eye, "Eye Color",class: "profile_label" %>
                         </div>
                         <div class="col-md-8">
-                          <label class="login_signup_label" style="color:#82E0AA;margin-left:1em;"><%= @leader.eye%></label>
+                          <label class="profile_value"><%= @leader.eye%></label>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-4">
-                          <%= label_tag :phone, "Phone",class: "login_signup_label" %>
+                          <%= label_tag :phone, "Phone"  ,class: "profile_label" %>
                         </div>
                         <div class="col-md-8">
-                          <label class="login_signup_label" style="color:#82E0AA;margin-left:1em;"><%= @leader.code%></label>
-                          <label class="login_signup_label" style="color:#82E0AA;margin-left:0.3em;"> <%= @leader.phone%></label>
+                          <label class="profile_value"><%= @leader.code%></label>
+                          <label class="profile_value" style="margin-left:0.3em;"> <%= @leader.phone%></label>
                         </div>
                       </div>
                     </div>
@@ -92,26 +92,26 @@
                     <div class="col-xs-12 col-md-4">
                       <div class="row">
                         <div class="col-md-4">
-                          <%= label_tag :gender, "Gender",class: "login_signup_label" %>
+                          <%= label_tag :gender, "Gender"  ,class: "profile_label" %>
                         </div>
                         <div class="col-md-8">
-                          <label class="login_signup_label" style="color:#82E0AA;margin-left:1em;"><%= @leader.gender%></label>
+                          <label class="profile_value"><%= @leader.gender%></label>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-4">
-                          <%= label_tag :blood, "Blood Group",class: "login_signup_label" %>
+                          <%= label_tag :blood, "Blood Group"  ,class: "profile_label" %>
                         </div>
                         <div class="col-md-8">
-                          <label class="login_signup_label" style="color:#82E0AA;margin-left:1em;"><%= @leader.blood%></label>
+                          <label class="profile_value"><%= @leader.blood%></label>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-4">
-                          <%= label_tag :height, "Height (feet)",class: "login_signup_label" %>
+                          <%= label_tag :height, "Height (feet)"  ,class: "profile_label" %>
                         </div>
                         <div class="col-md-8">
-                          <label class="login_signup_label" style="color:#82E0AA;margin-left:1em;"><%= @leader.height%></label>
+                          <label class="profile_value"><%= @leader.height%></label>
                         </div>
                       </div>
                     </div>
@@ -119,26 +119,26 @@
                     <div class="col-xs-12 col-md-4">
                       <div class="row">
                         <div class="col-md-4">
-                          <%= label_tag :weight, "Weight (lb)",class: "login_signup_label" %>
+                          <%= label_tag :weight, "Weight (lb)"  ,class: "profile_label" %>
                         </div>
                         <div class="col-md-8">
-                          <label class="login_signup_label" style="color:#82E0AA;margin-left:1em;"><%= @leader.weight%></label>
+                          <label class="profile_value"><%= @leader.weight%></label>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-4">
-                          <%= label_tag :hair, "Hair Color",class: "login_signup_label" %>
+                          <%= label_tag :hair, "Hair Color"  ,class: "profile_label" %>
                         </div>
                         <div class="col-md-8">
-                          <label class="login_signup_label" style="color:#82E0AA;margin-left:1em;"><%= @leader.hair%></label>
+                          <label class="profile_value"><%= @leader.hair%></label>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-4">
-                          <%= label_tag :dob, "Date of Birth",class: "login_signup_label" %>
+                          <%= label_tag :dob, "Date of Birth"  ,class: "profile_label" %>
                         </div>
                         <div class="col-md-8">
-                          <label class="login_signup_label" style="color:#82E0AA;margin-left:1em;"><%= @leader.dob%></label>
+                          <label class="profile_value"><%= @leader.dob%></label>
                         </div>
                       </div>
                     </div>

@@ -112,7 +112,7 @@
 
                         <div class="form-group">
                           <div class="col-md-4">
-                            <%= f.label :firstname, "First Name",class: "login_signup_label" %>
+                            <%= f.label :firstname, "First Name", class:"profile_label", style: "margin-top:0.5em;" %>
                           </div>
                           <div class="col-md-8">
                             <%= f.text_field :firstname, autofocus: true, placeholder: 'Enter First Name', class: 'form-control my_text_field', style:"color: #1E8449;",required: true%>
@@ -120,7 +120,7 @@
                         </div>
                         <div class="form-group">
                           <div class="col-md-4">
-                            <%= f.label :lastname, "Last Name",class: "login_signup_label" %>
+                            <%= f.label :lastname, "Last Name", class:"profile_label", style: "margin-top:0.5em;" %>
                           </div>
                           <div class="col-md-8">
                             <%= f.text_field :lastname, autofocus: true, placeholder: 'Enter Last Name', class: 'form-control my_text_field', style:"color: #1E8449;",required: true%>
@@ -129,7 +129,7 @@
 
                         <div class="form-group">
                           <div class="col-md-4">
-                            <%= f.label :eye, "Eye Color",class: "login_signup_label" %>
+                            <%= f.label :eye, "Eye Color", class:"profile_label", style: "margin-top:0.5em;" %>
                           </div>
                           <div class="col-md-8">
                             <%= f.collection_select :eye, Eye.all, :name, :name, {prompt: "Select Eye Color"}, {class: 'form-control my_text_field', style:"color: #1E8449;"} %>
@@ -138,7 +138,7 @@
 
                         <div class="form-group">
                           <div class="col-md-4">
-                            <%= f.label :phone, "Phone",class: "login_signup_label" %>
+                            <%= f.label :phone, "Phone", class:"profile_label", style: "margin-top:0.5em;" %>
                           </div>
                           <div class="col-md-8">
                             <div class="row">
@@ -158,7 +158,7 @@
 
                         <div class="form-group">
                           <div class="col-md-4">
-                            <%= f.label :gender, "Gender",class: "login_signup_label" %>
+                            <%= f.label :gender, "Gender", class:"profile_label", style: "margin-top:0.5em;" %>
                           </div>
                           <div class="col-md-8">
                             <%= f.collection_select :gender, Gender.all, :name, :name, {prompt: "Select Gender"}, {class: 'form-control my_text_field', style:"color: #1E8449;"} %>
@@ -167,7 +167,7 @@
 
                         <div class="form-group">
                           <div class="col-md-4">
-                            <%= f.label :blood, "Blood Group",class: "login_signup_label" %>
+                            <%= f.label :blood, "Blood Group", class:"profile_label", style: "margin-top:0.5em;" %>
                           </div>
                           <div class="col-md-8">
                             <%= f.collection_select :blood, Blood.all, :name, :name, {prompt: "Select Blood Group"}, {class: 'form-control my_text_field', style:"color: #1E8449;"} %>
@@ -175,7 +175,7 @@
                         </div>
                         <div class="form-group">
                           <div class="col-md-4">
-                            <%= f.label :height, "Height (feet)",class: "login_signup_label" %>
+                            <%= f.label :height, "Height (feet)", class:"profile_label", style: "margin-top:0.5em;" %>
                           </div>
                           <div class="col-md-8">
                             <%= f.collection_select :height, Height.all, :name, :name, {prompt: "Select Height"}, {class: 'form-control my_text_field', style:"color: #1E8449;"} %>
@@ -187,7 +187,7 @@
 
                         <div class="form-group">
                           <div class="col-md-4">
-                            <%= f.label :weight, "Weight (lb)",class: "login_signup_label" %>
+                            <%= f.label :weight, "Weight (lb)", class:"profile_label", style: "margin-top:0.5em;" %>
                           </div>
                           <div class="col-md-8">
                             <%= f.number_field :weight, autofocus: true, placeholder: 'Enter Weight in lb', class: 'form-control my_text_field', style:"color: #1E8449;" %>
@@ -195,7 +195,7 @@
                         </div>
                         <div class="form-group">
                           <div class="col-md-4">
-                            <%= f.label :hair, "Hair Color",class: "login_signup_label" %>
+                            <%= f.label :hair, "Hair Color", class:"profile_label", style: "margin-top:0.5em;" %>
                           </div>
                           <div class="col-md-8">
                             <%= f.collection_select :hair, Hair.all, :name, :name, {prompt: "Select Hair Color"}, {class: 'form-control my_text_field', style:"color: #1E8449;"} %>
@@ -204,7 +204,7 @@
 
                         <div class="form-group">
                           <div class="col-md-4">
-                            <%= f.label :dob, "Date of Birth",class: "login_signup_label" %>
+                            <%= f.label :dob, "Date of Birth", class:"profile_label", style: "margin-top:0.5em;" %>
                           </div>
                           <div class="col-md-8">
                             <%= f.date_select :dob,  {start_year:1950, prompt: true}, {class: "form-control my_text_field", style:"color: #1E8449;display:inline-block;width:32%;"} %>
