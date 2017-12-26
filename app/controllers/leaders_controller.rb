@@ -12,7 +12,19 @@ class LeadersController < ApplicationController
   end
 
   def new
-    @team_profiles = current_team.team_profiles
+    @team_profiles = []
+    @profiles = current_team.team_profiles
+    @profiles.each do |p|
+      if p.leader == nil
+        @team_profiles << p
+      end
+    end
+    @leader = current_team.leaders.build
+  end
+
+  def leader_new
+    id = params[:id]
+    @team_profile = current_team.team_profiles.find(id)
     @leader = current_team.leaders.build
   end
 
@@ -48,21 +60,54 @@ class LeadersController < ApplicationController
     @leader.code = @country_code.to_s
 
     @t_id = params['leader']['team_profile_id'].to_i
-    @team_profile = TeamProfile.find(@t_id)
+    if @t_id == nil || @t_id == 0
+      flash[:alert] = "Please Select a Team Profile First"
+      render 'new'
+    else
+      @team_profile = TeamProfile.find(@t_id)
+      if !phone.valid?
+        flash[:alert] = "Please Correct Your Phone Number"
+        render 'new'
+      elsif phone.valid? && @leader.save
+        if @team_profile.invitations.count > 0
+          redirect_to leaders_path
+          flash[:notice] = "Your profile as a Leader is successfully Created"
+        else
+          redirect_to new_invitation_path(id: @team_profile.id)
+          flash[:notice] = "Your profile as a Leader is successfully Created"
+        end
+      else
+        render 'new'
+      end
+    end
+
+  end
+
+
+  def create_leader
+    id = params[:id]
+    @team_profile = current_team.team_profiles.find(id)
+
+    @team = Team.find(current_team.id)
+    @leader = @team.leaders.build(permit_leader)
+
+    code = params[:leader][:country]
+    @c = ISO3166::Country.new(code)
+    @country_code = "+" + @c.country_code.to_s
+    @phone = params[:leader][:phone]
+    @phone = @country_code.to_s + @phone.to_s
+    phone = Phonelib.parse(@phone)
+    @leader.code = @country_code.to_s
+    @leader.team_profile_id = @team_profile.id
 
     if !phone.valid?
       flash[:alert] = "Please Correct Your Phone Number"
-      render 'new'
+      render 'leader_new'
     elsif phone.valid? && @leader.save
-      if @team_profile.invitations.count > 0
-        redirect_to leaders_path
-        flash[:notice] = "Your profile as a Leader is successfully Created"
-      else
-        redirect_to new_invitation_path(id: @team_profile.id)
-        flash[:notice] = "Your profile as a Leader is successfully Created"
-      end
+      redirect_to new_invitation_path(id: @team_profile.id)
+      flash[:notice] = "Your profile as a Leader is successfully Created"
     else
-      render 'new'
+      render 'leader_new'
     end
   end
 

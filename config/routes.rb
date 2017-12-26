@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   resources :leaders do
     member do
       get :show_leader
+      get :leader_new
+      post :create_leader
     end
   end
   resources :homes, only: [:index]

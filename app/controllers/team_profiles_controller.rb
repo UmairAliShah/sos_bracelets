@@ -42,7 +42,7 @@ class TeamProfilesController < ApplicationController
     @team = Team.find(current_team.id)
     @team_profile = @team.team_profiles.build(permit_params)
     if @team_profile.save
-      redirect_to new_leader_path(id: @team_profile.id)
+      redirect_to leader_new_leader_path(id: @team_profile.id)
       flash[:notice] = "Team Profile is Created Successfully"
     else
       render 'new'
