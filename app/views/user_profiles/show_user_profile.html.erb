@@ -36,25 +36,17 @@
                       <%end%>
                     </div>
                   </div>
-                  <% if @profile.team_profile == nil  %>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <%= label_tag :profile_of, "Member of Team",class: "login_signup_label", style:"margin-right: 0.4em;" %>
-                      </div>
-                      <div class="col-md-8">
-                        <%= label_tag :firstname, "No Team assigned to this profile" ,class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
-                      </div>
+                  <br>
+                  <div class="row">
+                    <div class="form-group">
+                      <%= label_tag :profile_of, "Member of Team",class: "profile_data", style: "color:#424949;" %>
+                      <% if @profile.team_profile == nil  %>
+                            <%= label_tag :firstname, "No Team assigned to this profile" ,class: "profile_data" %>
+                      <% else %>
+                            <%= label_tag :firstname, @profile.team_profile.name,class: "profile_data" %>
+                      <% end %>
                     </div>
-                  <% else %>
-                    <div class="row">
-                      <div class="col-md-3">
-                        <%= label_tag :profile_of, "Member of Team",class: "login_signup_label", style:"margin-right: 0.4em;" %>
-                      </div>
-                      <div class="col-md-9">
-                        <%= label_tag :firstname, @profile.team_profile.name,class: "login_signup_label", style:"color:#82E0AA; margin-right: 0.3em;" %>
-                      </div>
-                    </div>
-                  <% end %>
+                  </div>
 
                 </div>
               </div>
