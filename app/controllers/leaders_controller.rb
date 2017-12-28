@@ -54,6 +54,7 @@ class LeadersController < ApplicationController
     code = params[:leader][:country]
     @c = ISO3166::Country.new(code)
     @country_code = "+" + @c.country_code.to_s
+
     @phone = params[:leader][:phone]
     @phone = @country_code.to_s + @phone.to_s
     phone = Phonelib.parse(@phone)

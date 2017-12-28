@@ -110,16 +110,22 @@ body{
 
 .add_detail{
  text-decoration: none;
- color: #F0F0F0;
- background: #229954;
+ color: #FFFFFF;
+ background: #27AE60;
  font-family: 'Merriweather', serif;
  cursor: default;
 }
 
 .add_detail:hover{
+  color: #229954;
   background: #F0F0F0;
   text-decoration: none;
-  color: #229954;
+}
+
+.add_detail:active{
+  background: #FFFFFF;
+  text-decoration: none;
+  color: #F0F0F0;
 }
 
 .profile_label{
@@ -135,4 +141,9 @@ body{
 }
 .profile_value:hover{
   cursor: pointer;
+}
+
+.detail_error{
+  color:#C0392B;font-weight:bold;font-family: 'Merriweather', serif;cursor: default;float: center;text-align: center;font-size: 0.7em;
+  display: none;
 }

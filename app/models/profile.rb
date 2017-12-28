@@ -13,6 +13,7 @@ class Profile < ApplicationRecord
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
 
-  belongs_to :team_profile
   belongs_to :user
+  belongs_to :team_profile
+  has_many :contacts, as: :contactable, dependent: :destroy
 end

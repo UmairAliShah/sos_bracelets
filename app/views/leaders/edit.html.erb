@@ -8,8 +8,7 @@
         </div>
       </div>
 
-      <!-- Starting Bootsrap Modal for -->
-
+      <%= render :partial => 'contacts/addupdatecontacts' %>
 
       <div class="jumbotron" style="padding-bottom:1em; background-color: rgba(255,255,255,0.9); border-radius:0 0 1em 1em;">
         <div class="row">
@@ -232,16 +231,71 @@
                       <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
                         <div class="btn-group">
                             <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Emergency Contacts</h5>
-                            <a href="#" class="add_detail btn" style="margin:0px -90px 0px 0px;border-radius:0px;font-size:2em;text-align:right;float:right;font-weight:bold;">+</a>
+                            <a href="#" data-toggle="modal" data-target="#addContact" class="add_detail btn" style="margin:0px -90px 0px 0px;border-radius:0px;font-size:2em;text-align:right;float:right;font-weight:bold;">+</a>
                         </div>
                       </div>
                       <div class="col-md-9">
                       </div>
                     </div>
-                    <div class="row jumbotron" style="border-top-left-radius: 0px;border-top-right-radius: 0px;padding:20px 0px 20px 0px;">
-                      <div class="col-xs-12 col-md-4"></div>
-                      <div class="col-xs-12 col-md-4"></div>
-                      <div class="col-xs-12 col-md-4"></div>
+                    <div class="row jumbotron" style="border-top-left-radius: 0px;border-top-right-radius: 0px;padding:0px;">
+                      <div class="table-responsive">
+                        <% @contacts = @leader.contacts %>
+                        <table class="table table-bordered">
+                          <thead class="th_bg supervisor_thead">
+                            <tr>
+                              <th scope="col"><center> Name </center></th>
+                              <th scope="col"><center> Number </center></th>
+                              <th scope="col"><center> Relation </center></th>
+                              <th scope="col"><center> Email </center></th>
+                              <th scope="col"><center> Edit </center></th>
+                              <th scope="col"><center> Delete </center></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% @contacts.each do |c|%>
+                              <div class="container-fluid">
+                                <div class="modal fade" id="deleteContact">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <!-- Header -->
+                                      <div class="modal-header" style="background: #2DBF7F;">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <center><h4 class="heading_text">Are You Sure to Delete this Emergency Contact?</h4></center>
+                                      </div>
+                                      <!-- Body (form) -->
+                                      <div class="modal-body">
+                                        <div class="form-group">
+                                          <div class="row">
+                                            <div class="col-md-12">
+                                              <center>
+                                                <div class="row">
+                                                  <center>
+                                                    <%= link_to 'Yes', contact_path(:id => c.id), method: :delete, class: 'btn btn-large btn-info', style: "font-weight:bold;font-family: 'Merriweather', serif; background-color:#CB4335;border-color:#CB4335;margin-top:1em;" %>
+                                                    <button type="button" class="btn btn-success" data-dismiss="modal" style="margin-top:1em;">Close</button>
+                                                  </center>
+                                                </div>
+                                              </center>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <tr>
+                                <td><%= text_field_tag :name, c.name, {class: "form-control my_text_field", disabled:"disabled"} %></td>
+                                <% n = c.code + c.number%>
+                                <td><%= number_field_tag :number, c.number, {class: "form-control my_text_field", disabled:"disabled"} %></td>
+                                <td><%= text_field_tag :relation, c.relation, {class: "form-control my_text_field", disabled:"disabled"} %></td>
+                                <td><%= email_field_tag :email, c.email, {class: "form-control my_text_field", disabled:"disabled"} %></td>
+                                <td><button id="editContact" data-toggle="modal" data-target="#updateContact" data-id="<%= c.id%>" data-name="<%= c.name%>" data-code="<%= c.code%>" data-country="<%= c.country%>" data-number="<%= c.number%>" data-relation="<%= c.relation%>" data-email="<%= c.email%>"  class='btn btn-block btn-info' style="border-radius: 0 0 0 0;font-weight:bold;font-family: 'Merriweather', serif;background-color:#229954;border-color:#229954;">Edit</button></td>
+                                <td><button data-toggle="modal" data-target="#deleteContact" class='btn btn-block btn-danger' style="border-radius: 0 0 0 0;font-weight:bold;font-family: 'Merriweather', serif;background-color:#CB4335;border-color:#CB4335;color:#F0F0F0;">Delete</button></td>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>

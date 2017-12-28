@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # eg. http://localhost:3000/auth_teams/sign_in
 
   resources :team_profiles
+  resources :contacts
   resources :user_profiles do
     member do
       get :show_user_profile
@@ -29,7 +30,9 @@ Rails.application.routes.draw do
       post :send_invite
     end
   end
+
   resources :user_credentials, only: [:new, :create]
+
   authenticated :team do
     root :to => 'team_profiles#index'
   end

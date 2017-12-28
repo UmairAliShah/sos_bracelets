@@ -165,18 +165,8 @@
                     </div>
                   </div>
 
-
-                  <div class="row">
-                    <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
-                      <div class="btn-group">
-                          <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Emergency Contacts</h5>
-                      </div>
-                    </div>
-                    <div class="col-md-9">
-                    </div>
-                  </div>
-                  <div class="row jumbotron" style="border-top-left-radius: 0px;border-top-right-radius: 0px;padding:20px 0px 20px 0px;">
-                  </div>
+                  <% @contacts = @profile.contacts %>
+                  <%= render :partial => 'contacts/showcontacts' %>
 
 
                   <div class="row">
