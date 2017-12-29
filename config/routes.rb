@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-
-
   devise_for :users, path: 'auth_users', :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks' }
   # eg. http://localhost:3000/auth_users/sign_in
   devise_for :admins, path: 'authenticate_sos_admins'
@@ -9,8 +7,10 @@ Rails.application.routes.draw do
   devise_for :teams, path: 'auth_teams'
   # eg. http://localhost:3000/auth_teams/sign_in
 
-  resources :team_profiles
+
+  resources :medical_conditions
   resources :contacts
+  resources :team_profiles
   resources :user_profiles do
     member do
       get :show_user_profile

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171227203822) do
+ActiveRecord::Schema.define(version: 20171228111103) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -108,6 +108,16 @@ ActiveRecord::Schema.define(version: 20171227203822) do
     t.integer "team_profile_id"
     t.index ["team_id"], name: "index_leaders_on_team_id"
     t.index ["team_profile_id"], name: "index_leaders_on_team_profile_id"
+  end
+
+  create_table "medical_conditions", force: :cascade do |t|
+    t.string "condition"
+    t.string "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "conditionable_type"
+    t.integer "conditionable_id"
+    t.index ["conditionable_type", "conditionable_id"], name: "index_medical_on_conditionable_type_and_id"
   end
 
   create_table "profiles", force: :cascade do |t|

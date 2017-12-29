@@ -4,7 +4,7 @@
     <div class="col-md-12 no-pad-xs">
       <div class="row login_signup_heading" style="padding:0px;margin:0px;">
         <div class="col-md-12">
-          <center><h3 class="heading_text">Your Member Profile</h3></center>
+          <center><h3 class="heading_text">Member Profile</h3></center>
         </div>
       </div>
       <div class="jumbotron" style="padding-bottom:1em; background-color: rgba(255,255,255,0.9); border-radius:0 0 1em 1em;">
@@ -36,14 +36,13 @@
                       <%end%>
                     </div>
                   </div>
-                  <br>
-                  <div class="row">
+                  <div class="row" style="margin-top:0.5em;">
                     <div class="form-group">
                       <%= label_tag :profile_of, "Member of Team",class: "profile_data", style: "color:#424949;" %>
                       <% if @profile.team_profile == nil  %>
-                            <%= label_tag :firstname, "No Team assigned to this profile" ,class: "profile_data" %>
+                            <%= label_tag :firstname, "No Team assigned to this profile" ,class: "profile_data", style:"color:#82E0AA; margin-right: 0.3em;" %>
                       <% else %>
-                            <%= label_tag :firstname, @profile.team_profile.name,class: "profile_data" %>
+                            <%= label_tag :firstname, @profile.team_profile.name,class: "profile_data", style:"color:#82E0AA; margin-right: 0.3em;" %>
                       <% end %>
                     </div>
                   </div>
@@ -159,7 +158,8 @@
 
                   <% @contacts = @profile.contacts %>
                   <%= render :partial => 'contacts/showcontacts' %>
-
+                  <% @conditions = @profile.medical_conditions %>
+                  <%= render :partial => 'medical_conditions/showmedicalconditions' %>
 
 
                   <div class="row">

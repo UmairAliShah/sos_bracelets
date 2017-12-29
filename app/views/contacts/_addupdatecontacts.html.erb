@@ -81,9 +81,9 @@
                   <h4 id="contact_error" class="detail_error">Unrecognized Error! Try Again Later</h4>
                   <%= image_tag ("loading.gif"), id:"loading_add_contact", class: 'img-responsive', style: "display:none;margin-left:39%;width:32px;height:32px;position:absolute;" %>
                   <% if team_signed_in? %>
-                    <button id="add_contact" onclick="add_my_contact(<%= @leader.id%>)" type="button" class='btn btn-large btn-info' style="font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;">Add Contact</button>
+                    <button id="add_contact" onclick="add_my_contact(<%= @leader.id%>)" type="button" class='btn btn-large btn-info' style="font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;">Save</button>
                   <%elsif user_signed_in?%>
-                    <button id="add_contact" onclick="add_my_contact(<%= @profile.id%>)" type="button" class='btn btn-large btn-info' style="font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;">Add Contact</button>
+                    <button id="add_contact" onclick="add_my_contact(<%= @profile.id%>)" type="button" class='btn btn-large btn-info' style="font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;">Save</button>
                   <%end%>
                   <button type="button" class="btn btn-danger" data-dismiss="modal" style="color:#C0392B;">Close</button>
                 </center>
@@ -180,9 +180,9 @@
                 <h4 id="upcontact_error" class="detail_error">Unrecognized Error! Try Again Later</h4>
                 <%= image_tag ("loading.gif"), id:"loading_update_contact", class: 'img-responsive', style: "display:none;margin-left:39%;width:32px;height:32px;position:absolute;" %>
                 <% if team_signed_in? %>
-                  <button id="updte_contact" onclick="update_my_contact(<%= @leader.id%>)" type="button" class='btn btn-large btn-info' style="font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;">Update Contact</button>
+                  <button id="updte_contact" onclick="update_my_contact(<%= @leader.id%>)" type="button" class='btn btn-large btn-info' style="font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;">Save</button>
                 <%elsif user_signed_in?%>
-                  <button id="updte_contact" onclick="update_my_contact(<%= @profile.id%>)" type="button" class='btn btn-large btn-info' style="font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;">Update Contact</button>
+                  <button id="updte_contact" onclick="update_my_contact(<%= @profile.id%>)" type="button" class='btn btn-large btn-info' style="font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;">Save</button>
                 <%end%>
                 <button type="button" class="btn btn-danger" data-dismiss="modal" style="color:#C0392B;">Close</button>
               </center>

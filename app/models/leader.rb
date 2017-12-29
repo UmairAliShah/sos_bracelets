@@ -16,4 +16,5 @@ class Leader < ApplicationRecord
   belongs_to :team
   belongs_to :team_profile
   has_many :contacts, as: :contactable, dependent: :destroy
+  has_many :medical_conditions, as: :conditionable, dependent: :destroy
 end

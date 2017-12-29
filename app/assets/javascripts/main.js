@@ -1,11 +1,12 @@
 $(document).ready(function(){
+
   setTimeout(function(){
     $("#notice_wrapper").slideToggle('slow', function(){
       $(this).remove();
     });
   }, 6000);
 
-  /* *********************** Loading data in Deatil window of Post ********************************/
+  /************************ Loading data in Edit Contact Window ********************************/
   $(document).on("click", '#editContact', function() {
     $('#showid').val($(this).attr('data-id'));
     $('#showname').val($(this).attr('data-name'));
@@ -14,12 +15,27 @@ $(document).ready(function(){
     $('#showrelation').val($(this).attr('data-relation'));
     $('#showemail').val($(this).attr('data-email'));
   });
+  /************************ Loading data in Edit Contact Window ********************************/
+
+
+  /************************ Loading data in Edit Medical Condition Window ********************************/
+  $(document).on("click", '#editCondition', function() {
+    $('#upid').val($(this).attr('data-id'));
+    $('#upcondition').val($(this).attr('data-condition'));
+    var n = $(this).attr('data-note');
+    if (n == "- - -"){
+      $('#upnote').val("");
+    }
+    else{
+      $('#upnote').val(n);
+    }
+  });
+  /************************ Loading data in Edit Medical Condition Window ********************************/
 
 
 });
-
+/************************ Sending Invites ********************************/
 function send_invites_friend(count, pid) {
-
   var list = new Array();
   for(var i = 0; i<count; i++){
     var email = $("#email"+pid+i).val();
@@ -27,7 +43,6 @@ function send_invites_friend(count, pid) {
     var obj = id + "=" + email;
     list.push(obj);
   }
-
   $.ajax({
            url: "/invitations/send_invite", // Route to the Script Controller method
           type: "post",
@@ -44,6 +59,9 @@ function send_invites_friend(count, pid) {
                 }
   });
 }
+/************************ Sending Invites ********************************/
+
+
 
 function callme(mydiv){
   $('.leader_div').css('background-color', 'white');
@@ -51,6 +69,7 @@ function callme(mydiv){
 }
 
 
+/************************ Adding new Emergenct Contact of Profile and Leader ********************************/
 function add_my_contact(profile_id){
   var name = $("#name").val();
   if(name == null || name == ""){
@@ -83,8 +102,6 @@ function add_my_contact(profile_id){
   }
   $("#add_contact").prop('disabled', true);
   $("#loading_add_contact").show();
-
-
   $.ajax({
            url: "/contacts", // Route to the Script Controller method
           type: "post",
@@ -110,9 +127,12 @@ function add_my_contact(profile_id){
                     $("#contact_error").show('slow');
                 }
   });
-
 }
+/************************ Adding new Emergenct Contact of Profile and Leader ********************************/
 
+
+
+/************************ Updating Emergenct Contact of Profile and Leader ********************************/
 function update_my_contact(profile_id){
   var cid = $("#showid").val();
   var name = $("#showname").val();
@@ -169,6 +189,99 @@ function update_my_contact(profile_id){
                    $("#update_contact").prop('disabled', false);
                    $("#loading_update_contact").hide();
                    $("#upcontact_error").show('slow');
+                }
+  });
+}
+/************************ Updating Emergenct Contact of Profile and Leader ********************************/
+
+
+
+/************************ Adding Medical Condition of Profile and Leader ********************************/
+function addMC(id){
+  var condition = $("#condition").val();
+  if(condition == null || condition == ""){
+    $("#condition_error").show('slow');
+    return;
+  }
+  $("#condition_error").hide('slow');
+
+  var notes = $("#note").val();
+  if(notes == null || notes == ""){
+    notes = "- - -";
+  }
+
+  $("#add_medical_condition").prop('disabled', true);
+  $("#loading_MC").show();
+  $.ajax({
+           url: "/medical_conditions", // Route to the Script Controller method
+          type: "post",
+      dataType: "json",
+          data: {id: id, condition: condition, notes: notes}, // This goes to Controller in params hash, i.e. params[:file_name]
+      complete: function() {},
+       success: function(data, textStatus, xhr) {
+                  $("#add_medical_condition").prop('disabled', false);
+                  $("#loading_MC").hide();
+                  if (data == "-1"){
+                    $("#mc_error").show('slow');
+                  }
+                  else if (data == "1") {
+                    location.reload();
+                  }
+                  else{
+                    $("#mc_error").show('slow');
+                  }
+                },
+         error: function() {
+                  $("#add_medical_condition").prop('disabled', false);
+                  $("#loading_MC").hide();
+                  $("#mc_error").show('slow');
+                }
+  });
+}
+/************************ Adding Medical Condition of Profile and Leader ********************************/
+
+
+
+/************************ Updating Medical Condition of Profile and Leader ********************************/
+function update_medical_condition(lpid){
+  var cid = $("#upid").val();
+  var condition = $("#upcondition").val();
+  if(condition == null || condition == ""){
+    $("#up_condition_error").show('slow');
+    return;
+  }
+  $("#up_condition_error").hide('slow');
+
+  var notes = $("#upnote").val();
+  if(notes == null || notes == ""){
+    notes = "- - -";
+  }
+  $("#updte_medical_condition").prop('disabled', true);
+  $("#loading_update_condition").show();
+
+  $.ajax({
+           url: "/medical_conditions/update", // Route to the Script Controller method
+          type: "patch",
+      dataType: "json",
+          data: {lpid: lpid, cid: cid, condition: condition, notes: notes}, // This goes to Controller in params hash, i.e. params[:file_name]
+      complete: function() {},
+       success: function(data, textStatus, xhr) {
+                 $("#updte_medical_condition").prop('disabled', false);
+                 $("#loading_update_condition").hide();
+                  if (data == "-1"){
+                    $("#upcondition_error").show('slow');
+                  }
+                  else if (data == "1") {
+                    location.reload();
+                  }
+                  else{
+                    $("#upcondition_error").show('slow');
+                  }
+                },
+         error: function() {
+                  $("#updte_medical_condition").prop('disabled', false);
+                  $("#loading_update_condition").hide();
+                  $("#upcondition_error").show('slow');
                 }
   });
 }

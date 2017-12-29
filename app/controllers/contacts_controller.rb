@@ -109,8 +109,5 @@ class ContactsController < ApplicationController
       flash[:alert] = "Emergency Contact Not Deleted"
     end
   end
-  private
-    def permit_leader
-      params.require(:contact).permit(:name, :number, :country, :code, :email, :profile_id)
-    end
+
 end

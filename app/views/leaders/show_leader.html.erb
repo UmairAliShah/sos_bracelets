@@ -40,6 +40,16 @@
                       <%end%>
                     </div>
                   </div>
+                  <div class="row" style="margin-top:0.5em;">
+                    <div class="form-group">
+                      <%= label_tag :profile_of, "Member of Team",class: "profile_data", style: "color:#424949;" %>
+                      <% if @leader.team_profile == nil  %>
+                            <%= label_tag :firstname, "No Team assigned to this profile" ,class: "profile_data", style:"color:#82E0AA; margin-right: 0.3em;" %>
+                      <% else %>
+                            <%= label_tag :firstname, @leader.team_profile.name,class: "profile_data", style:"color:#82E0AA; margin-right: 0.3em;" %>
+                      <% end %>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -150,6 +160,8 @@
 
                   <% @contacts = @leader.contacts %>
                   <%= render :partial => 'contacts/showcontacts' %>
+                  <% @conditions = @leader.medical_conditions %>
+                  <%= render :partial => 'medical_conditions/showmedicalconditions' %>
 
 
                   <div class="row">
