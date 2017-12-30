@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171228111103) do
+ActiveRecord::Schema.define(version: 20171229111903) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "line1"
+    t.string "line2"
+    t.string "city"
+    t.string "state"
+    t.string "country"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "addressble_type"
+    t.integer "addressble_id"
+    t.index ["addressble_type", "addressble_id"], name: "index_addresses_on_addressble_type_and_addressble_id"
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false

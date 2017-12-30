@@ -30,13 +30,13 @@
                       <label class="profile_name"><%= @leader.firstname%> <%= @leader.lastname%></label>
                     </div>
                   </div>
-                  <div class="row">
+                  <div class="row" style="margin-top:0.5em;">
                     <div class="form-group">
                       <% if @leader.gender != nil %>
-                        <label class="profile_data"><%= @leader.firstname%></label>
+                        <label class="profile_data"><%= @leader.gender%></label>
                       <%end%>
-                      <% if @leader.gender != nil %>
-                        <label class="profile_data">from <%= @leader.firstname%></label>
+                      <% if @leader.addresses.count > 0 %>
+                        <label class="profile_data">from <%= @leader.addresses[0].city%> <%= @leader.addresses[0].state%></label>
                       <%end%>
                     </div>
                   </div>
@@ -158,7 +158,11 @@
                     </div>
                   </div>
 
-
+                  <% @address = nil %>
+                  <% if @leader.addresses.count > 0 %>
+                    <% @address = @leader.addresses[0]%>
+                  <% end %>
+                  <%= render :partial => 'addresses/showaddress' %>
                   <% @contacts = @leader.contacts %>
                   <%= render :partial => 'contacts/showcontacts' %>
                   <% @conditions = @leader.medical_conditions %>

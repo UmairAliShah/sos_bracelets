@@ -8,6 +8,12 @@
         </div>
       </div>
 
+      <% if @profile.addresses.count < 1 %>
+        <%= render :partial => 'addresses/addaddress' %>
+      <% else %>
+        <%= render :partial => 'addresses/updateaddress' %>
+      <% end %>
+
       <% if @profile.contacts.count < 2%>
         <%= render :partial => 'contacts/addupdatecontacts' %>
       <% end %>
@@ -79,10 +85,10 @@
                     <div class="row">
                       <div class="form-group">
                         <% if @profile.gender != nil %>
-                          <label class="profile_data"><%= @profile.firstname%></label>
+                          <label class="profile_data"><%= @profile.gender%></label>
                         <%end%>
-                        <% if @profile.gender != nil %>
-                          <label class="profile_data">from <%= @profile.firstname%></label>
+                        <% if @profile.addresses.count > 0 %>
+                          <label class="profile_data">from <%= @profile.addresses[0].city%> <%= @profile.addresses[0].state%></label>
                         <%end%>
                       </div>
                     </div>
@@ -217,7 +223,7 @@
                       <div class="col-md-12">
                         <div class="col-md-5"></div>
                         <div class="col-md-2">
-                          <center><%= f.submit "Update Profile",class: 'btn btn-block btn-success', style: "font-weight:bold;font-family: 'Merriweather', serif;" %></center>
+                          <center><%= f.submit "Save",class: 'btn btn-block btn-success', style: "font-weight:bold;font-family: 'Merriweather', serif;" %></center>
                         </div>
                         <div class="col-md-5"></div>
                       </div>
@@ -226,6 +232,85 @@
                 </div>
                 <%end%>
 
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
+                        <div class="btn-group">
+                            <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Address</h5>
+                            <% if @profile.addresses.count < 1 %>
+                              <a href="#" data-toggle="modal" data-target="#addAddress" class="add_detail btn" style="margin:0px -95px 0px 0px;border-radius:0px;font-size:2em;text-align:right;float:right;font-weight:bold;">+</a>
+                            <% end %>
+                        </div>
+                      </div>
+                      <div class="col-md-9">
+                      </div>
+                    </div>
+                    <div class="row jumbotron" style="border-top-left-radius: 0px;border-top-right-radius: 0px;padding:0px;">
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <thead class="th_bg supervisor_thead">
+                            <tr>
+                              <th scope="col"><center> Address Line 1 </center></th>
+                              <th scope="col"><center> Address Line 2 </center></th>
+                              <th scope="col"><center> City </center></th>
+                              <th scope="col"><center> State </center></th>
+                              <th scope="col"><center> Country </center></th>
+                              <th scope="col"><center> Edit </center></th>
+                              <th scope="col"><center> Delete </center></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% if @profile.addresses.count > 0 %>
+                              <% @address = @profile.addresses[0] %>
+                              <% if @address != nil %>
+                                <div class="container-fluid">
+                                  <div class="modal fade" id="deleteAddress">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <!-- Header -->
+                                        <div class="modal-header" style="background: #2DBF7F;">
+                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                          <center><h4 class="heading_text">Are You Sure to Delete this Address?</h4></center>
+                                        </div>
+                                        <!-- Body (form) -->
+                                        <div class="modal-body">
+                                          <div class="form-group">
+                                            <div class="row">
+                                              <div class="col-md-12">
+                                                <center>
+                                                  <div class="row">
+                                                    <center>
+                                                      <%= link_to 'Yes', address_path(:id => @address.id), method: :delete, class: 'btn btn-large btn-info', style: "font-weight:bold;font-family: 'Merriweather', serif; background-color:#CB4335;border-color:#CB4335;margin-top:1em;" %>
+                                                      <button type="button" class="btn btn-success" data-dismiss="modal" style="margin-top:1em;">Close</button>
+                                                    </center>
+                                                  </div>
+                                                </center>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <tr>
+                                  <td><%= label_tag :line1, @address.line1, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
+                                  <td><%= label_tag :line2, @address.line2, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
+                                  <td><%= label_tag :city, @address.city, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
+                                  <td><%= label_tag :state, @address.state, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
+                                  <td><%= label_tag :country, @address.country, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
+                                  <td><button id="editAddress" data-toggle="modal" data-target="#updateAddress" data-aid="<%= @address.id%>" data-line1="<%= @address.line1%>" data-line2="<%= @address.line2%>" data-city="<%= @address.city%>" data-state="<%= @address.state%>" data-acountry="<%= @address.country%>" class='btn btn-block btn-info' style="border-radius: 0 0 0 0;font-weight:bold;font-family: 'Merriweather', serif;background-color:#229954;border-color:#229954;">Edit</button></td>
+                                  <td><button data-toggle="modal" data-target="#deleteAddress" class='btn btn-block btn-danger' style="border-radius: 0 0 0 0;font-weight:bold;font-family: 'Merriweather', serif;background-color:#CB4335;border-color:#CB4335;color:#F0F0F0;">Delete</button></td>
+                                </tr>
+                              <% end %>
+                            <% end %>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
 
                 <div class="row">

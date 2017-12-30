@@ -96,8 +96,9 @@ class ContactsController < ApplicationController
   def destroy
     @contact = Contact.find(params[:id])
     @id = @contact.contactable_id
+    @type = @contact.contactable_type
+
     if @contact.destroy
-      @type = @contact.contactable_type
       if @type == "Profile"
         redirect_to edit_user_profile_path(:id => @id)
       else
@@ -105,7 +106,11 @@ class ContactsController < ApplicationController
       end
       flash[:notice] = "Emergency Contact Deleted Successfully"
     else
-      redirect_to edit_user_profile_path(:id => @id)
+      if @type == "Profile"
+        redirect_to edit_user_profile_path(:id => @id)
+      else
+        redirect_to edit_leader_path(:id => @id)
+      end
       flash[:alert] = "Emergency Contact Not Deleted"
     end
   end

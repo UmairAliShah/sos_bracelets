@@ -18,6 +18,18 @@ $(document).ready(function(){
   /************************ Loading data in Edit Contact Window ********************************/
 
 
+  /************************ Loading data in Edit Address Window ********************************/
+  $(document).on("click", '#editAddress', function() {
+    $('#upaid').val($(this).attr('data-aid'));
+    $('#upline1').val($(this).attr('data-line1'));
+    $('#upline2').val($(this).attr('data-line2'));
+    $('#upcity').val($(this).attr('data-city'));
+    $('#upstate').val($(this).attr('data-state'));
+    $('#upaddress_country').val($(this).attr('data-acountry'));
+  });
+  /************************ Loading data in Edit Address Window ********************************/
+
+
   /************************ Loading data in Edit Medical Condition Window ********************************/
   $(document).on("click", '#editCondition', function() {
     $('#upid').val($(this).attr('data-id'));
@@ -285,3 +297,139 @@ function update_medical_condition(lpid){
                 }
   });
 }
+/************************ Updating Medical Condition of Profile and Leader ********************************/
+
+
+/************************ Adding Address of Profile and Leader ********************************/
+function add_my_address(lpid){
+  var line1 = $("#line1").val();
+  if(line1 == null || line1 == ""){
+    line1 = "";
+  }
+  var line2 = $("#line2").val();
+  if(line2 == null || line2 == ""){
+    line2 = "";
+  }
+
+  var city = $("#city").val();
+  if(city == null || city == ""){
+    $("#city_error").show('slow');
+    return;
+  }
+  $("#city_error").hide('slow');
+
+
+  var state = $("#state").val();
+  if(state == null || state == ""){
+    $("#state_error").show('slow');
+    return;
+  }
+  $("#state_error").hide('slow');
+
+
+  var address_country = $("#address_country").val();
+  if(address_country == null || address_country == ""){
+    $("#address_country_error").show('slow');
+    return;
+  }
+  $("#address_country_error").hide('slow');
+
+  $("#add_address").prop('disabled', true);
+  $("#loading_add_address").show();
+
+  $.ajax({
+           url: "/addresses", // Route to the Script Controller method
+          type: "post",
+      dataType: "json",
+          data: {lpid: lpid, line1: line1, line2: line2, city: city, state: state, country: address_country}, // This goes to Controller in params hash, i.e. params[:file_name]
+      complete: function() {},
+       success: function(data, textStatus, xhr) {
+                  $("#add_address").prop('disabled', false);
+                  $("#loading_add_address").hide();
+                  if (data == "-1"){
+                    $("#address_error").show('slow');
+                  }
+                  else if (data == "1") {
+                    location.reload();
+                  }
+                  else{
+                    $("#address_error").show('slow');
+                  }
+                },
+         error: function() {
+                  $("#add_address").prop('disabled', false);
+                  $("#loading_add_address").hide();
+                  $("#address_error").show('slow');
+                }
+  });
+
+}
+/************************ Adding Address of Profile and Leader ********************************/
+
+
+/************************ Updating Address of Profile and Leader ********************************/
+function update_my_address(lpid){
+  var aid = $("#upaid").val();
+  var line1 = $("#upline1").val();
+  if(line1 == null || line1 == ""){
+    line1 = "";
+  }
+  var line2 = $("#upline2").val();
+  if(line2 == null || line2 == ""){
+    line2 = "";
+  }
+
+  var city = $("#upcity").val();
+  if(city == null || city == ""){
+    $("#upcity_error").show('slow');
+    return;
+  }
+  $("#upcity_error").hide('slow');
+
+
+  var state = $("#upstate").val();
+  if(state == null || state == ""){
+    $("#upstate_error").show('slow');
+    return;
+  }
+  $("#upstate_error").hide('slow');
+
+
+  var address_country = $("#upaddress_country").val();
+  if(address_country == null || address_country == ""){
+    $("#upaddress_country_error").show('slow');
+    return;
+  }
+  $("#upaddress_country_error").hide('slow');
+
+
+  $("#update_address").prop('disabled', true);
+  $("#loading_update_address").show();
+
+  $.ajax({
+           url: "/addresses/update", // Route to the Script Controller method
+          type: "patch",
+      dataType: "json",
+          data: {lpid: lpid, aid: aid, line1: line1, line2: line2, city: city, state: state, country: address_country}, // This goes to Controller in params hash, i.e. params[:file_name]
+      complete: function() {},
+       success: function(data, textStatus, xhr) {
+                  $("#update_address").prop('disabled', false);
+                  $("#loading_update_address").hide();
+                  if (data == "-1"){
+                    $("#upaddress_error").show('slow');
+                  }
+                  else if (data == "1") {
+                    location.reload();
+                  }
+                  else{
+                    $("#upaddress_error").show('slow');
+                  }
+                },
+         error: function() {
+                  $("#update_address").prop('disabled', false);
+                  $("#loading_update_address").hide();
+                  $("#upaddress_error").show('slow');
+                }
+  });
+}
+/************************ Updating Address of Profile and Leader ********************************/
