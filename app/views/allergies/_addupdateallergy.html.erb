@@ -1,0 +1,140 @@
+<!-- Starting Bootsrap Modal for Add Allergy-->
+<div class="row">
+  <center>
+    <div class="container">
+      <div class="modal fade" id="addAllergy">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <form id="form">
+              <!-- Header -->
+              <div class="modal-header" style="background: #2DBF7F;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <center><h4 class="heading_text">Add Allergy</h4></center>
+              </div>
+              <!-- Body (form) -->
+              <div class="modal-body">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <center>
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md-10">
+
+                            <div class="row">
+                              <div class="col-md-4">
+                                <%= label_tag :aname, "Name", class:"profile_label", style: "margin-top:0.5em;" %>
+                              </div>
+                              <div class="col-md-8">
+                                <%= text_field_tag :aname, nil, {id: "allergy_name", placeholder: 'Like Gluten, Peanuts etc', class: 'form-control my_text_field', style:"color: #1E8449;"}%>
+                                <h4 id="allergy_name_error" class="detail_error">Allergy Name is Required</h4>
+                              </div>
+                            </div>
+
+                            <div class="row" style="margin-top: 0.5em;">
+                              <div class="col-md-4">
+                                <%= label_tag :note, "Notes", class:"profile_label", style: "margin-top:0.5em;" %>
+                              </div>
+                              <div class="col-md-8">
+                                <%= text_area_tag :note, nil, {id: "allergy_note", placeholder: 'Enter Your Notes', class: 'form-control my_text_field', style:"color: #1E8449;resize: none;", size: "30x10"}%>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="col-md-1"></div>
+                        </div>
+                      </center>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <center>
+                  <h4 id="allergy_error" class="detail_error">Unrecognized Error! Try Again Later</h4>
+                  <%= image_tag ("loading.gif"), id:"loading_allergy", class: 'img-responsive', style: "display:none;margin-left:39%;width:32px;height:32px;position:absolute;" %>
+                  <% if team_signed_in? %>
+                    <button id="add_allergy" onclick="addAllergy(<%= @leader.id%>)" type="button" class='btn btn-large btn-info' style="font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;">Save</button>
+                  <%elsif user_signed_in?%>
+                    <button id="add_allergy" onclick="addAllergy(<%= @profile.id%>)" type="button" class='btn btn-large btn-info' style="font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;">Save</button>
+                  <%end%>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal" style="color:#C0392B;">Close</button>
+                </center>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </center>
+</div>
+<!-- Ending Bootsrap Modal for Add Allergy-->
+<!-- Starting Bootsrap Modal for Edit Allergy-->
+<div class="row">
+  <center>
+    <div class="container">
+      <div class="modal fade" id="updateAllergy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Header -->
+            <div class="modal-header" style="background: #2DBF7F;">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <center><h4 class="heading_text">Edit Allergy</h4></center>
+            </div>
+            <!-- Body (form) -->
+            <div class="modal-body">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-12">
+                    <center>
+                      <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+
+                          <div class="row">
+                            <div class="col-md-4">
+                              <%= label_tag :name, "Name", class:"profile_label", style: "margin-top:0.5em;" %>
+                            </div>
+                            <div class="col-md-8">
+                              <%= text_field_tag :id, nil, {id: "up_allergy_id", class: 'form-control my_text_field', style:"color: #1E8449;display:none;"}%>
+                              <%= text_field_tag :name, nil, {id: "up_allergy_name", placeholder: 'Like Gluten, Peanuts etc', class: 'form-control my_text_field', style:"color: #1E8449;"}%>
+                              <h4 id="up_allergy_name_error" class="detail_error">Allergy Name is Required</h4>
+                            </div>
+                          </div>
+
+                          <div class="row" style="margin-top: 0.5em;">
+                            <div class="col-md-4">
+                              <%= label_tag :note, "Notes", class:"profile_label", style: "margin-top:0.5em;" %>
+                            </div>
+                            <div class="col-md-8">
+                              <%= text_area_tag :note, nil, {id: "up_allergy_note", placeholder: 'Enter Notes', class: 'form-control my_text_field', style:"color: #1E8449;resize: none;", size: "30x10"}%>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="col-md-1"></div>
+                      </div>
+                    </center>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <center>
+                <h4 id="up_allergy_error" class="detail_error">Unrecognized Error! Try Again Later</h4>
+                <%= image_tag ("loading.gif"), id:"up_loading_allergy", class: 'img-responsive', style: "display:none;margin-left:39%;width:32px;height:32px;position:absolute;" %>
+                <% if team_signed_in? %>
+                  <button id="update_allergy" onclick="update_allergy(<%= @leader.id%>)" type="button" class='btn btn-large btn-info' style="font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;">Save</button>
+                <%elsif user_signed_in?%>
+                  <button id="update_allergy" onclick="update_allergy(<%= @profile.id%>)" type="button" class='btn btn-large btn-info' style="font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;">Save</button>
+                <%end%>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" style="color:#C0392B;">Close</button>
+              </center>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </center>
+</div>
+<!-- Ending Bootsrap Modal for Edit Allergy-->

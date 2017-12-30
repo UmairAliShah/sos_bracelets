@@ -45,6 +45,21 @@ $(document).ready(function(){
   /************************ Loading data in Edit Medical Condition Window ********************************/
 
 
+  /************************ Loading data in Edit Allergy Window ********************************/
+  $(document).on("click", '#editAllergy', function() {
+    $('#up_allergy_id').val($(this).attr('data-alid'));
+    $('#up_allergy_name').val($(this).attr('data-alname'));
+    var n = $(this).attr('data-alnote');
+    if (n == "- - -"){
+      $('#up_allergy_note').val("");
+    }
+    else{
+      $('#up_allergy_note').val(n);
+    }
+  });
+  /************************ Loading data in Edit Allergy Window ********************************/
+
+
 });
 /************************ Sending Invites ********************************/
 function send_invites_friend(count, pid) {
@@ -433,3 +448,95 @@ function update_my_address(lpid){
   });
 }
 /************************ Updating Address of Profile and Leader ********************************/
+
+
+
+
+/************************ Adding Allergy of Profile and Leader ********************************/
+function addAllergy(lpid){
+  var allergy_name = $("#allergy_name").val();
+  if(allergy_name == null || allergy_name == ""){
+    $("#allergy_name_error").show('slow');
+    return;
+  }
+  $("#allergy_name_error").hide('slow');
+
+  var allergy_note = $("#allergy_note").val();
+  if(allergy_note == null || allergy_note == ""){
+    allergy_note = "- - -";
+  }
+
+  $("#add_allergy").prop('disabled', true);
+  $("#loading_allergy").show();
+  $.ajax({
+           url: "/allergies", // Route to the Script Controller method
+          type: "post",
+      dataType: "json",
+          data: {lpid: lpid, name: allergy_name, notes: allergy_note}, // This goes to Controller in params hash, i.e. params[:file_name]
+      complete: function() {},
+       success: function(data, textStatus, xhr) {
+                  $("#add_allergy").prop('disabled', false);
+                  $("#loading_allergy").hide();
+                  if (data == "-1"){
+                    $("#allergy_error").show('slow');
+                  }
+                  else if (data == "1") {
+                    location.reload();
+                  }
+                  else{
+                    $("#allergy_error").show('slow');
+                  }
+                },
+         error: function() {
+                  $("#add_allergy").prop('disabled', false);
+                  $("#loading_allergy").hide();
+                  $("#allergy_error").show('slow');
+                }
+  });
+}
+/************************ Adding Allergy of Profile and Leader ********************************/
+
+/************************ Updating Allergy of Profile and Leader ********************************/
+function update_allergy(lpid){
+  var up_allergy_id = $("#up_allergy_id").val();
+  var up_allergy_name = $("#up_allergy_name").val();
+  if(up_allergy_name == null || up_allergy_name == ""){
+    $("#up_allergy_name_error").show('slow');
+    return;
+  }
+  $("#up_allergy_name_error").hide('slow');
+
+  var up_allergy_note = $("#up_allergy_note").val();
+  if(up_allergy_note == null || up_allergy_note == ""){
+    up_allergy_note = "- - -";
+  }
+
+  $("#update_allergy").prop('disabled', true);
+  $("#up_loading_allergy").show();
+  $.ajax({
+           url: "/allergies/update", // Route to the Script Controller method
+          type: "patch",
+      dataType: "json",
+          data: {lpid: lpid, aid: up_allergy_id, name: up_allergy_name, notes: up_allergy_note}, // This goes to Controller in params hash, i.e. params[:file_name]
+      complete: function() {},
+       success: function(data, textStatus, xhr) {
+                  $("#update_allergy").prop('disabled', false);
+                  $("#up_loading_allergy").hide();
+                  if (data == "-1"){
+                    $("#up_allergy_error").show('slow');
+                  }
+                  else if (data == "1") {
+                    location.reload();
+                  }
+                  else{
+                    $("#up_allergy_error").show('slow');
+                  }
+                },
+         error: function() {
+                  $("#update_allergy").prop('disabled', false);
+                  $("#up_loading_allergy").hide();
+                  $("#up_allergy_error").show('slow');
+                }
+  });
+}
+/************************ Updating Allergy of Profile and Leader ********************************/

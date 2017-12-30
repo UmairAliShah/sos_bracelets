@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # eg. http://localhost:3000/auth_teams/sign_in
 
 
+  resources :allergies
   resources :addresses
   resources :medical_conditions
   resources :contacts

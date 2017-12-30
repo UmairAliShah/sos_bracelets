@@ -65,7 +65,7 @@ class MedicalConditionsController < ApplicationController
   def destroy
     @condition = MedicalCondition.find(params[:id])
     @id = @condition.conditionable_id
-    @type = @condition.conditionable_type    
+    @type = @condition.conditionable_type
     if @condition.destroy
       if @type == "Profile"
         redirect_to edit_user_profile_path(:id => @id)

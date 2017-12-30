@@ -18,4 +18,5 @@ class Leader < ApplicationRecord
   has_many :contacts, as: :contactable, dependent: :destroy
   has_many :medical_conditions, as: :conditionable, dependent: :destroy
   has_many :addresses, as: :addressble, dependent: :destroy
+  has_many :allergies, as: :allergable, dependent: :destroy
 end
