@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171230094237) do
+ActiveRecord::Schema.define(version: 20171230134851) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "line1"
@@ -141,6 +141,18 @@ ActiveRecord::Schema.define(version: 20171230094237) do
     t.string "conditionable_type"
     t.integer "conditionable_id"
     t.index ["conditionable_type", "conditionable_id"], name: "index_medical_on_conditionable_type_and_id"
+  end
+
+  create_table "medications", force: :cascade do |t|
+    t.string "name"
+    t.string "dosage"
+    t.string "frequency"
+    t.string "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "medicationable_type"
+    t.integer "medicationable_id"
+    t.index ["medicationable_type", "medicationable_id"], name: "index_medications_on_medicationable_type_and_medicationable_id"
   end
 
   create_table "profiles", force: :cascade do |t|

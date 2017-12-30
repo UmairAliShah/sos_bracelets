@@ -450,8 +450,6 @@ function update_my_address(lpid){
 /************************ Updating Address of Profile and Leader ********************************/
 
 
-
-
 /************************ Adding Allergy of Profile and Leader ********************************/
 function addAllergy(lpid){
   var allergy_name = $("#allergy_name").val();
@@ -460,12 +458,10 @@ function addAllergy(lpid){
     return;
   }
   $("#allergy_name_error").hide('slow');
-
   var allergy_note = $("#allergy_note").val();
   if(allergy_note == null || allergy_note == ""){
     allergy_note = "- - -";
   }
-
   $("#add_allergy").prop('disabled', true);
   $("#loading_allergy").show();
   $.ajax({
@@ -505,12 +501,10 @@ function update_allergy(lpid){
     return;
   }
   $("#up_allergy_name_error").hide('slow');
-
   var up_allergy_note = $("#up_allergy_note").val();
   if(up_allergy_note == null || up_allergy_note == ""){
     up_allergy_note = "- - -";
   }
-
   $("#update_allergy").prop('disabled', true);
   $("#up_loading_allergy").show();
   $.ajax({

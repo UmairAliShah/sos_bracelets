@@ -19,4 +19,5 @@ class Profile < ApplicationRecord
   has_many :medical_conditions, as: :conditionable, dependent: :destroy
   has_many :addresses, as: :addressble, dependent: :destroy
   has_many :allergies, as: :allergable, dependent: :destroy
+  has_many :medications, as: :medicationable, dependent: :destroy
 end
