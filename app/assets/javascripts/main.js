@@ -60,6 +60,36 @@ $(document).ready(function(){
   /************************ Loading data in Edit Allergy Window ********************************/
 
 
+
+  /************************ Loading data in Edit Allergy Window ********************************/
+  $(document).on("click", '#editMedication', function() {
+    $('#up_medication_id').val($(this).attr('data-mid'));
+    $('#up_medication_name').val($(this).attr('data-mname'));
+    var dosage = $(this).attr('data-mdosage');
+    var frequency = $(this).attr('data-mfrequency');
+    var notes = $(this).attr('data-mnotes');
+    if (dosage == "- - -"){
+      $('#up_medication_dosage').val("");
+    }
+    else{
+      $('#up_medication_dosage').val(dosage);
+    }
+    if (frequency == "- - -"){
+      $('#up_medication_frequency').val("");
+    }
+    else{
+      $('#up_medication_frequency').val(frequency);
+    }
+    if (notes == "- - -"){
+      $('#up_medication_note').val("");
+    }
+    else{
+      $('#up_medication_note').val(notes);
+    }
+  });
+  /************************ Loading data in Edit Allergy Window ********************************/
+
+
 });
 /************************ Sending Invites ********************************/
 function send_invites_friend(count, pid) {
@@ -534,3 +564,119 @@ function update_allergy(lpid){
   });
 }
 /************************ Updating Allergy of Profile and Leader ********************************/
+
+
+
+/************************ Adding Medication of Profile and Leader ********************************/
+function addmedication(lpid) {
+  var medication_name = $("#medication_name").val();
+  if(medication_name == null || medication_name == ""){
+    $("#medication_name_error").show('slow');
+    return;
+  }
+  $("#medication_name_error").hide('slow');
+
+  var medication_dosage = $("#medication_dosage").val();
+  if(medication_dosage == null || medication_dosage == ""){
+    medication_dosage = "- - -";
+  }
+
+  var medication_frequency = $("#medication_frequency").val();
+  if(medication_frequency == null || medication_frequency == ""){
+    medication_frequency = "- - -";
+  }
+
+  var medication_note = $("#medication_note").val();
+  if(medication_note == null || medication_note == ""){
+    medication_note = "- - -";
+  }
+
+  $("#add_medication").prop('disabled', true);
+  $("#loading_medication").show();
+
+
+  $.ajax({
+           url: "/medications", // Route to the Script Controller method
+          type: "post",
+      dataType: "json",
+          data: {lpid: lpid, name: medication_name, dosage: medication_dosage, frequency: medication_frequency, notes: medication_note}, // This goes to Controller in params hash, i.e. params[:file_name]
+      complete: function() {},
+       success: function(data, textStatus, xhr) {
+                  $("#add_medication").prop('disabled', false);
+                  $("#loading_medication").hide();
+                  if (data == "-1"){
+                    $("#medication__error").show('slow');
+                  }
+                  else if (data == "1") {
+                    location.reload();
+                  }
+                  else{
+                    $("#medication__error").show('slow');
+                  }
+                },
+         error: function() {
+                  $("#add_medication").prop('disabled', false);
+                  $("#loading_medication").hide();
+                  $("#medication__error").show('slow');
+                }
+  });
+}
+/************************ Adding Medication of Profile and Leader ********************************/
+
+
+
+/************************ Updating Medication of Profile and Leader ********************************/
+function update_medication(lpid){
+  var up_medication_id = $("#up_medication_id").val();
+  var up_medication_name = $("#up_medication_name").val();
+  if(up_medication_name == null || up_medication_name == ""){
+    $("#up_medication_name_error").show('slow');
+    return;
+  }
+  $("#up_medication_name_error").hide('slow');
+
+  var up_medication_dosage = $("#up_medication_dosage").val();
+  if(up_medication_dosage == null || up_medication_dosage == ""){
+    up_medication_dosage = "- - -";
+  }
+
+  var up_medication_frequency = $("#up_medication_frequency").val();
+  if(up_medication_frequency == null || up_medication_frequency == ""){
+    up_medication_frequency = "- - -";
+  }
+
+  var up_medication_note = $("#up_medication_note").val();
+  if(up_medication_note == null || up_medication_note == ""){
+    up_medication_note = "- - -";
+  }
+
+  $("#update_medication").prop('disabled', true);
+  $("#loading_up_medication").show();
+
+  $.ajax({
+           url: "/medications/update", // Route to the Script Controller method
+          type: "patch",
+      dataType: "json",
+          data: {lpid: lpid, mid: up_medication_id, name: up_medication_name, dosage: up_medication_dosage, frequency: up_medication_frequency, notes: up_medication_note}, // This goes to Controller in params hash, i.e. params[:file_name]
+      complete: function() {},
+       success: function(data, textStatus, xhr) {
+                  $("#update_medication").prop('disabled', false);
+                  $("#loading_up_medication").hide();
+                  if (data == "-1"){
+                    $("#up_medication_error").show('slow');
+                  }
+                  else if (data == "1") {
+                    location.reload();
+                  }
+                  else{
+                    $("#up_medication_error").show('slow');
+                  }
+                },
+         error: function() {
+                  $("#update_medication").prop('disabled', false);
+                  $("#loading_up_medication").hide();
+                  $("#up_medication_error").show('slow');
+                }
+  });
+}
+/************************ Updating Medication of Profile and Leader ********************************/

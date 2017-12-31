@@ -19,6 +19,8 @@
 
       <%= render :partial => 'allergies/addupdateallergy' %>
 
+      <%= render :partial => 'medications/addupdatemedication' %>
+
       <div class="jumbotron" style="padding-bottom:1em; background-color: rgba(255,255,255,0.9); border-radius:0 0 1em 1em;">
         <div class="row">
           <div class="col-md-12">
@@ -459,7 +461,7 @@
                               </div>
                               <tr>
                                 <td><%= label_tag :name, c.condition, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
-                                <td><%= label_tag :note, c.note, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
+                                <td><%= label_tag :note, c.note, {class: "form-control my_text_field", style:"color: #1E8449;height:auto;"} %></td>
                                 <td><button id="editCondition" data-toggle="modal" data-target="#updateCondition" data-id="<%= c.id%>" data-condition="<%= c.condition%>" data-note="<%= c.note%>" class='btn btn-block btn-info' style="border-radius: 0 0 0 0;font-weight:bold;font-family: 'Merriweather', serif;background-color:#229954;border-color:#229954;">Edit</button></td>
                                 <td><button data-toggle="modal" data-target="#deleteConditon<%= c.id%>" class='btn btn-block btn-danger' style="border-radius: 0 0 0 0;font-weight:bold;font-family: 'Merriweather', serif;background-color:#CB4335;border-color:#CB4335;color:#F0F0F0;">Delete</button></td>
                               </tr>
@@ -529,7 +531,7 @@
                               </div>
                               <tr>
                                 <td><%= label_tag :name, a.name, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
-                                <td><%= label_tag :note, a.note, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
+                                <td><%= label_tag :note, a.note, {class: "form-control my_text_field", style:"color: #1E8449;height:auto;"} %></td>
                                 <td><button id="editAllergy" data-toggle="modal" data-target="#updateAllergy" data-alid="<%= a.id%>" data-alname="<%= a.name%>" data-alnote="<%= a.note%>" class='btn btn-block btn-info' style="border-radius: 0 0 0 0;font-weight:bold;font-family: 'Merriweather', serif;background-color:#229954;border-color:#229954;">Edit</button></td>
                                 <td><button data-toggle="modal" data-target="#deleteAllergy<%= a.id%>" class='btn btn-block btn-danger' style="border-radius: 0 0 0 0;font-weight:bold;font-family: 'Merriweather', serif;background-color:#CB4335;border-color:#CB4335;color:#F0F0F0;">Delete</button></td>
                               </tr>
@@ -548,16 +550,70 @@
                       <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
                         <div class="btn-group">
                             <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Medication</h5>
-                            <a href="#" class="add_detail btn" style="margin:0px -90px 0px 0px;border-radius:0px;font-size:2em;text-align:right;float:right;font-weight:bold;">+</a>
+                            <a href="#" data-toggle="modal" data-target="#addMedication" class="add_detail btn" style="margin:0px -90px 0px 0px;border-radius:0px;font-size:2em;text-align:right;float:right;font-weight:bold;">+</a>
                         </div>
                       </div>
                       <div class="col-md-9">
                       </div>
                     </div>
                     <div class="row jumbotron" style="border-top-left-radius: 0px;border-top-right-radius: 0px;padding:0px;">
-                      <div class="col-xs-12 col-md-4"></div>
-                      <div class="col-xs-12 col-md-4"></div>
-                      <div class="col-xs-12 col-md-4"></div>
+                      <div class="table-responsive">
+                        <% @medications = @leader.medications %>
+                        <table class="table table-bordered">
+                          <thead class="th_bg supervisor_thead">
+                            <tr>
+                              <th scope="col"><center> Medication Nam </center></th>
+                              <th scope="col"><center> Dosage </center></th>
+                              <th scope="col"><center> Frequency </center></th>
+                              <th scope="col"><center> Notes </center></th>
+                              <th scope="col"><center> Edit </center></th>
+                              <th scope="col"><center> Delete </center></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% @medications.each do |m|%>
+                              <div class="container-fluid">
+                                <div class="modal fade" id="deleteMedication<%= m.id%>">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <!-- Header -->
+                                      <div class="modal-header" style="background: #2DBF7F;">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <center><h4 class="heading_text">Are You Sure to Delete this Medication?</h4></center>
+                                      </div>
+                                      <!-- Body (form) -->
+                                      <div class="modal-body">
+                                        <div class="form-group">
+                                          <div class="row">
+                                            <div class="col-md-12">
+                                              <center>
+                                                <div class="row">
+                                                  <center>
+                                                    <%= link_to 'Yes', medication_path(:id => m.id), method: :delete, class: 'btn btn-large btn-info', style: "font-weight:bold;font-family: 'Merriweather', serif; background-color:#CB4335;border-color:#CB4335;margin-top:1em;" %>
+                                                    <button type="button" class="btn btn-success" data-dismiss="modal" style="margin-top:1em;">Close</button>
+                                                  </center>
+                                                </div>
+                                              </center>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <tr>
+                                <td><%= label_tag :name, m.name, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
+                                <td><%= label_tag :name, m.dosage, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
+                                <td><%= label_tag :name, m.frequency, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
+                                <td><%= label_tag :note, m.notes, {class: "form-control my_text_field", style:"color: #1E8449;height:auto;"} %></td>
+                                <td><button id="editMedication" data-toggle="modal" data-target="#updateMedication" data-mid="<%= m.id%>" data-mname="<%= m.name%>" data-mdosage="<%= m.dosage%>" data-mfrequency="<%= m.frequency%>" data-mnotes="<%= m.notes%>" class='btn btn-block btn-info' style="border-radius: 0 0 0 0;font-weight:bold;font-family: 'Merriweather', serif;background-color:#229954;border-color:#229954;">Edit</button></td>
+                                <td><button data-toggle="modal" data-target="#deleteMedication<%= m.id%>" class='btn btn-block btn-danger' style="border-radius: 0 0 0 0;font-weight:bold;font-family: 'Merriweather', serif;background-color:#CB4335;border-color:#CB4335;color:#F0F0F0;">Delete</button></td>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>

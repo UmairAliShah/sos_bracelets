@@ -457,7 +457,7 @@
                               </div>
                               <tr>
                                 <td><%= label_tag :name, c.condition, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
-                                <td><%= label_tag :note, c.note, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
+                                <td><%= label_tag :note, c.note, {class: "form-control my_text_field", style:"color: #1E8449;height:auto;"} %></td>
                                 <td><button id="editCondition" data-toggle="modal" data-target="#updateCondition" data-id="<%= c.id%>" data-condition="<%= c.condition%>" data-note="<%= c.note%>" class='btn btn-block btn-info' style="border-radius: 0 0 0 0;font-weight:bold;font-family: 'Merriweather', serif;background-color:#229954;border-color:#229954;">Edit</button></td>
                                 <td><button data-toggle="modal" data-target="#deleteConditon<%= c.id%>" class='btn btn-block btn-danger' style="border-radius: 0 0 0 0;font-weight:bold;font-family: 'Merriweather', serif;background-color:#CB4335;border-color:#CB4335;color:#F0F0F0;">Delete</button></td>
                               </tr>
@@ -527,7 +527,7 @@
                               </div>
                               <tr>
                                 <td><%= label_tag :name, a.name, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
-                                <td><%= label_tag :note, a.note, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
+                                <td><%= label_tag :note, a.note, {class: "form-control my_text_field", style:"color: #1E8449;height:auto;"} %></td>
                                 <td><button id="editAllergy" data-toggle="modal" data-target="#updateAllergy" data-alid="<%= a.id%>" data-alname="<%= a.name%>" data-alnote="<%= a.note%>" class='btn btn-block btn-info' style="border-radius: 0 0 0 0;font-weight:bold;font-family: 'Merriweather', serif;background-color:#229954;border-color:#229954;">Edit</button></td>
                                 <td><button data-toggle="modal" data-target="#deleteAllergy<%= a.id%>" class='btn btn-block btn-danger' style="border-radius: 0 0 0 0;font-weight:bold;font-family: 'Merriweather', serif;background-color:#CB4335;border-color:#CB4335;color:#F0F0F0;">Delete</button></td>
                               </tr>
