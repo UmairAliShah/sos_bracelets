@@ -64,7 +64,7 @@
 
 
                   <div class="container-fluid">
-                    <div class="modal fade" id="deleteProfile">
+                    <div class="modal fade" id="deleteProfile<%= p.id%>">
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <!-- Header -->
@@ -131,7 +131,7 @@
                           <%= link_to 'Show Team', team_profile_path(:id => p.id), class: 'btn btn-large btn-info', style: "font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;margin-top:1em;" %>
                           <% if team_signed_in? %>
                             <%= link_to 'Edit Team', edit_team_profile_path(:id => p.id), class: 'btn btn-large btn-info', style: "font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;margin-top:1em;" %>
-                            <input data-toggle="modal" data-target="#deleteProfile" class="btn btn-large btn-danger" type="button" value="Delete Team" style="font-weight:bold;font-family: 'Merriweather', serif; background-color:#CB4335;border-color:#CB4335;margin-top:1em;color:#FFFFFF;">
+                            <input data-toggle="modal" data-target="#deleteProfile<%= p.id%>" class="btn btn-large btn-danger" type="button" value="Delete Team" style="font-weight:bold;font-family: 'Merriweather', serif; background-color:#CB4335;border-color:#CB4335;margin-top:1em;color:#FFFFFF;">
                           <% end %>
                         </center>
                       </div>

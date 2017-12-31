@@ -13,7 +13,7 @@
             <center>
               <% @leaders.each do |l| %>
               <div class="container-fluid">
-                <div class="modal fade" id="deleteLeader">
+                <div class="modal fade" id="deleteLeader<%= l.id%>">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <!-- Header -->
@@ -59,7 +59,7 @@
                         <center>
                           <%= link_to 'Show Leader Profile', leader_path(:id => l.id), class: 'btn btn-large btn-info', style: "font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;margin-top:1em;" %>
                           <%= link_to 'Edit Leader Profile', edit_leader_path(:id => l.id), class: 'btn btn-large btn-info', style: "font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;margin-top:1em;" %>
-                          <input data-toggle="modal" data-target="#deleteLeader" class="btn btn-large btn-danger" type="button" value="Delete Leader Profile" style="font-weight:bold;font-family: 'Merriweather', serif; background-color:#CB4335;border-color:#CB4335;margin-top:1em;color:#FFFFFF;">
+                          <input data-toggle="modal" data-target="#deleteLeader<%= l.id%>" class="btn btn-large btn-danger" type="button" value="Delete Leader Profile" style="font-weight:bold;font-family: 'Merriweather', serif; background-color:#CB4335;border-color:#CB4335;margin-top:1em;color:#FFFFFF;">
                         </center>
                       </div>
                     </div>

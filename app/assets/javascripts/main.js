@@ -90,6 +90,21 @@ $(document).ready(function(){
   /************************ Loading data in Edit Allergy Window ********************************/
 
 
+
+  /************************ Loading data in Edit Special Instructions Window ********************************/
+  $(document).on("click", '#editSpecial', function() {
+    $('#up_special_instructions_id').val($(this).attr('data-sid'));
+    $('#up_special_instructions_name').val($(this).attr('data-sname'));
+    var n = $(this).attr('data-snote');
+    if (n == "- - -"){
+      $('#up_special_instructions_note').val("");
+    }
+    else{
+      $('#up_special_instructions_note').val(n);
+    }
+  });
+  /************************ Loading data in Edit Special Instructions Window ********************************/
+
 });
 /************************ Sending Invites ********************************/
 function send_invites_friend(count, pid) {
@@ -680,3 +695,90 @@ function update_medication(lpid){
   });
 }
 /************************ Updating Medication of Profile and Leader ********************************/
+
+
+/************************ Adding Special Instructions of Profile and Leader ********************************/
+function addspecialinstructions(lpid){
+  var special_instructions_name = $("#special_instructions_name").val();
+  if(special_instructions_name == null || special_instructions_name == ""){
+    $("#special_instructions__name_error").show('slow');
+    return;
+  }
+  $("#special_instructions__name_error").hide('slow');
+  var special_instructions_note = $("#special_instructions_note").val();
+  if(special_instructions_note == null || special_instructions_note == ""){
+    special_instructions_note = "- - -";
+  }
+  $("#add_special_instructions").prop('disabled', true);
+  $("#loading_special_instructions").show();
+  $.ajax({
+           url: "/specials", // Route to the Script Controller method
+          type: "post",
+      dataType: "json",
+          data: {lpid: lpid, name: special_instructions_name, notes: special_instructions_note}, // This goes to Controller in params hash, i.e. params[:file_name]
+      complete: function() {},
+       success: function(data, textStatus, xhr) {
+                  $("#add_special_instructions").prop('disabled', false);
+                  $("#loading_special_instructions").hide();
+                  if (data == "-1"){
+                    $("#special_instructions_error").show('slow');
+                  }
+                  else if (data == "1") {
+                    location.reload();
+                  }
+                  else{
+                    $("#special_instructions_error").show('slow');
+                  }
+                },
+         error: function() {
+                  $("#add_special_instructions").prop('disabled', false);
+                  $("#loading_special_instructions").hide();
+                  $("#special_instructions_error").show('slow');
+                }
+  });
+}
+/************************ Adding Special Instructions of Profile and Leader ********************************/
+
+/************************ Updating Special Instructions of Profile and Leader ********************************/
+function updateSpecialInstructions(lpid){
+  var sid = $("#up_special_instructions_id").val();
+  var special_instructions_name = $("#up_special_instructions_name").val();
+  if(special_instructions_name == null || special_instructions_name == ""){
+    $("#up_special_instructions_name_error").show('slow');
+    return;
+  }
+  $("#up_special_instructions_name_error").hide('slow');
+
+  var special_instructions_note = $("#up_special_instructions_note").val();
+  if(special_instructions_note == null || special_instructions_note == ""){
+    special_instructions_note = "- - -";
+  }
+  $("#update_special_instructions").prop('disabled', true);
+  $("#up_loading_special_instructions").show();
+  $.ajax({
+           url: "/specials/update", // Route to the Script Controller method
+          type: "patch",
+      dataType: "json",
+          data: {lpid: lpid, sid: sid, name: special_instructions_name, notes: special_instructions_note}, // This goes to Controller in params hash, i.e. params[:file_name]
+      complete: function() {},
+       success: function(data, textStatus, xhr) {
+                  $("#update_special_instructions").prop('disabled', false);
+                  $("#up_loading_special_instructions").hide();
+                  if (data == "-1"){
+                    $("#up_special_instructions_error").show('slow');
+                  }
+                  else if (data == "1") {
+                    location.reload();
+                  }
+                  else{
+                    $("#up_special_instructions_error").show('slow');
+                  }
+                },
+         error: function() {
+                  $("#update_special_instructions").prop('disabled', false);
+                  $("#up_loading_special_instructions").hide();
+                  $("#up_special_instructions_error").show('slow');
+                }
+  });
+}
+/************************ Updating Special Instructions of Profile and Leader ********************************/

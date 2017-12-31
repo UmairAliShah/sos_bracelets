@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171230134851) do
+ActiveRecord::Schema.define(version: 20171231101454) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "line1"
@@ -178,6 +178,16 @@ ActiveRecord::Schema.define(version: 20171230134851) do
     t.datetime "avatar_updated_at"
     t.index ["team_profile_id"], name: "index_profiles_on_team_profile_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "specials", force: :cascade do |t|
+    t.string "name"
+    t.string "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "specialable_type"
+    t.integer "specialable_id"
+    t.index ["specialable_type", "specialable_id"], name: "index_specials_on_specialable_type_and_specialable_id"
   end
 
   create_table "team_profiles", force: :cascade do |t|
