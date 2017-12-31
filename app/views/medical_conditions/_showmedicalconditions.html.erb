@@ -19,8 +19,8 @@
       <tbody>
         <% @conditions.each do |c|%>
           <tr>
-            <td><%= label_tag :name, c.condition, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
-            <td><%= label_tag :note, c.note, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
+            <td><%= label_tag :name, c.condition, {class: "form-control my_text_field", style:"color: #1E8449;height:auto;"} %></td>
+            <td><%= label_tag :note, c.note, {class: "form-control my_text_field", style:"color: #1E8449;height:auto;"} %></td>
           </tr>
         <% end %>
       </tbody>

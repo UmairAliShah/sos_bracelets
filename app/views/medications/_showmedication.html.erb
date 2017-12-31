@@ -23,9 +23,9 @@
           <tbody>
             <% @medications.each do |m|%>
               <tr>
-                <td><%= label_tag :name, m.name, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
-                <td><%= label_tag :name, m.dosage, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
-                <td><%= label_tag :name, m.frequency, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
+                <td><%= label_tag :name, m.name, {class: "form-control my_text_field", style:"color: #1E8449;height:auto;"} %></td>
+                <td><%= label_tag :name, m.dosage, {class: "form-control my_text_field", style:"color: #1E8449;height:auto;"} %></td>
+                <td><%= label_tag :name, m.frequency, {class: "form-control my_text_field", style:"color: #1E8449;height:auto;"} %></td>
                 <td><%= label_tag :note, m.notes, {class: "form-control my_text_field", style:"color: #1E8449;height:auto;"} %></td>
               </tr>
             <% end %>

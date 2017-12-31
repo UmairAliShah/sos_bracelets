@@ -21,10 +21,10 @@
       <tbody>
         <% @contacts.each do |c|%>
           <tr>
-            <td><%= label_tag :name, c.name, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
-            <td><%= label_tag :number, c.number, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
-            <td><%= label_tag :relation, c.relation, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
-            <td><%= label_tag :email, c.email, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
+            <td><%= label_tag :name, c.name, {class: "form-control my_text_field", style:"color: #1E8449;height:auto;"} %></td>
+            <td><%= label_tag :number, c.number, {class: "form-control my_text_field", style:"color: #1E8449;height:auto;"} %></td>
+            <td><%= label_tag :relation, c.relation, {class: "form-control my_text_field", style:"color: #1E8449;height:auto;"} %></td>
+            <td><%= label_tag :email, c.email, {class: "form-control my_text_field", style:"color: #1E8449;height:auto;"} %></td>
           </tr>
         <% end %>
       </tbody>

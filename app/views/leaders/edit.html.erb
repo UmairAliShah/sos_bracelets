@@ -602,9 +602,9 @@
                                 </div>
                               </div>
                               <tr>
-                                <td><%= label_tag :name, m.name, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
-                                <td><%= label_tag :name, m.dosage, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
-                                <td><%= label_tag :name, m.frequency, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
+                                <td><%= label_tag :name, m.name, {class: "form-control my_text_field", style:"color: #1E8449;height:auto;"} %></td>
+                                <td><%= label_tag :name, m.dosage, {class: "form-control my_text_field", style:"color: #1E8449;height:auto;"} %></td>
+                                <td><%= label_tag :name, m.frequency, {class: "form-control my_text_field", style:"color: #1E8449;height:auto;"} %></td>
                                 <td><%= label_tag :note, m.notes, {class: "form-control my_text_field", style:"color: #1E8449;height:auto;"} %></td>
                                 <td><button id="editMedication" data-toggle="modal" data-target="#updateMedication" data-mid="<%= m.id%>" data-mname="<%= m.name%>" data-mdosage="<%= m.dosage%>" data-mfrequency="<%= m.frequency%>" data-mnotes="<%= m.notes%>" class='btn btn-block btn-info' style="border-radius: 0 0 0 0;font-weight:bold;font-family: 'Merriweather', serif;background-color:#229954;border-color:#229954;">Edit</button></td>
                                 <td><button data-toggle="modal" data-target="#deleteMedication<%= m.id%>" class='btn btn-block btn-danger' style="border-radius: 0 0 0 0;font-weight:bold;font-family: 'Merriweather', serif;background-color:#CB4335;border-color:#CB4335;color:#F0F0F0;">Delete</button></td>
@@ -674,7 +674,7 @@
                                 </div>
                               </div>
                               <tr>
-                                <td><%= label_tag :name, s.name, {class: "form-control my_text_field", style:"color: #1E8449;"} %></td>
+                                <td><%= label_tag :name, s.name, {class: "form-control my_text_field", style:"color: #1E8449;height:auto;"} %></td>
                                 <td><%= label_tag :notes, s.notes, {class: "form-control my_text_field", style:"color: #1E8449;height:auto;"} %></td>
                                 <td><button id="editSpecial" data-toggle="modal" data-target="#updateSpecialInstructions" data-sid="<%= s.id%>" data-sname="<%= s.name%>" data-snote="<%= s.notes%>" class='btn btn-block btn-info' style="border-radius: 0 0 0 0;font-weight:bold;font-family: 'Merriweather', serif;background-color:#229954;border-color:#229954;">Edit</button></td>
                                 <td><button data-toggle="modal" data-target="#deleteSpecial<%= s.id%>" class='btn btn-block btn-danger' style="border-radius: 0 0 0 0;font-weight:bold;font-family: 'Merriweather', serif;background-color:#CB4335;border-color:#CB4335;color:#F0F0F0;">Delete</button></td>
