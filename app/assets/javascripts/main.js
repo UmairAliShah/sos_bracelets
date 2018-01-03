@@ -1,26 +1,18 @@
 $(document).ready(function(){
 
-
-
   $(document).on("click", '#create_leader', function() {
       $("#leader_first_name").show('slow');
       $("#leader_last_name").show('slow');
       $("#leader_phone_error").show('slow');
       $("#leader_gender_error").show('slow');
-
       $("#leader_address_country_error").show('slow');
       $("#leader_address_city_error").show('slow');
       $("#leader_address_state_error").show('slow');
-
       $("#leader_contact_name_error").show('slow');
       $("#leader_contact_number_error").show('slow');
-
       $("#leader_mc_name_error").show('slow');
-
       $("#leader_allergy_name_error").show('slow');
-
       $("#leader_medication_name_error").show('slow');
-
       $("#leader_special_instructions").show('slow');
   });
 

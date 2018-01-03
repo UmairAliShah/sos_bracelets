@@ -35,7 +35,6 @@ class UserProfilesController < ApplicationController
   end
 
   def create
-    debugger
     id = params[:id]
     @team_profile = TeamProfile.find(id)
     invitation_id = params[:invitation_id]
