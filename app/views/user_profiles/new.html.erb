@@ -1,8 +1,7 @@
-<% content_for :title, "Make Profile | SOS Bracelets" %>
-<div class="container" style="padding-top: 37px;">
+<% content_for :title, "Make Member Profile | SOS Bracelets" %>
+<div class="container-fluid" style="padding-top: 37px;">
   <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10 no-pad-xs">
+    <div class="col-md-12 no-pad-xs">
       <div class="row login_signup_heading" style="padding:0px;margin:0px;">
         <div class="col-md-12">
           <center><h3 class="heading_text">Create Your Profile</h3></center>
@@ -61,117 +60,474 @@
                     </div>
                   </center>
                 </div>
+
+
                 <div class="row">
-                  <div class="col-xs-12 col-md-4">
+                  <div class="col-xs-12 col-md-3">
                     <div class="form-group">
                       <center>
                         <%= image_tag("user.png", {id: "team_image",  style: "width:220px;height:220px;",class: "img-responsive img-thumbnail img-circle",alt: "User Profile Image"}) %>
                         <br>
-                        <input data-toggle="modal" data-target="#addPhoto" class="btn btn-block btn-info" type="button" value="Add Avatar">
+                        <input data-toggle="modal" data-target="#addPhoto" class="btn btn-block btn-info" type="button" value="Add Avatar" style="width: 50%;">
                       </center>
                     </div>
                   </div>
-                  <div class="col-xs-12 col-md-8">
-                    <div class="form-group">
-                      <div class="col-md-3">
-                        <%= f.label :firstname, "First Name",class: "login_signup_label" %>
-                      </div>
-                      <div class="col-md-9">
-                        <%= f.text_field :firstname, autofocus: true, placeholder: 'Enter First Name', class: 'form-control my_text_field', style:"color: #1E8449;",required: true%>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-md-3">
-                        <%= f.label :lastname, "Last Name",class: "login_signup_label" %>
-                      </div>
-                      <div class="col-md-9">
-                        <%= f.text_field :lastname, autofocus: true, placeholder: 'Enter Last Name', class: 'form-control my_text_field', style:"color: #1E8449;",required: true%>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-md-3">
-                        <%= f.label :weight, "Weight (lb)",class: "login_signup_label" %>
-                      </div>
-                      <div class="col-md-9">
-                        <%= f.number_field :weight, autofocus: true, placeholder: 'Enter Weight in lb', class: 'form-control my_text_field', style:"color: #1E8449;" %>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-md-3">
-                        <%= f.label :dob, "Date of Birth",class: "login_signup_label" %>
-                      </div>
-                      <div class="col-md-9">
-                        <%= f.date_select :dob,  {start_year:1950, prompt: true}, {class: "form-control my_text_field", style:"color: #1E8449;display:inline-block;width:32%;"} %>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-md-3">
-                        <%= f.label :phone, "Phone",class: "login_signup_label" %>
-                      </div>
-                      <div class="col-md-9">
+                  <div class="col-xs-12 col-md-9">
+                    <div class="row">
+                      <div class="col-md-12">
                         <div class="row">
-                          <div class="col-xs-12 col-md-6">
-                            <%= f.country_select :country, {prompt: "Select Country"}, {class: "form-control my_text_field", style:"color: #1E8449;", required: true} %>
+                          <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
+                            <div class="btn-group">
+                                <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Personal Detail</h5>
+                            </div>
                           </div>
-                          <div class="col-xs-12 col-md-6">
-                            <%= f.number_field :phone, autofocus: true, placeholder: 'Enter Phone Number', class: 'form-control my_text_field', style:"color: #1E8449;", required: true%>
+                          <div class="col-md-9">
                           </div>
+                        </div>
+                        <div class="row jumbotron" style="border-top-left-radius: 0px;border-top-right-radius: 0px;padding:20px 0px 20px 0px;">
+
+                          <div class="col-xs-12 col-md-6">
+
+                            <div class="form-group">
+                              <div class="col-md-4">
+                                <%= f.label :firstname, "First Name", class:"profile_label", style: "margin-top:0.5em;" %>
+                              </div>
+                              <div class="col-md-8">
+                                <%= f.text_field :firstname, autofocus: true, placeholder: 'Enter First Name', class: 'form-control my_text_field', style:"color: #1E8449;",required: true%>
+                                <h4 id="leader_first_name" class="detail_error">First Name is Required</h4>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="col-md-4">
+                                <%= f.label :lastname, "Last Name", class:"profile_label", style: "margin-top:0.5em;" %>
+                              </div>
+                              <div class="col-md-8">
+                                <%= f.text_field :lastname, autofocus: true, placeholder: 'Enter Last Name', class: 'form-control my_text_field', style:"color: #1E8449;",required: true%>
+                                <h4 id="leader_last_name" class="detail_error">Last Name is Required</h4>
+                              </div>
+                            </div>
+
+
+                            <div class="form-group">
+                              <div class="col-md-4">
+                                <%= f.label :phone, "Phone", class:"profile_label", style: "margin-top:0.5em;" %>
+                              </div>
+                              <div class="col-md-8">
+                                <div class="row">
+                                  <div class="col-xs-12 col-md-6" style="padding-right:0px;padding-left:0px;">
+                                    <%= f.country_select :country, {prompt: "Select Country"}, {class: "form-control my_text_field", style:"color: #1E8449;", required: true} %>
+                                  </div>
+                                  <div class="col-xs-12 col-md-6"  style="padding-right:0px;padding-left:0px; ">
+                                    <%= f.number_field :phone, autofocus: true, placeholder: 'Enter Phone Number', class: 'form-control my_text_field', style:"color: #1E8449;", required: true%>
+                                  </div>
+                                </div>
+                                <h4 id="leader_phone_error" class="detail_error">Phone Number is Required</h4>
+                              </div>
+                            </div>
+
+                          </div>
+
+                          <div class="col-xs-12 col-md-6">
+
+                            <div class="form-group">
+                              <div class="col-md-4">
+                                <%= f.label :gender, "Gender", class:"profile_label", style: "margin-top:0.5em;" %>
+                              </div>
+                              <div class="col-md-8">
+                                <%= f.text_field :gender, autofocus: true, placeholder: 'Enter Gender', class: 'form-control my_text_field', style:"color: #1E8449;",required: true%>
+                                <h4 id="leader_gender_error" class="detail_error">Gender is Required</h4>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="col-md-4">
+                                <%= f.label :dob, "Date of Birth", class:"profile_label", style: "margin-top:0.5em;" %>
+                              </div>
+                              <div class="col-md-8">
+                                <%= f.date_select :dob,  {start_year:1950, prompt: true}, {class: "form-control my_text_field", style:"color: #1E8449;display:inline-block;width:32%;"} %>
+                              </div>
+                            </div>
+
+
+                          </div>
+
                         </div>
                       </div>
                     </div>
-                    <div class="form-group">
-                      <div class="col-md-3">
-                        <%= f.label :gender, "Gender",class: "login_signup_label" %>
+
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
+                        <div class="btn-group">
+                            <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Address</h5>
+                        </div>
                       </div>
                       <div class="col-md-9">
-                        <%= f.collection_select :gender, Gender.all, :name, :name, {prompt: "Select Gender"}, {class: 'form-control my_text_field', style:"color: #1E8449;"} %>
                       </div>
                     </div>
-                    <div class="form-group">
-                      <div class="col-md-3">
-                        <%= f.label :blood, "Blood Group",class: "login_signup_label" %>
-                      </div>
-                      <div class="col-md-9">
-                        <%= f.collection_select :blood, Blood.all, :name, :name, {prompt: "Select Blood Group"}, {class: 'form-control my_text_field', style:"color: #1E8449;"} %>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-md-3">
-                        <%= f.label :hair, "Hair Color",class: "login_signup_label" %>
-                      </div>
-                      <div class="col-md-9">
-                        <%= f.collection_select :hair, Hair.all, :name, :name, {prompt: "Select Hair Color"}, {class: 'form-control my_text_field', style:"color: #1E8449;"} %>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-md-3">
-                        <%= f.label :eye, "Eye Color",class: "login_signup_label" %>
-                      </div>
-                      <div class="col-md-9">
-                        <%= f.collection_select :eye, Eye.all, :name, :name, {prompt: "Select Eye Color"}, {class: 'form-control my_text_field', style:"color: #1E8449;"} %>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-md-3">
-                        <%= f.label :height, "Height (feet)",class: "login_signup_label" %>
-                      </div>
-                      <div class="col-md-9">
-                        <%= f.collection_select :height, Height.all, :name, :name, {prompt: "Select Height"}, {class: 'form-control my_text_field', style:"color: #1E8449;"} %>
+                    <div class="row jumbotron" style="border-top-left-radius: 0px;border-top-right-radius: 0px;padding:0px 0px 20px 0px;">
+                      <div class="col-md-12" style="margin-top:0.5em;">
+                        <center>
+                           <%= f.fields_for :address do |a| %>
+                              <div class="row">
+
+                                <div class="col-md-6">
+
+                                  <div class="row" style="margin-top:0.5em;">
+                                    <div class="col-md-4">
+                                      <%= a.label :address_line1, "Line 1", class:"profile_label", style: "margin-top:0.5em;" %>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <%= a.text_field :line1, autofocus: true, placeholder: 'Enter Address Line 1', class: 'form-control my_text_field', style:"color: #1E8449;" %>
+                                    </div>
+                                  </div>
+                                  <div class="row" style="margin-top:0.5em;">
+                                    <div class="col-md-4">
+                                      <%= a.label :line2, "Line 2", class:"profile_label", style: "margin-top:0.5em;" %>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <%= a.text_field :line2, autofocus: true, placeholder: 'Enter Address Line 2', class: 'form-control my_text_field', style:"color: #1E8449;" %>
+                                    </div>
+                                  </div>
+                                  <div class="row" style="margin-top:0.5em;">
+                                    <div class="col-md-4">
+                                      <%= a.label :country, "Country", class:"profile_label", style: "margin-top:0.5em;" %>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <%= a.country_select :country,{prompt: "Select Country"}, {class:"form-control my_text_field",required: true, style:"color: #1E8449;"}%>
+                                      <h4 id="leader_address_country_error" class="detail_error">Select a Country First</h4>
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                  <div class="row" style="margin-top:0.5em;">
+                                    <div class="col-md-4">
+                                      <%= a.label :city, "City", class:"profile_label", style: "margin-top:0.5em;" %>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <%= a.text_field :city, autofocus: true, placeholder: 'Enter City', class: 'form-control my_text_field', style:"color: #1E8449;",required: true %>
+                                      <h4 id="leader_address_city_error" class="detail_error">City is Required</h4>
+                                    </div>
+                                  </div>
+                                  <div class="row" style="margin-top:0.5em;">
+                                    <div class="col-md-4">
+                                      <%= label_tag :state, "State", class:"profile_label", style: "margin-top:0.5em;" %>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <%= a.text_field :state, autofocus: true, placeholder: 'Enter State', class: 'form-control my_text_field', style:"color: #1E8449;",required: true %>
+                                      <h4 id="leader_address_state_error" class="detail_error">State is Required</h4>
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                              </div>
+                            <% end %>
+                        </center>
                       </div>
                     </div>
                   </div>
                 </div>
+
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
+                        <div class="btn-group">
+                            <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Emergency Contact</h5>
+                        </div>
+                      </div>
+                      <div class="col-md-9">
+                      </div>
+                    </div>
+                    <div class="row jumbotron" style="border-top-left-radius: 0px;border-top-right-radius: 0px;padding:0px 0px 20px 0px;">
+                      <div class="col-md-12" style="margin-top:0.5em;">
+                        <center>
+                          <%= f.fields_for :contact do |c| %>
+                            <div class="row">
+
+                              <div class="col-md-6">
+                                <div class="row"  style="margin-top: 0.5em;">
+                                  <div class="col-md-4">
+                                    <%= label_tag :contactname, "Contact Name", class:"profile_label", style: "margin-top:0.5em;" %>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <%= c.text_field :name, autofocus: true, placeholder: 'Enter Contact Name', class: 'form-control my_text_field', style:"color: #1E8449;",required: true %>
+                                    <h4 id="leader_contact_name_error" class="detail_error">Contact Name is Required</h4>
+                                  </div>
+                                </div>
+                                <div class="row" style="margin-top: 0.5em;">
+                                  <div class="col-md-4">
+                                    <%= label_tag :relation, "Relation", class:"profile_label", style: "margin-top:0.5em;" %>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <%= c.text_field :relation, autofocus: true, placeholder: 'Enter Relation', class: 'form-control my_text_field', style:"color: #1E8449;" %>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                <div class="row" style="margin-top: 0.5em;">
+                                  <div class="col-md-4">
+                                    <%= label_tag :contactname, "Contact Number", class:"profile_label", style: "margin-top:0.5em;" %>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <div class="row">
+                                      <div class="col-xs-12 col-md-6" style="padding-right:0px;">
+                                        <%= c.country_select :country,{prompt: "Select Country"}, {class:"form-control my_text_field",required: true, style:"color: #1E8449;"}%>
+                                      </div>
+                                      <div class="col-xs-12 col-md-6"  style="padding-left:0px;">
+                                        <%= c.number_field :number, autofocus: true, placeholder: 'Enter Number', class: 'form-control my_text_field', style:"color: #1E8449;", required: true %>
+                                      </div>
+                                    </div>
+                                    <h4 id="leader_contact_number_error" class="detail_error">Contact Number is Required</h4>
+                                  </div>
+                                </div>
+                                <div class="row" style="margin-top: 0.5em;">
+                                  <div class="col-md-4">
+                                    <%= label_tag :email, "E-mail", class:"profile_label", style: "margin-top:0.5em;" %>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <%= c.email_field :email, autofocus: true, placeholder: 'Enter Email', class: 'form-control my_text_field', style:"color: #1E8449;" %>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+                          <% end %>
+                        </center>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
+                        <div class="btn-group">
+                            <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Medical Condition</h5>
+                        </div>
+                      </div>
+                      <div class="col-md-9">
+                      </div>
+                    </div>
+                    <div class="row jumbotron" style="border-top-left-radius: 0px;border-top-right-radius: 0px;padding:0px 0px 20px 0px;">
+                      <div class="col-md-12" style="margin-top:0.5em;">
+                        <center>
+                          <%= f.fields_for :medical_condition do |mc| %>
+                            <div class="row">
+
+                              <div class="col-md-6">
+
+                                <div class="row" style="margin-top: 0.5em;">
+                                  <div class="col-md-4">
+                                    <%= label_tag :condition, "Condition", class:"profile_label", style: "margin-top:0.5em;" %>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <%= mc.text_field :condition, autofocus: true, placeholder: 'Enter Medical Condition Name (Like Diabetes, High Blood Pressure etc)', class: 'form-control my_text_field', style:"color: #1E8449;", required: true %>
+                                    <h4 id="leader_mc_name_error" class="detail_error">Medical Condition Name is Required</h4>
+                                  </div>
+                                </div>
+
+                              </div>
+
+                              <div class="col-md-6">
+
+                                <div class="row" style="margin-top: 0.5em;">
+                                  <div class="col-md-4">
+                                    <%= label_tag :note, "Notes", class:"profile_label", style: "margin-top:0.5em;" %>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <%= mc.text_area :note, autofocus: true, placeholder: 'Enter Medical Condition Detail (Notes)', class: 'form-control my_text_field', style:"color: #1E8449;", size:"5x5"%>
+                                  </div>
+                                </div>
+
+                              </div>
+
+                            </div>
+                            <%end%>
+                        </center>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
+                        <div class="btn-group">
+                            <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Allergies</h5>
+                        </div>
+                      </div>
+                      <div class="col-md-9">
+                      </div>
+                    </div>
+                    <div class="row jumbotron" style="border-top-left-radius: 0px;border-top-right-radius: 0px;padding:0px 0px 20px 0px;">
+                      <div class="col-md-12" style="margin-top:0.5em;">
+                        <center>
+                          <%= f.fields_for :allergy do |al| %>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="row" style="margin-top: 0.5em;">
+                                  <div class="col-md-4">
+                                    <%= label_tag :aname, "Name", class:"profile_label", style: "margin-top:0.5em;" %>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <%= al.text_field :name, autofocus: true, placeholder: 'Enter Allergy Name (Like Gluten, Peanuts etc)', class: 'form-control my_text_field', style:"color: #1E8449;", required: true %>
+                                    <h4 id="leader_allergy_name_error" class="detail_error">Allergy Name is Required</h4>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="row" style="margin-top: 0.5em;">
+                                  <div class="col-md-4">
+                                    <%= label_tag :note, "Notes", class:"profile_label", style: "margin-top:0.5em;" %>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <%= al.text_area :note, autofocus: true, placeholder: 'Enter Allergy Detail (Notes)', class: 'form-control my_text_field', style:"color: #1E8449;", size:"5x5"%>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <% end %>
+                        </center>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
+                        <div class="btn-group">
+                            <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Medication</h5>
+                        </div>
+                      </div>
+                      <div class="col-md-9">
+                      </div>
+                    </div>
+                    <div class="row jumbotron" style="border-top-left-radius: 0px;border-top-right-radius: 0px;padding:0px 0px 20px 0px;">
+                      <div class="col-md-12" style="margin-top:0.5em;">
+                        <center>
+                          <%= f.fields_for :medication do |md| %>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="row" style="margin-top: 0.5em;">
+                                  <div class="col-md-4">
+                                    <%= label_tag :name, "Name", class:"profile_label", style: "margin-top:0.5em;" %>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <%= md.text_field :name, autofocus: true, placeholder: 'Enter Medication Name', class: 'form-control my_text_field', style:"color: #1E8449;", required: true %>
+                                    <h4 id="leader_medication_name_error" class="detail_error">Medication Name is Required</h4>
+                                  </div>
+                                </div>
+                                <div class="row" style="margin-top: 0.5em;">
+                                  <div class="col-md-4">
+                                    <%= label_tag :dosage, "Dosage", class:"profile_label", style: "margin-top:0.5em;" %>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <%= md.text_field :dosage, autofocus: true, placeholder: 'Enter Dosage', class: 'form-control my_text_field', style:"color: #1E8449;"%>
+                                  </div>
+                                </div>
+                                <div class="row" style="margin-top: 0.5em;">
+                                  <div class="col-md-4">
+                                    <%= label_tag :frequency, "Frequency", class:"profile_label", style: "margin-top:0.5em;" %>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <%= md.text_field :frequency, autofocus: true, placeholder: 'Enter Frequency', class: 'form-control my_text_field', style:"color: #1E8449;"%>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="row" style="margin-top: 0.5em;">
+                                  <div class="col-md-4">
+                                    <%= label_tag :note, "Notes", class:"profile_label", style: "margin-top:0.5em;" %>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <%= md.text_area :notes, autofocus: true, placeholder: 'Specify Additional Notes', class: 'form-control my_text_field', style:"color: #1E8449;", size:"5x5"%>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          <% end %>
+                        </center>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-3" style="background-color:#229954;color:#F0F0F0;">
+                        <div class="btn-group">
+                            <h5 class="btn" style="font-family: 'Merriweather', serif;margin:0px 0px 0px 0px;padding-top:15px;text-align:center;float:left;font-size: 1.2em;border-color: #229954; border-radius:0px 0px 0px 0px;color:#F0F0F0;">Special Instruction</h5>
+                        </div>
+                      </div>
+                      <div class="col-md-9">
+                      </div>
+                    </div>
+                    <div class="row jumbotron" style="border-top-left-radius: 0px;border-top-right-radius: 0px;padding:0px 0px 20px 0px;">
+                      <div class="col-md-12" style="margin-top:0.5em;">
+                        <center>
+                          <%= f.fields_for :special do |sp| %>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="row" style="margin-top: 0.5em;">
+                                  <div class="col-md-4">
+                                    <%= label_tag :name, "Name", class:"profile_label", style: "margin-top:0.5em;" %>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <%= sp.text_field :name, autofocus: true, placeholder: 'Enter Special Instruction Name', class: 'form-control my_text_field', style:"color: #1E8449;", required: true%>
+                                    <h4 id="leader_special_instructions" class="detail_error">Special Instruction Name is Required</h4>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="row" style="margin-top: 0.5em;">
+                                  <div class="col-md-4">
+                                    <%= label_tag :note, "Notes", class:"profile_label", style: "margin-top:0.5em;" %>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <%= sp.text_area :notes, autofocus: true, placeholder: 'Specify Additional Notes', class: 'form-control my_text_field', style:"color: #1E8449;", size:"5x5"%>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          <% end %>
+                        </center>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <br>
                 <div class="row">
                   <div class="form-group">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-2">
                       <center>
-                        <%= f.submit "Create Profile",class: 'btn btn-block btn-success', style: "font-weight:bold;font-family: 'Merriweather', serif;" %>
+                        <%= f.submit "Create Profile", id:"create_leader" ,class: 'btn btn-block btn-success', style: "font-weight:bold;font-family: 'Merriweather', serif;" %>
                         <br><br>
                         <%= link_to "Back", user_profiles_path,class: 'btn btn-block btn-info', style: "font-weight:bold;font-family: 'Merriweather', serif; background-color:#229954;border-color:#229954;" %>
                       </center>
                     </div>
-                    <div class="col-md-4"></div>
+                    <div class="col-md-5"></div>
                   </div>
                 </div>
               <%end%>
@@ -180,7 +536,6 @@
         </div>
       </div>
     </div>
-    <div class="col-md-1"></div>
   </div>
 </div>
 <!-- *************************** Start Script for Uploading Image in Post ************************* -->

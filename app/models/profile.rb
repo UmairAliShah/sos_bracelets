@@ -21,4 +21,11 @@ class Profile < ApplicationRecord
   has_many :allergies, as: :allergable, dependent: :destroy
   has_many :medications, as: :medicationable, dependent: :destroy
   has_many :specials, as: :specialable, dependent: :destroy
+
+  accepts_nested_attributes_for :addresses
+  accepts_nested_attributes_for :contacts
+  accepts_nested_attributes_for :medical_conditions
+  accepts_nested_attributes_for :allergies
+  accepts_nested_attributes_for :medications
+  accepts_nested_attributes_for :specials
 end

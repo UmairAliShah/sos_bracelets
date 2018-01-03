@@ -101,4 +101,9 @@ class AddressesController < ApplicationController
     end
   end
 
+  private
+  def permit_address
+    params.require(:address).permit(:id, :line1, :line2, :city, :state, :country, :addressble_type, :addressble_id)
+
+  end
 end

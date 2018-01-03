@@ -35,6 +35,7 @@ class UserProfilesController < ApplicationController
   end
 
   def create
+    debugger
     id = params[:id]
     @team_profile = TeamProfile.find(id)
     invitation_id = params[:invitation_id]
@@ -52,10 +53,58 @@ class UserProfilesController < ApplicationController
     @profile.code = @country_code.to_s
     @profile.team_profile_id = @team_profile.id
 
+    contact_code = params[:profile][:contact][:country]
+    @contact_c = ISO3166::Country.new(contact_code)
+    @contact_country_code = "+" + @contact_c.country_code.to_s
+    @number = params[:profile][:contact][:number]
+    @number = @contact_country_code.to_s + @number.to_s
+    contact_phone = Phonelib.parse(@number)
+
     if !phone.valid?
       flash[:alert] = "Please Correct Your Phone Number"
       render 'new'
+    elsif !contact_phone.valid?
+      flash[:alert] = "Please Correct Your Emergency Contact Phone Number"
+      render 'new'
     elsif phone.valid? && @profile.save
+      @contact = @profile.contacts.build
+      @contact.name = params[:profile][:contact][:name]
+      @contact.relation = params[:profile][:contact][:relation]
+      @contact.country = params[:profile][:contact][:country]
+      @contact.code = @contact_country_code
+      @contact.number = params[:profile][:contact][:number]
+      @contact.email = params[:profile][:contact][:email]
+      @contact.save
+
+      @address = @profile.addresses.build
+      @address.line1 = params[:profile][:address][:line1]
+      @address.line2 = params[:profile][:address][:line2]
+      @address.country = params[:profile][:address][:country]
+      @address.city = params[:profile][:address][:city]
+      @address.state = params[:profile][:address][:state]
+      @address.save
+
+      @medical_condition = @profile.medical_conditions.build
+      @medical_condition.condition = params[:profile][:medical_condition][:condition]
+      @medical_condition.note = params[:profile][:medical_condition][:note]
+      @medical_condition.save
+
+      @allergy = @profile.allergies.build
+      @allergy.name = params[:profile][:allergy][:name]
+      @allergy.note = params[:profile][:allergy][:note]
+      @allergy.save
+
+      @medication = @profile.medications.build
+      @medication.name = params[:profile][:medication][:name]
+      @medication.dosage = params[:profile][:medication][:dosage]
+      @medication.name = params[:profile][:medication][:name]
+      @medication.name = params[:profile][:medication][:name]
+      @medication.save
+
+      @special = @profile.specials.build
+      @special.name = params[:profile][:special][:name]
+      @special.notes = params[:profile][:special][:notes]
+      @special.save
       @invitation.destroy
       redirect_to root_path
       flash[:notice] = "Your profile is successfully Created"
@@ -98,6 +147,13 @@ class UserProfilesController < ApplicationController
 
   private
     def permit_profile
-      params.require(:profile).permit(:firstname, :lastname, :dob, :gender, :code, :country, :phone, :blood, :hair, :eye, :height, :weight, :team_profile_id, :avatar, :user_id)
+      params.require(:profile).permit(:firstname, :lastname, :dob, :gender, :code, :country, :phone, :blood, :hair, :eye, :height, :weight, :team_profile_id, :avatar, :user_id,
+                                      addresses: [:id, :line1, :line2, :city, :state, :country, :addressble_type, :addressble_id],
+                                      allergies: [:id, :name, :note, :allergable_type, :allergable_id],
+                                      contacts: [:id, :name, :relation, :country, :code, :number, :email, :contactable_type, :contactable_id],
+                                      medical_conditions: [:id, :condition, :note, :conditionable_type, :conditionable_id],
+                                      medications: [:id, :name, :dosage, :frequency, :notes, :medicationable_type, :medicationable_id],
+                                      specials: [:id, :name, :notes, :specialable_type, :specialable_id]
+                                    )
     end
 end
