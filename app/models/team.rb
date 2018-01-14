@@ -6,4 +6,5 @@ class Team < ApplicationRecord
 
   has_many :team_profiles
   has_many :leaders
+  has_many :orders
 end

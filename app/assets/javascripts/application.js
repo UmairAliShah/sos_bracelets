@@ -15,4 +15,10 @@
 //= require rails-ujs
 //= require turbolinks
 //= require main
+//= require main0
+//= require easing
+//= require modernizr.custom
+//= require move-top
+//= require simpleCart.min
+//= require wow.min
 //= require_tree .

@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="container">
+  <h1>Items</h1>
+  <table class="table table-hover table-bordered table-responsive" style="width:100%">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Img url</th>
+        <th>Show</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+
+    <tbody style="width:100%">
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= item.title %></td>
+          <td><%= item.price %></td>
+          <td><%= item.description %></td>
+          <td><%= item.img_url %></td>
+          <td><%= link_to 'Show', admin_product_path(item) %></td>
+          <td><%= link_to 'Edit', edit_admin_product_path(item) %></td>
+          <td><%= link_to 'Destroy', admin_product_path(item), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div style="margin-left:400px">
+       <%= will_paginate @items, renderer: BootstrapPagination::Rails, previous_label: "Older", next_label: "Newer", inner_window: 1, outer_window: 0 %>
+	</div>
+  <%= link_to 'Add New Item', new_admin_product_path %>
+</div>
+
+
+<br>

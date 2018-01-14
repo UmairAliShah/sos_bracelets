@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171231101454) do
+ActiveRecord::Schema.define(version: 20180113111839) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "line1"
@@ -153,6 +153,36 @@ ActiveRecord::Schema.define(version: 20171231101454) do
     t.string "medicationable_type"
     t.integer "medicationable_id"
     t.index ["medicationable_type", "medicationable_id"], name: "index_medications_on_medicationable_type_and_medicationable_id"
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.float "unit_price"
+    t.float "quantity"
+    t.float "total_price"
+    t.integer "order_id"
+    t.integer "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.float "subtotal"
+    t.float "total"
+    t.integer "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_orders_on_team_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "title"
+    t.float "price"
+    t.text "description"
+    t.string "img_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "profiles", force: :cascade do |t|

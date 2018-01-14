@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'shops/index'
+
   devise_for :users, path: 'auth_users', :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks' }
   # eg. http://localhost:3000/auth_users/sign_in
   devise_for :admins, path: 'authenticate_sos_admins'
@@ -34,6 +36,10 @@ Rails.application.routes.draw do
       post :send_invite
     end
   end
+  
+  resources :shops
+  resources :order_items
+  resources :carts
 
   resources :user_credentials, only: [:new, :create]
 
@@ -44,10 +50,14 @@ Rails.application.routes.draw do
     root :to => 'team_profiles#index'
   end
   authenticated :admin do
-    root :to => 'admin/stocks#index'
+    #root :to => 'admin/stocks#index'
+    root :to => 'admin/products#index'
   end
 
+
   namespace :admin do
+
+    resources :products
     resources :stocks
     resources :bloods
     resources :genders

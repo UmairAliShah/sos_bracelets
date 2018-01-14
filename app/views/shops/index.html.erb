@@ -1,0 +1,89 @@
+<div class="new">
+  <div class="container">
+
+    <div class="new-info">
+
+
+      <div class="clearfix"> </div>
+    </div>
+  </div>
+</div>
+
+<!--//new-->
+<!--gallery-->
+<div class="container-fluid gallery">
+    <div class="title-info wow fadeInUp animated" data-wow-delay=".5s">
+      <h3 class="title">Popular<span> Products</span></h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit curabitur </p>
+    </div>
+    <div class="gallery-info">
+     <% @items.each do |item| %>
+      <div class="col-md-3 gallery-grid wow flipInY animated" data-wow-delay=".5s" style="margin:0.7em;">
+        <a href="#"><%= image_tag 'g1', class:"img-responsive img-thumbnail" %></a>
+        <div class="gallery-text simpleCart_shelfItem">
+          <h5><a class="name" href="single.html"><%= item.title %> </a></h5>
+          <p><span class="item_price"><%= item.price %>$</span></p>
+          <%= form_for(@order_item) do |f| %>
+             <%= f.hidden_field :product_id, value: item.id %>
+
+             <br>
+             <%= f.text_field :quantity, value: 1, min: 1 %>
+             <br>
+             <%= f.submit "Add To Cart"%>
+          <% end %>
+        </div>
+      </div>
+
+     <% end %>
+      <div class="clearfix"></div>
+    </div>
+</div>
+<div style="margin-left:400px">
+     <%= will_paginate @items, renderer: BootstrapPagination::Rails, previous_label: "Older", next_label: "Newer", inner_window: 1, outer_window: 0 %>
+</div>
+<!--//gallery-->
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    var defaults = {
+      containerID: 'toTop', // fading element id
+      containerHoverID: 'toTopHover', // fading element hover id
+      scrollSpeed: 1200,
+      easingType: 'linear'
+    };
+
+    $().UItoTop({ easingType: 'easeOutQuart' });
+
+  });
+</script>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+    function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--//for-mobile-apps -->
+
+  <script>
+   new WOW().init();
+  </script>
+<!--//animation-effect-->
+<!--start-smooth-scrolling-->
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+      $(".scroll").click(function(event){
+        event.preventDefault();
+        $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+      });
+    });
+</script>
+<!--//end-smooth-scrolling-->
+<!--FlexSlider-->
+<script defer src="js/jquery.flexslider.js"></script>
+<script type="text/javascript">
+  $(window).load(function(){
+    $('.flexslider').flexslider({
+    animation: "pagination",
+    start: function(slider){
+      $('body').removeClass('loading');
+    }
+    });
+  });
+</script>

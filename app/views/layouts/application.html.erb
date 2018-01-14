@@ -38,6 +38,7 @@
               <li><%= link_to "Team Sign-Up", new_team_registration_path, class: "btn btn-success", style: "font-weight:bold;font-family: 'Merriweather', serif;" %></li>
             <%elsif team_signed_in? %>
               <li class="dropdown">
+                <%= link_to "Shop", shops_path %>
                 <a href="/" class="btn btn-success dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-weight:bold;font-family: 'Merriweather', serif;"><%= current_team.name %> <span class="caret"></span></a>
                 <ul class="dropdown-menu" >
                   <li><%= link_to "Home", root_path %></li>

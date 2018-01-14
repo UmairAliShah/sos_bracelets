@@ -1,0 +1,26 @@
+<% if !@order_items.nil? %>
+
+
+
+  <% if @order_items.size > 0 %>
+    <% @order_items.each do |item| %>
+       <h5>
+          <%= item.product.title %>
+       </h5>
+       <%= form_for(item, remote: true) do |f| %>
+         <%= f.hidden_field :product_id, value: item.product.id %>
+         <h5><%= item.product.price %></h5>
+         <br>
+         <%= f.text_field :quantity, value: item.quantity.to_i, min: 1 %>
+         <br>
+        <p> <%= f.submit "Update quantity" %>
+         <%= link_to "Delete", item, method: :delete, remote: :true %> </p>
+         <span>Total Price: <%= item.total_price %></span>
+
+      <% end %>
+     <% end %>
+  <% else %>
+
+
+  <% end %>
+<% end %>
